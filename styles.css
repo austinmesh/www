@@ -88,3 +88,7 @@ footer {
         display: block;
     }
 }
+menu > li:has(> menu)::after {
+    content: "▾";
+    display: inline-block;
+}
