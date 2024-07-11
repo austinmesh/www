@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Building a Solar-Powered Meshtastic Repeater | Austin Mesh</title>
+        <title>Meshtastic Devices | Austin Mesh</title>
         <meta name="description" content="Tried and tested solar-powered repeater build methods and parts for making your own Meshtastic repeater.">
         <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -36,10 +36,20 @@
                         </menu>
                     </li>
                     <li>
-                        <a href="/solar/">Solar</a>
+                        <a href="/devices/">Devices & Hardware</a>
                         <menu>
-                            <li><a href="/solar/#history">History</a></li>
-                            <li><a href="/solar/#parts-list">Parts list</a></li>
+                            <li><a href="options">Options & Recommendations</a>
+                                <menu>
+                                    <li><a href="/devices/#history">Pocket/Portable</a></li>
+                                    <li><a href="/devices/#parts-list">Stationary/Solar</a></li>
+                                </menu>
+                            </li>
+                            <li><a href="/devices/#solar">Building a Solar Repeater</a>
+                                <menu>
+                                    <li><a href="/devices/#history">History</a></li>
+                                    <li><a href="/devices/#parts-list">Parts list</a></li>
+                                </menu>
+                            </li>
                         </menu>
                     </li>
                     <li>
@@ -52,47 +62,224 @@
                     <li><a href="/partners/">Partners</a></li>
                 </menu>
             </nav>
-            <h1>Building a Solar-Powered Repeater for Meshtastic</h1>
+            <hgroup>
+                <h1>Devices for the Mesh</h1>
+                <p>Austin mesh uses a technology called <a href="https://meshtastic.org" target="_blank">Meshtastic</a> to power the network here in Central Texas. In order to connect to this network, a relatively low cost device is required. You'll often hear these devices referred to as <b><a href="https://en.wikipedia.org/wiki/Node_(networking)" target="_blank">nodes</a></b>.</p>
+            </hgroup>
             <ul>
-                <li><a href="#history">A brief history</a>
+                <li><a href="#options">Device options and recommendations</a></li>
+                <li><a href="#solar">Building a Solar-Powered Repeater for Meshtastic</a>
                     <ul>
-                        <li>Versions</li>
-                        <li>Lessons learned</li>
-                        <li>Considerations for other climates</li>
-                    </ul>
-                </li>
-                <li><a href="#parts-list">Parts list</a>
-                    <ul>
-                        <li>Regular parts</li>
-                        <li>Birdhouse parts</li>
+                        <li><a href="#history">A brief history</a>
+                            <ul>
+                                <li>Versions</li>
+                                <li>Lessons learned</li>
+                                <li>Considerations for other climates</li>
+                            </ul>
+                        </li>
+                        <li><a href="#parts-list">Parts list</a>
+                            <ul>
+                                <li>Regular parts</li>
+                                <li>Birdhouse parts</li>
+                            </ul>
+                        </li>
                     </ul>
                 </li>
             </ul>
-            <section id="history">
-                <h2>A brief history</h2>
-                <h3>History of versions</h3>
+
+
+            <section id="options">
+                <h2>Options and Recommendations</h2>
+                <h3>Pocket/Portable Nodes</h3>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Name</th>
+                            <th>Complexity (1-5)</th>
+                            <th>Type</th>
+                            <th>Estimated total cost</th>
+                            <th>Links</th>
+                            <th>Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td rowspan="6">RAK Wireless</td>
+                            <td>Tony G 19007</td>
+                            <td>Buy - 1<br>Build - 3</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td>
+                                <a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">Docs & Purchase Links</a>
+                                <br><a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">3d printer files</a>
+                                <br><a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">Etsy store</a></td>
+                            <td rowspan="6"></td>
+                        </tr>
+                        <tr>
+                            <td>Tony G 19003</td>
+                            <td>Buy - 1<br>Build - 4</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td>
+                                <a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">Docs & Purchase Links</a>
+                                <br><a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">3d printer files</a>
+                                <br><a href="https://www.etsy.com/shop/QuantumShadow3D">Etsy store</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Tony G Pocketmesh</td>
+                            <td>Buy - 1<br>Build - 4</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td>
+                                <a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">Docs & Purchase Links</a>
+                                <br><a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">3d printer files</a>
+                                <br><a href="https://www.etsy.com/shop/QuantumShadow3D">Etsy store</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Generic 19007</td>
+                            <td>Buy - 1<br>Build - 3</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td>
+                                <a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">Docs & Purchase Links</a>
+                                <br><a href="https://www.printables.com/model/286657-rak19007rak5005-case-for-meshtastic">3d printer files</a>
+                                <br><a href="https://www.etsy.com/search?q=rak19007">Etsy search</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Generic 19003</td>
+                            <td>Buy - 1<br>Build - 3</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td>
+                                <a href="https://www.etsy.com/search?q=rak19003">Etsy search</a>
+                                <br><a href="https://www.printables.com/search/models?q=rak19003&amp;ctx=models">3d printed files search</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>WisMesh Pocket</td>
+                            <td>1</td>
+                            <td>Buy</td>
+                            <td>$100</td>
+                            <td><a href="https://store.rakwireless.com/products/wismesh-pocket">RAK Wireless store</a></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">T-Beam</td>
+                            <td>Tony G v1</td>
+                            <td>Buy - 1<br>Build - 3</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td>
+                                <a href="https://meshtastic.org/docs/hardware/devices/tbeam/">Docs & Purchase Links</a><br><a href="https://www.printables.com/model/127253-t-beam-v1x-case-for-meshtastic">3d printer files</a>
+                                <br><a href="https://www.etsy.com/shop/QuantumShadow3D">Etsy store</a>
+                            </td>
+                            <td rowspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td>Alleycat TB1</td>
+                            <td>3</td>
+                            <td>Build</td>
+                            <td>$50-70</td>
+                            <td>
+                                <a href="https://meshtastic.org/docs/hardware/devices/tbeam/">Docs & Purchase Links</a>
+                                <br><a href="https://www.printables.com/model/730602-alley-chat-tb1-lilygo-t-beam-v1x-case-by-alley-cat">3d printer files</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Generic T-Beam</td>
+                            <td>3-5</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td><a href="https://www.etsy.com/search?q=t%20beam%20meshtastic">Etsy search</a></td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">Heltec</td>
+                            <td>Tony G v3</td>
+                            <td>3</td>
+                            <td>Either</td>
+                            <td>$40-60</td>
+                            <td>
+                                <a href="https://meshtastic.org/docs/hardware/devices/heltec/">Docs & Purchase Links</a>
+                                <br><a href="https://www.printables.com/model/561389-heltec-v3-case-for-meshtastic">3d printer files</a>
+                                <br><a href="https://www.etsy.com/shop/QuantumShadow3D">Etsy store</a>
+                            </td>
+                            <td rowspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td>Alleycat HT Pocket</td>
+                            <td>3</td>
+                            <td>Build</td>
+                            <td>$40-60</td>
+                            <td>
+                                <a href="https://meshtastic.org/docs/hardware/devices/heltec/">Docs & Purchase Links</a>
+                                <br><a href="https://www.printables.com/model/920722-alley-chat-ht-pocket-heltec-lora-32-v3-case-by-all">3d printer files</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Generic Heltec</td>
+                            <td>3-5</td>
+                            <td>Either</td>
+                            <td>$50-100</td>
+                            <td><a href="https://www.etsy.com/search?q=heltec+meshtastic">Etsy search</a></td>
+                        </tr>
+                        <tr>
+                            <td>T-Echo</td>
+                            <td>Lilygo T-Echo</td>
+                            <td>1</td>
+                            <td>Buy</td>
+                            <td>$60-80</td>
+                            <td><a href="https://www.lilygo.cc/products/t-echo">Lilygo store</a></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Meshenger</td>
+                            <td></td>
+                            <td>3-5</td>
+                            <td>Build</td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>Stationary & Solar Nodes</h3>
+                <p>Coming soon</p>
+
+            </section>
+
+
+            <section>
+                <h2 id="solar">Building a Solar-Powered Repeater for Meshtastic</h2>
+                <h3 id="history">A brief history</h3>
+                <h4>History of versions</h4>
                 <p>We have tried 5 permutations of solar powering nodes:</p>
                 <details>
-                <summary>Version 1.0 RAKBox-B2 2000mah LiPo</summary>
-                <p>Using RAK RAKBox-B2 Enclosure with solar panel. The panel was connected directly to the RAK Wireless WisBlock Meshtastic Starter Kit US915. We connected a 2000 MAh Lithium Polymer battery directly to the RAK board. We drilled a hole in the top of the box and attached a fiberglass antenna, which was connected to the RAK board with an iPEX to N-Type connector. We mounted this on top of one of the UT buildings and it died within a month. The 0.4 watt panel is way too small.</p>
+                    <summary>Version 1.0 RAKBox-B2 2000mah LiPo</summary>
+                    <p>Using RAK RAKBox-B2 Enclosure with solar panel. The panel was connected directly to the RAK Wireless WisBlock Meshtastic Starter Kit US915. We connected a 2000 MAh Lithium Polymer battery directly to the RAK board. We drilled a hole in the top of the box and attached a fiberglass antenna, which was connected to the RAK board with an iPEX to N-Type connector. We mounted this on top of one of the UT buildings and it died within a month. The 0.4 watt panel is way too small.</p>
                 </details>
                 <details>
-                <summary>Version 2.0 USB Solar</summary>
-                <p>Same as 1.0 but we added a second 5 watt solar panel that was connected to the RAK board via USB. Also died within a month.</p>
+                    <summary>Version 2.0 USB Solar</summary>
+                    <p>Same as 1.0 but we added a second 5 watt solar panel that was connected to the RAK board via USB. Also died within a month.</p>
                 </details>
                 <details>
-                <summary>Version 3.0 Internal Solar, Power Module, 18650's</summary>
-                <p>To minimize the amount of components outside the box we used a much larger box with a clear lid and placed the solar panel inside the box. We added a Texas Instruments Green Power Module between the solar panel and the RAK board to help regulate the power. For batteries we switched to using four 18650 batteries and we also added an overdischarge protection circuit from Voltaic Enclosures (not to be confused with Voltaic Systems) between the battery and the RAK board to provide clean shutoff when battery voltage fell below 2.5v. We mounted this on top of the UT buildings and it died in 3 months.</p>
+                    <summary>Version 3.0 Internal Solar, Power Module, 18650's</summary>
+                    <p>To minimize the amount of components outside the box we used a much larger box with a clear lid and placed the solar panel inside the box. We added a Texas Instruments Green Power Module between the solar panel and the RAK board to help regulate the power. For batteries we switched to using four 18650 batteries and we also added an overdischarge protection circuit from Voltaic Enclosures (not to be confused with Voltaic Systems) between the battery and the RAK board to provide clean shutoff when battery voltage fell below 2.5v. We mounted this on top of the UT buildings and it died in 3 months.</p>
                 </details>
                 <details>
-                <summary>Version 4.0 External Solar</summary>
-                <p>Same as Version 3.0 but we mounted the solar panel outside of the box (using a smaller box). We mounted this on a pole and it died within 3 months.</p>
+                    <summary>Version 4.0 External Solar</summary>
+                    <p>Same as Version 3.0 but we mounted the solar panel outside of the box (using a smaller box). We mounted this on a pole and it died within 3 months.</p>
                 </details>
                 <details open>
-                <summary>Version 5.0 (Currently running)</summary>
-                <p>For this version we stopped using the RAK’s solar and battery connectors entirely. Instead we connected a large 12 watt solar panel to a Voltaic Systems battery via USB and then connected the battery to the RAK board via USB. The Voltaic Systems battery acts as the solar charge controller and also acts as the overdischarge protection circuit; the battery will charge at a range of voltages from the solar panel (if it gets shaded) and the battery will shut off if the voltages drops too low and will reboot itself once it has recharged sufficiently.</p>
+                    <summary>Version 5.0 (Currently running)</summary>
+                    <p>For this version we stopped using the RAK’s solar and battery connectors entirely. Instead we connected a large 12 watt solar panel to a Voltaic Systems battery via USB and then connected the battery to the RAK board via USB. The Voltaic Systems battery acts as the solar charge controller and also acts as the overdischarge protection circuit; the battery will charge at a range of voltages from the solar panel (if it gets shaded) and the battery will shut off if the voltages drops too low and will reboot itself once it has recharged sufficiently.</p>
                 </details>
-                <h3>Lessons learned:</h3>
+
+                <h4>Lessons learned:</h4>
                 <ol>
                     <li>Don’t trust the RAK board to handle varying solar voltage or varying battery voltage. It is very unhappy if either voltage goes outside of a narrow range. In fact there is a <a href="https://meshtastic.discourse.group/t/rak-4631-solar-repeater/7694/7">known issue</a> where the Nordic nRF52840 module inside of the RAK 4631 chip causes it to enter a “Super Deep Sleep” fault state when it is supplied with 3.3V. This means when the battery voltage falls too low the RAK chip shuts down and can only be rebooted manually.</li>
                     <li>Solar panels: bigger is better. 10 watts or more is ideal.</li>
@@ -107,16 +294,15 @@
                 <summary>Details on the boards that died</summary>
                 <p>One was filled with water, the antenna seal didn't work. That's why the vent valve at the bottom is so important. One died because it got stuck in the low voltage state that requires a physical reset - that's fixed with the Voltaic packs. The third one died due to unknown causes but heat is suspected. When we tried to reboot with with wall power it wouldn't turn on - so the board was totally fried. That one I also sprayed with covalent coating nasty stuff that we won't use any more.</p>
                 </details>
-                <h3>Considerations for other climates</h3>
+                <h4>Considerations for other climates</h4>
                 <ol>
                     <li>Northern Climates: At higher latitudes there is much less sunshine in the winter. A larger solar panel would be necessary and angling the panel lower to the horizon would be beneficial. The rule of thumb is to angle the solar panels at the same degree as your latitude. In Austin our panels should be angled at 30° but in Calgary the optimal angle would be 50°. Batteries should also be bigger in colder climates as low temperatures reduce their performance.</li>
                     <li>Coastal Climates: salt spray and condensation from fog can kill electronics quickly. In coastal climates it is best to spray the electronics with conformal coating.</li>
                 </ol>
-            </section>
-            <section id="parts-list">
-                <h2>Parts list</h3>
+
+                <h3 id="parts-list">Parts list</h3>
                 <p>With all that said, here is the parts list for our most-preferred way to build a solar powered repeater. This design doesn’t require any soldering or complicated connectors. It also doesn’t require any battery management chips (which often have long shipping lead times and can be hard to get). For this design the solar panel is connected directly to the battery pack via USB. Then the battery pack is connected to the board via USB. The Voltaic Systems V25 battery is nice because it is optimized to charge from a solar panel and it is set standard to an “always on” mode which means the battery bank does not shut off after a set amount of time like other battery packs – this is useful as the RAK chip uses very little power and can trick other battery packs into shutting off. The other really nice thing about the Voltaic pack is than when it drains down completely it shuts down, but then once the solar panel has sufficiently charged it back up it will automatically turn itself back on again. The RAK radio uses between 100 and 1000 mAh per day, with about 400 mAh per day being average so theoretically the 6,400mAh Voltaic V25 could keep the radio running for 16 days without solar.</p>
-                <h3>Regular parts</h3>
+                <h4>Regular parts</h4>
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -197,7 +383,7 @@
                         </tbody>
                     </table>
                 </div>
-                <h3>Birdhouse parts</h3>
+                <h4>Birdhouse parts</h4>
                 <p>To turn this repeater into a solar-powered meshtastic birdhouse you can just add the following components. Simply paint the top of the birdhouse black and glue on the solar panel, cut a hole in the back of the birdhouse big enough to put the box into it, attach the antenna mount L-Bracket to the side of the birdhouse, and connect the box to the antenna on the mount with the pigtail using the jam nut.</p>
                 <div class="table-wrapper">
                     <table>

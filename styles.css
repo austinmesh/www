@@ -29,11 +29,11 @@ header img {
 }
 main {
     margin: 0 auto 40px;
-    max-width: 700px;
+    max-width: 900px;
 }
 footer {
     margin: 0 auto !important;
-    max-width: 700px;
+    max-width: 900px;
 }
 .meetup {
     position: relative;
