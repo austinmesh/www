@@ -20,12 +20,41 @@
     --color-canvasText: #fff;
   }
 }
-header {
+body > header {
+    align-items: center;
     background-color: var(--ly-brand);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     text-align: center;
 }
-header img {
+.logo {
     max-width: calc(100% - 3rem);
+}
+.meet-button {
+    background: var(--default);
+    border-color: transparent !important;
+    color: var(--contrast);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateX(100px);
+    transition: opacity 1s ease, transform 1s ease;
+}
+header.loaded .meet-button {
+    opacity: 1;
+    transform: translateX(0);
+}
+@media (min-width: 768px) {
+    body > header {
+        flex-direction: row;
+    }
+    .logo {
+        margin-bottom: 0;
+        margin-right: 20px;
+    }
+    .meet-button {
+        margin-bottom: 0;
+    }
 }
 main {
     margin: 0 auto 40px;
@@ -34,24 +63,6 @@ main {
 footer {
     margin: 0 auto !important;
     max-width: 900px;
-}
-.meetup {
-    position: relative;
-    padding: 20px;
-    margin: 20px 0;
-    background-color: var(--bg-muted);
-}
-.meetup .mpowered {
-    display: none;
-}
-@media only screen and (min-width: 720px) {
-    .meetup .mpowered {
-        display: block;
-        position: absolute;
-        right: 20px;
-        top: 20px;
-        width: 96px;
-    }
 }
 .partner-logos {
     display: flex;
