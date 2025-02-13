@@ -91,6 +91,13 @@ footer {
 .social a {
     padding: 0 10px;
 }
+nav {
+    flex-direction: column-reverse;
+}
+.menu--social {
+    flex-direction: row;
+    justify-content: center;
+}
 @media only screen and (min-width: 720px) {
     .social {
         margin: 20px 0 20px;
@@ -98,8 +105,14 @@ footer {
     .social p {
         display: block;
     }
+    nav {
+        flex-direction: row;
+    }
 }
 menu > li:has(> menu)::after {
     content: "▾";
     display: inline-block;
+}
+menu > li > a > img {
+    vertical-align: middle;
 }
