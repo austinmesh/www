@@ -64,6 +64,36 @@ footer {
     margin: 0 auto !important;
     max-width: 900px;
 }
+.hero {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 0.5s ease-in-out;
+}
+.hero-content {
+    padding: 15px 10px;
+    background: rgba(31,32,49,.8);
+    max-width: 500px;
+    margin: 20px auto;
+    text-align: center;
+}
+.hero-content a {
+    border: 1px solid;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: rgba(31,32,49,.9);
+    letter-spacing: .5px;
+    text-wrap: nowrap;
+    display: inline-block;
+    margin-top: 5px;
+}
+@media only screen and (min-width: 720px) {
+    .hero-content {
+        padding: 40px 100px;
+    }
+}
 .partner-logos {
     display: flex;
     justify-content: space-around;
