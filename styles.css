@@ -95,9 +95,15 @@ footer {
     }
 }
 .partner-logos {
+    align-items: center;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
-    align-items: baseline;
+}
+@media only screen and (min-width: 720px) {
+    .partner-logos {
+        flex-direction: row;
+    }
 }
 .partner-heading {
     align-items: center;
@@ -107,6 +113,11 @@ footer {
 .partner-heading img {
     margin-left: 0;
     margin-right: 10px;
+}
+.partner-logos img {
+    padding: 10px;
+    max-width: 240px;
+    min-height: 70px;
 }
 .white-bg {
     background-color: #fff;
