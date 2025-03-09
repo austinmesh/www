@@ -20,6 +20,9 @@
     --color-canvasText: #fff;
   }
 }
+strong {
+    font-style: normal;
+}
 body > header {
     align-items: center;
     background-color: var(--ly-brand);
