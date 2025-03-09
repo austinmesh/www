@@ -190,25 +190,25 @@
             </section>
             <section id="bridger">
                 <h2>Network Observability</h2>
-                <p><a href="https://github.com/austinmesh/bridger">Bridger</a> powers the backend of our network statistics dashboard. The project is headed up by <a href="https://github.com/andyshinn">Andy Shinn</a> and written in python, this project ties an MQTT broker to <a href="https://github.com/influxdata/influxdb" >InfluxDB</a>. With bridger, we are able to ingest MQTT packets from contributing gateways, parse the packets into InfluxDB, and represent the network statistics with <a href="https://grafana.com/">Grafana</a>.</p>
+                <p><a href="https://github.com/austinmesh/bridger">Bridger</a> powers the backend of our network statistics dashboard. The project is maintained by the Austin Mesh community and written in Python. With Bridger, we can ingest MQTT packets from contributing gateways, parse the packets into <a href="https://github.com/influxdata/influxdb" >InfluxDB</a>, and represent the network statistics with <a href="https://grafana.com/">Grafana</a>.</p>
                 <dl>
                     <dt>How to view the Austin Mesh network statistics dashboard?</dt>
-                    <dd>Our network statistics dashboard can be viewed by visiting <a href="https://graphs.austinmesh.org">graphs.austinmesh.org</a>. Feel free to expore the data and see the coverage, device metrics, node information, and more.</dd>
+                    <dd>Our network statistics dashboard can be viewed by visiting <a href="https://graphs.austinmesh.org">graphs.austinmesh.org</a>. Feel free to explore the data and see the coverage, device metrics, node information, and more.</dd>
                     <dt>Why is my node not listed?</dt>
-                    <dd>Newer versions of the Meshtastic firmware has a setting called "Okay to MQTT" under the LoRa settings. This is a polite request to device running the official firmware on weather or not packets from your node can be forwarded to MQTT brokers by other nodes. Please ensure that this is enabled to have your node reported on the network statistics dashboard. Please see the <a href="/join/#best-practices">best practices</a> page for more information our recommend configuration for nodes.</dd>
+                    <dd>Newer versions of the Meshtastic firmware have a setting called "Okay to MQTT" under the LoRa settings. This is a polite request to a device running the official firmware on whether or not packets from your node can be forwarded to MQTT brokers by other nodes. Please ensure that this is enabled to have your node reported on the network statistics dashboard. Please see the <a href="/join/#best-practices">best practices</a> page for more information on our recommended configuration for nodes.</dd>
                     <dt>How can I contribute data to Bridger?</dt>
-                    <dd>To contribute data to bridger, you will need a node that can connect to the MQTT server, like a Heltec V3 using Wi-Fi. Ideally, contributing nodes should be connected 24/7. Your node will need credentials, which can be requested on the Austin Mesh discord by running the <b>/bridger-mqtt-request-account</b> command. Be sure to copy the username and password before the message disappears. You will need to know your 8 digit node id, which can be found in the User settings. Once you have your credentials, open the MQTT settings and configure it as follows:<br><br>
+                    <dd>To contribute data to Bridger, you will need a node that can connect to the MQTT server through the internet, like a Heltec V3. Ideally, contributing nodes should be connected 24/7. Your node will need credentials, which can be requested on the Austin Mesh discord by running the <b>/bridger-mqtt-request-account</b> command and supplying your 8-digit node ID. Be sure to store your username and password in a safe place. Once you have your credentials, open the MQTT settings and configure it as follows:<br><br>
                     <table>
                         <tr><th>Setting Name</th><th>Value</th></tr>
                         <tr><td>MQTT Enabled</td><td>Enabled</td></tr>
                         <tr><td>Address</td><td>mqtt.austinmesh.org</td></tr>
                         <tr><td>Username</td><td><i>Username for your node</i></td></tr>
-                        <tr><td>Password</td><td>Password for your node</td></tr>
+                        <tr><td>Password</td><td><i>Password for your node</i></td></tr>
                         <tr><td>Encryption enabled</td><td>Disabled</td></tr>
                         <tr><td>JSON output enabled</td><td>Disabled</td></tr>
                         <tr><td>Root topic</td><td>egr/home</td></tr>
                     </table><br>
-                    Then, under Channels settings, be sure that you have "Uplink enabled" set to enabled on the LongFast channel.</dd>
+ Then, under Channels settings, ensure you have "Uplink enabled" set to enabled on the LongFast channel.</dd>
                 </dl>
             </section>
         </main>
