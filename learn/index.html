@@ -14,14 +14,14 @@
     <body>
         <header>
             <a href="/"><img src="../images/Austin-Mesh-Logo.svg" class="logo" alt="Logo for Austin Mesh" title="Austin Mesh" width="500" height="121" /></a>
-            <button onclick="document.getElementById('event').showModal()" class="default meet-button">📅 Upcoming Meeting 4/10</button>
+            <button onclick="document.getElementById('event').showModal()" class="default meet-button">📅 Upcoming Meeting 4/8</button>
         </header>
         <dialog id="event">
             <header>
                 <h1>Austin Mesh Meeting</h1>
             </header>
             <p>Come hang out at our next installment of the Austin Mesh meeting series. You can bring your friend. You can bring your node. Just don't bring your friend's node.</p>
-            <p><b>Thursday April 10th, 6:30pm</b> (<a href="https://discord.gg/MebnGdYQZg?event=1323083607828467774" target="_blank">Save the date</a>)</p>
+            <p><b>Thursday April 8th, 6:00pm</b> (<a href="https://discord.gg/MebnGdYQZg?event=1323083607828467774" target="_blank">Save the date</a>)</p>
             <p>Mister Tramps Sports Pub<br>8565 Research Blvd, Austin, TX 78758<br><a href="https://www.openstreetmap.org/way/72473475">OpenStreetMap</a><br><a href="https://maps.app.goo.gl/XZFYoxAZkpUyWFLo8">Google Maps</a></p>
             <footer>
                 <form method="dialog">
@@ -40,6 +40,7 @@
                             <li><a href="/learn/#about">About</a></li>
                             <li><a href="/learn/#coverage">Network coverage</a></li>
                             <li><a href="/learn/#comparisons">Similar technology</a></li>
+                            <li><a href="/learn/#bridger">Network observability</a></li>
                         </menu>
                     </li>
                     <li>
@@ -110,6 +111,7 @@
                 </li>
                 <li><a href="#coverage">Network coverage in Austin</a></li>
                 <li><a href="#comparisons">Comparisons to similar technology</a></li>
+                <li><a href="/learn/#bridger">Network observability</a></li>
             </ul>
             <section>
                 <h2>Why build a mesh in the first place?</h2>
@@ -184,6 +186,29 @@
                     <dd>APRS has services which allow users to send emails and SMS text messages to people who aren’t ham radio users. Meshtastic does not have this feature but it could be added in the future.</dd>
                     <dt>Simplicity</dt>
                     <dd>APRS is quite a bit more difficult to use than Meshtastic. APRS does not have any standardized user interface – there are dozens of software packages available. Meshtastic has a standardized iPhone and Android app which is easy to understand for new users.</dd>
+                </dl>
+            </section>
+            <section id="bridger">
+                <h2>Network Observability</h2>
+                <p><a href="https://github.com/austinmesh/bridger">Bridger</a> powers the backend of our network statistics dashboard. The project is maintained by the Austin Mesh community and written in Python. With Bridger, we can ingest MQTT packets from contributing gateways, parse the packets into <a href="https://github.com/influxdata/influxdb" >InfluxDB</a>, and represent the network statistics with <a href="https://grafana.com/">Grafana</a>.</p>
+                <dl>
+                    <dt>How to view the Austin Mesh network statistics dashboard?</dt>
+                    <dd>Our network statistics dashboard can be viewed by visiting <a href="https://graphs.austinmesh.org">graphs.austinmesh.org</a>. Feel free to explore the data and see the coverage, device metrics, node information, and more.</dd>
+                    <dt>Why is my node not listed?</dt>
+                    <dd>Newer versions of the Meshtastic firmware have a setting called "Okay to MQTT" under the LoRa settings. This is a polite request to a device running the official firmware on whether or not packets from your node can be forwarded to MQTT brokers by other nodes. Please ensure that this is enabled to have your node reported on the network statistics dashboard. Please see the <a href="/join/#best-practices">best practices</a> page for more information on our recommended configuration for nodes.</dd>
+                    <dt>How can I contribute data to Bridger?</dt>
+                    <dd>To contribute data to Bridger, you will need a node that can connect to the MQTT server through the internet, like a Heltec V3. Ideally, contributing nodes should be connected 24/7. Your node will need credentials, which can be requested on the Austin Mesh discord by running the <b>/bridger-mqtt-request-account</b> command and supplying your 8-digit node ID. Be sure to store your username and password in a safe place. Once you have your credentials, open the MQTT settings and configure it as follows:<br><br>
+                    <table>
+                        <tr><th>Setting Name</th><th>Value</th></tr>
+                        <tr><td>MQTT Enabled</td><td>Enabled</td></tr>
+                        <tr><td>Address</td><td>mqtt.austinmesh.org</td></tr>
+                        <tr><td>Username</td><td><i>Username for your node</i></td></tr>
+                        <tr><td>Password</td><td><i>Password for your node</i></td></tr>
+                        <tr><td>Encryption enabled</td><td>Disabled</td></tr>
+                        <tr><td>JSON output enabled</td><td>Disabled</td></tr>
+                        <tr><td>Root topic</td><td>egr/home</td></tr>
+                    </table><br>
+ Then, under Channels settings, ensure you have "Uplink enabled" set to enabled on the LongFast channel.</dd>
                 </dl>
             </section>
         </main>
