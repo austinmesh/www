@@ -164,12 +164,21 @@
                 </ol>
                 <p>These are lessons learned from Austin Texas, where the main environmental stressors are heat and thunderstorms. In the summer of 2023 we 80 days over 100° F (38°C) and we had a stretch of 11 days over 105° F (40.5°C), during which two radios died. We also can have both high humidity and high temperature at the same time in Austin; in the summer the weather would swing from 80° F (27°C) with 85% humidity in the morning to 105° F (38°C) with 25% humidity in the afternoon. <a href="https://weatherspark.com/h/y/8004/2023/Historical-Weather-during-2023-in-Austin-Texas-United-States">Weather history here.</a> Our learnings are probably applicable to other southern and desert climates.</p>
                 <details>
-                <summary>Details on the boards that died</summary>
-                <p>One was filled with water, the antenna seal didn't work. That's why the vent valve at the bottom is so important. One died because it got stuck in the low voltage state that requires a physical reset - that's fixed with the Voltaic packs. The third one died due to unknown causes but heat is suspected. When we tried to reboot with with wall power it wouldn't turn on - so the board was totally fried. That one I also sprayed with covalent coating nasty stuff that we won't use any more.</p>
+                    <summary>Details on the boards that died</summary>
+                    <p>One was filled with water, the antenna seal didn't work. That's why the vent valve at the bottom is so important. One died because it got stuck in the low voltage state that requires a physical reset - that's fixed with the Voltaic packs. The third one died due to unknown causes but heat is suspected. When we tried to reboot with with wall power it wouldn't turn on - so the board was totally fried. That one I also sprayed with covalent coating nasty stuff that we won't use any more.</p>
                 </details>
                 <h4>Considerations for other climates</h4>
                 <ol>
-                    <li>Northern Climates: At higher latitudes there is much less sunshine in the winter. A larger solar panel would be necessary and angling the panel lower to the horizon would be beneficial. The rule of thumb is to angle the solar panels at the same degree as your latitude. In Austin our panels should be angled at 30° but in Calgary the optimal angle would be 50°. Batteries should also be bigger in colder climates as low temperatures reduce their performance.</li>
+                    <li>Northern Climates and extreme cold
+                        <ul>
+                            <li>This isn't from our experience, but we felt it was so valuable that we shoud link to it here. <a href="https://www.yycmesh.com/" target="_blank">YYC Mesh</a>, a group in southern Alberta as well as the Greater Vancouver/Victoria recently published their <a href="https://yycmesh.wordpress.com/2025/04/19/cold-weather-charging-of-lithium-ion-batteries-real-world-lessons-from-the-meshtastic-community/?utm_source=referral&utm_medium=website&utm_campaign=austinmesh" target="_blank">findings on batteries in cold temperatures</a>.
+                            <li>LiPo and Li-ion are fine(0 failures)</li>
+                            <li>Capacity <b>IS</b> reduced. 3000mAh minimum kept nodes up and charge rates low(good thing)</li>
+                            <li>Charging creates heat, enclosures trap heat</li>
+                            <li>nRF52 > ESP32</li>
+                            <li><a href="https://empowerenergysolar.ca/wp-content/uploads/2022/11/NAIT_Reference_Array_Report_March_31_2016_revD.pdf" target="_blank">Solar panel angle matters</a></li>
+                        </ul>
+                    </li>
                     <li>Coastal Climates: salt spray and condensation from fog can kill electronics quickly. In coastal climates it is best to spray the electronics with conformal coating.</li>
                 </ol>
 
