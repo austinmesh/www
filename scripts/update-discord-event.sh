@@ -6,15 +6,7 @@ TOKEN="${DISCORD_BOT_TOKEN:?}"
 INDEX_PATH="index.html"
 
 # Fetch events from Discord
-# EVENTS_JSON=$(curl -s -H "Authorization: Bot $TOKEN" "https://discord.com/api/guilds/$GUILD_ID/scheduled-events")
-
-# Uncomment the following to test without fetching from Discord
-
-# Example: No upcoming events
-# EVENTS_JSON="[]"
-
-# Example: One upcoming event
-EVENTS_JSON='[{"id": "1388947874875834548","guild_id": "1388934107974729769","name": "Test Meetup #1","description": "This is a test event #1","channel_id": null,"creator_id": "201049866967711744","creator": {"id": "201049866967711744","username": "atechadventurer","avatar": "6beb07178e4af1b4a1cce0ff7de32325","discriminator": "0","public_flags": 4194432,"flags": 4194432,"banner": "a_eade0a9638ac7b3884ce35ae620d7715","accent_color": 4804990,"global_name": "ATechAdventurer","avatar_decoration_data": null,"collectibles": null,"banner_color": "#49517e","clan": null,"primary_guild": null},"image": null,"scheduled_start_time": "2025-06-30T19:00:00+00:00","scheduled_end_time": "2025-06-30T20:00:00+00:00","status": 1,"entity_type": 3,"entity_id": null,"recurrence_rule": null,"privacy_level": 2,"sku_ids": [],"guild_scheduled_event_exceptions": [],"entity_metadata": {"location": "Black Sheep Lodge - 2108 S Lamar Blvd, Austin, TX 78704"}}]'
+EVENTS_JSON=$(curl -s -H "Authorization: Bot $TOKEN" "https://discord.com/api/guilds/$GUILD_ID/scheduled-events")
 
 # Find the next upcoming event (status == 1, soonest start time)
 NEXT_EVENT=$(echo "$EVENTS_JSON" | jq '[.[] | select(.status==1)] | sort_by(.scheduled_start_time) | .[0]')
