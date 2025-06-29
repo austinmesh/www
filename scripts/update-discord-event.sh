@@ -28,15 +28,15 @@ if [ "$NEXT_EVENT" = "null" ] || [ -z "$NEXT_EVENT" ]; then
   # Update dialog
   DIALOG_CONTENT=$(cat <<EOF
 <dialog id="event">
-  <header>
-    <h1>No Upcoming Events</h1>
-  </header>
-  <p>There are currently no scheduled events. Please check back later or join our <a href=\"https://discord.gg/6a5Sv2s9bG\" target="_blank">Discord</a> for updates.</p>
-  <footer>
-    <form method="dialog">
-      <button type="submit">Close</button>
-    </form>
-  </footer>
+    <header>
+        <h1>No Upcoming Events</h1>
+    </header>
+    <p>There are currently no scheduled events. Please check back later or join our <a href=\"https://discord.gg/6a5Sv2s9bG\" target="_blank">Discord</a> for updates.</p>
+    <footer>
+        <form method="dialog">
+            <button type="submit">Close</button>
+        </form>
+    </footer>
 </dialog>
 EOF
 )
@@ -62,18 +62,18 @@ sed -i -E "s|<button[^>]*class=\"default meet-button\"[^>]*>.*?</button>|<button
 # Update dialog (replace everything between <dialog id="event"> and </dialog>)
 DIALOG_CONTENT=$(cat <<EOF
 <dialog id="event">
-  <header>
-    <h1>$EVENT_NAME</h1>
-  </header>
-  <p>$EVENT_DESC</p>
-  <p><b>$EVENT_DATE</b> (<a href="$EVENT_LINK" target="_blank">Save the date</a>)</p>
-  <p>$EVENT_LOC</p>
-  <footer>
-    <form method="dialog">
-      <a class="default" href="$EVENT_LINK" type="button">Save the date</a>
-      <button type="submit">Close</button>
-    </form>
-  </footer>
+    <header>
+        <h1>$EVENT_NAME</h1>
+    </header>
+    <p>$EVENT_DESC</p>
+    <p><b>$EVENT_DATE</b> (<a href="$EVENT_LINK" target="_blank">Save the date</a>)</p>
+    <p>$EVENT_LOC</p>
+    <footer>
+        <form method="dialog">
+            <a class="default" href="$EVENT_LINK" type="button">Save the date</a>
+            <button type="submit">Close</button>
+        </form>
+    </footer>
 </dialog>
 EOF
 )
