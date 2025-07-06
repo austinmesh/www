@@ -1,0 +1,44 @@
+name: Update Discord Event
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-event:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get update && sudo apt-get install -y jq
+
+      - name: Update Discord Event in HTML
+        env:
+          DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+        run: bash scripts/update-discord-event.sh
+
+      - name: Check if index.html changed
+        id: index_changed
+        run: |
+          git add index.html
+          if git diff --cached --quiet; then
+            echo "No changes to index.html."
+            echo "changed=false" >> $GITHUB_OUTPUT
+          else
+            echo "index.html changed."
+            echo "changed=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Pull Request if index.html changed
+        if: steps.index_changed.outputs.changed == 'true'
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "Update event from Discord"
+          title: "Update event from Discord"
+          body: "Automated update of event info from Discord."
+          branch: update-discord-event-bot
+          delete-branch: true
+          add-paths: index.html
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
