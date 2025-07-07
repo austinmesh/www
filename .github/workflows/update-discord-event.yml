@@ -22,20 +22,21 @@ jobs:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
         run: bash scripts/update-discord-event.sh
 
-      - name: Check if index.html changed
-        id: index_changed
+      - name: Check if files changed
+        id: files_changed
         run: |
-          git add index.html
-          if git diff --cached --quiet; then
-            echo "No changes to index.html."
+          # Check if any files were modified by the script
+          if git diff --quiet; then
+            echo "No changes detected."
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            echo "index.html changed."
+            echo "Files changed:"
+            git diff --name-only
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
 
-      - name: Create Pull Request if index.html changed
-        if: steps.index_changed.outputs.changed == 'true'
+      - name: Create Pull Request if files changed
+        if: steps.files_changed.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "Update event from Discord"
@@ -43,6 +44,5 @@ jobs:
           body: "Automated update of event info from Discord."
           branch: update-discord-event-bot
           delete-branch: true
-          add-paths: index.html
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
