@@ -1,0 +1,73 @@
+---
+import { siteConfig } from '../config/site';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import EventBanner from '../components/EventBanner.astro';
+import '@lowlighter/matcha/dist/matcha.css';
+import '../styles/global.css';
+
+export interface Props {
+  title?: string;
+  description?: string;
+  showEventBanner?: boolean;
+}
+
+const {
+  title = siteConfig.name,
+  description = siteConfig.description,
+  showEventBanner = true
+} = Astro.props;
+
+const fullTitle = title === siteConfig.name ? title : `${title} | ${siteConfig.name}`;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{fullTitle}</title>
+  <meta name="description" content={description}>
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+  {showEventBanner && <EventBanner />}
+  <Header />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+  
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const lazyContainers = document.querySelectorAll('.lazy');
+
+      const options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+      };
+
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const container = entry.target;
+            const isRetina = window.devicePixelRatio > 1;
+            const bgImage = isRetina ? container.dataset.bgRetina : container.dataset.bg;
+            container.style.backgroundImage = `url(${bgImage})`;
+
+            observer.unobserve(container);
+          }
+        });
+      }, options);
+
+      lazyContainers.forEach(container => {
+        observer.observe(container);
+      });
+    });
+  </script>
+</body>
+</html>

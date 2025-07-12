@@ -1,16 +1,41 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { siteConfig } from '../config/site';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title={siteConfig.name} description={siteConfig.description}>
+  <h1>Austin Mesh</h1>
+  
+  <section class="hero lazy" 
+           data-bg="/images/austin-mesh-wildflower-center-small.webp" 
+           data-bg-retina="/images/austin-mesh-wildflower-center-large.webp"
+           aria-label="Hand holding a Meshtastic communicator at the Ladybird Johnson Wildflower Center with a view of the Texas countryside and Austin city skyline in the background with an invitation to join the group or learn more">
+    <div class="hero-content">
+      <h2>We are a community group building a free text messaging network in Austin</h2>
+      <a class="success" href="/join/">Join the network</a>
+      <a class="default" href="/learn/">Learn more</a>
+    </div>
+  </section>
+  
+  <section>
+    <h2>Dive in</h2>
+    <p>We have all sorts of great content on our website. From our world famous <a href="/learn/#eli5">Meshtastic ELI5</a> to a great list of tips for <a href="/similar-networks/#start-a-similar-network">starting your own mesh network</a> we have aimed to share everything we learn as we grow Austin Mesh. Take a look through the navigation at the top of our site and <a href="mailto:info@austinmesh.org">drop us an email</a> if you appreciate what we've done or have any questions or ideas. We'd love to hear from you!</p>
+  </section>
+  
+  <section>
+    <h2>Community partners</h2>
+    <p>We're extremely grateful to our great community partners who have helped to build this strong network. <a href="/partners/">Explore photos, learn more, or become a partner</a></p>
+    <div class="partner-logos">
+      <div>
+        <img src="/images/aisd/AISD-GusGarcia-Logo.svg" width="240" alt="Logo of the Gus Garcia Young Men's Leadership Academy AISD" title="Gus Garcia Young Men's Leadership Academy AISD" loading="lazy" class="white-bg" />
+      </div>
+      <div>
+        <img src="/images/aisd/AISD-Hart-Logo.svg" width="240" alt="Logo of the HART Elementary School AISD" title="HART Elementary AISD" loading="lazy" class="white-bg" />
+      </div>
+      <div>
+        <img src="/images/aisd/AISD-LBJ-Logo.svg" width="240" alt="Logo of the LBJ Early College High School, AISD" title="Logo of the LBJ Early College High School, AISD" loading="lazy" class="white-bg" />
+      </div>
+    </div>
+  </section>
+  
+</BaseLayout>

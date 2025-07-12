@@ -1,0 +1,250 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-default: #fcfcfc;
+  --color-canvasBorder: #565764;
+  --color-canvasDark: #e3e3e3;
+  --color-canvasDarker: #cacaca;
+  --color-canvasText: #2C2D3C;
+  --color-canvasTextDark: #107633;
+  --color-canvasTextDarker: #062c13;
+  --ly-brand: #67EA94;
+  --accent: #2ce26a;
+  --dark-accent: #67EA94;
+  --ly-bg-brand: #67EA94;
+  --color-primaryDark: #2ce26a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg-default: #2C2D3C;
+    --color-canvasDark: #1f2031;
+    --color-canvasDarker: #232430;
+    --color-canvasText: #fff;
+  }
+}
+
+/* ===== GLOBAL STYLES ===== */
+strong {
+  font-style: normal;
+}
+
+main {
+  margin: 0 auto 40px;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+footer {
+  margin: 0 auto !important;
+  max-width: 900px;
+  padding: 0 2rem;
+}
+
+/* ===== HEADER STYLES ===== */
+body > header {
+  align-items: center;
+  background-color: var(--ly-brand);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+
+.logo {
+  max-width: calc(100% - 3rem);
+}
+
+.meet-button {
+  background: var(--default);
+  border-color: transparent !important;
+  color: var(--contrast);
+  margin-bottom: 20px;
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+hgroup {
+  border-color: var(--ly-brand);
+}
+
+header.loaded .meet-button {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+@media (min-width: 768px) {
+  body > header {
+    flex-direction: row;
+  }
+
+  .logo {
+    margin-bottom: 0;
+    margin-right: 20px;
+  }
+
+  .meet-button {
+    margin-bottom: 0;
+  }
+}
+
+/* ===== NAVIGATION STYLES ===== */
+nav {
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  justify-content: center;
+}
+
+nav > menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  flex-wrap: wrap;
+}
+
+.menu--social {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+menu > li:has(> menu)::after {
+  content: "▾";
+  display: inline-block;
+}
+
+menu > li > a > img {
+  vertical-align: middle;
+}
+
+@media only screen and (min-width: 720px) {
+  nav {
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .menu--social {
+    margin-left: 2rem;
+  }
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  background-size: cover;
+  background-position: center;
+  transition: background-image 0.5s ease-in-out;
+}
+
+.hero-content {
+  padding: 15px 10px;
+  background: rgba(31, 32, 49, 0.8);
+  max-width: 500px;
+  margin: 20px auto;
+  text-align: center;
+  color: white;
+}
+
+.hero-content a {
+  border: 1px solid;
+  padding: 10px 15px;
+  border-radius: 5px;
+  background: rgba(31, 32, 49, 0.9);
+  letter-spacing: 0.5px;
+  text-wrap: nowrap;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+@media only screen and (min-width: 720px) {
+  .hero-content {
+    padding: 40px 100px;
+  }
+}
+
+/* ===== PARTNER/SPONSOR SECTIONS ===== */
+.partner-logos {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.partner-logos img {
+  padding: 10px;
+  max-width: 240px;
+  min-height: 70px;
+}
+
+.partner-heading {
+  align-items: center;
+  display: flex;
+  margin-top: 2rem;
+}
+
+.partner-heading img {
+  margin-left: 0;
+  margin-right: 10px;
+}
+
+.white-bg {
+  background-color: #fff;
+}
+
+@media only screen and (min-width: 720px) {
+  .partner-logos {
+    flex-direction: row;
+  }
+}
+
+/* ===== SOCIAL MEDIA SECTIONS ===== */
+.social {
+  margin: 20px 0 0;
+  text-align: center;
+}
+
+.social p {
+  display: none;
+}
+
+.social a {
+  padding: 0 10px;
+  display: inline-block;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.social a:hover {
+  color: #333;
+}
+
+@media only screen and (min-width: 720px) {
+  .social {
+    margin: 20px 0 20px;
+  }
+
+  .social p {
+    display: block;
+  }
+}
+
+/* ===== ICON STYLES ===== */
+.menu--social a {
+  display: inline-block;
+  color: #666;
+  transition: color 0.2s ease;
+}
+
+.menu--social a:hover {
+  color: #333;
+}

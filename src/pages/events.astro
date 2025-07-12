@@ -1,0 +1,208 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Get all events, sorted by start date
+const events = await getCollection('events');
+const sortedEvents = events.sort((a, b) =>
+  new Date(b.data.startDate).getTime() - new Date(a.data.startDate).getTime()
+);
+
+// Separate upcoming and past events
+const now = new Date();
+const upcomingEvents = sortedEvents.filter(event =>
+  new Date(event.data.startDate) > now
+);
+const pastEvents = sortedEvents.filter(event =>
+  new Date(event.data.startDate) <= now
+);
+
+// Render content for events
+const upcomingEventsWithContent = await Promise.all(
+  upcomingEvents.map(async (event) => {
+    const { Content } = await event.render();
+    return { ...event, Content };
+  })
+);
+const pastEventsWithContent = await Promise.all(
+  pastEvents.map(async (event) => {
+    const { Content } = await event.render();
+    return { ...event, Content };
+  })
+);
+
+function formatEventDate(date: Date): string {
+  return date.toLocaleDateString('en-US', {
+    weekday: 'long',
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
+    timeZoneName: 'short'
+  });
+}
+---
+
+<BaseLayout
+  title="Events | Austin Mesh"
+  description="Austin Mesh community events, meetups, and workshops."
+>
+  <h1>Austin Mesh Events</h1>
+
+  {upcomingEvents.length > 0 && (
+    <section>
+      <h2>Upcoming Events</h2>
+      <div class="events-grid">
+        {upcomingEventsWithContent.map((event) => (
+          <article class="event-card upcoming">
+            <div class="event-header">
+              <h3>{event.data.title}</h3>
+            </div>
+
+            <div class="event-details">
+              <div class="event-date">
+                📅 {formatEventDate(new Date(event.data.startDate))}
+              </div>
+
+              {event.data.location && (
+                <div class="event-location">
+                  📍 {event.data.locationUrl ? (
+                    <a href={event.data.locationUrl} target="_blank" rel="noopener">
+                      {event.data.location}
+                    </a>
+                  ) : (
+                    event.data.location
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div class="event-description">
+              <event.Content />
+            </div>
+
+            {event.data.registrationUrl && (
+              <div class="event-actions">
+                <a href={event.data.registrationUrl} target="_blank" class="event-register">
+                  Register / RSVP
+                </a>
+              </div>
+            )}
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {pastEvents.length > 0 && (
+    <section>
+      <h2>Past Events</h2>
+      <div class="events-grid">
+        {pastEventsWithContent.map((event) => (
+          <article class="event-card past">
+            <div class="event-header">
+              <h3>{event.data.title}</h3>
+            </div>
+
+            <div class="event-details">
+              <div class="event-date">
+                📅 {formatEventDate(new Date(event.data.startDate))}
+              </div>
+
+              {event.data.location && (
+                <div class="event-location">
+                  📍 {event.data.location}
+                </div>
+              )}
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {events.length === 0 && (
+    <section>
+      <p>No events scheduled at this time. Check back soon or join our <a href="/join/#group">Discord</a> for the latest updates!</p>
+    </section>
+  )}
+</BaseLayout>
+
+<style>
+  .events-grid {
+    display: grid;
+    gap: 1.5rem;
+    margin-top: 1rem;
+  }
+
+  .event-card {
+    padding: 1.5rem;
+    border-left: 4px solid var(--accent);
+    margin-bottom: 2rem;
+  }
+
+  .event-card.past {
+    opacity: 0.7;
+    border-left-color: #999;
+  }
+
+  .event-header {
+    margin-bottom: 1rem;
+  }
+
+  .event-header h3 {
+    margin: 0;
+  }
+
+
+  .event-details {
+    margin-bottom: 1rem;
+  }
+
+  .event-date, .event-location {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: #666;
+  }
+
+  .event-location a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+
+  .event-location a:hover {
+    text-decoration: underline;
+  }
+
+  .event-description {
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  .event-actions {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1rem;
+  }
+
+  .event-register {
+    display: inline-block;
+    background: var(--accent);
+    color: #333;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.2s ease;
+  }
+
+  .event-register:hover {
+    background: var(--ly-brand);
+  }
+
+  @media (min-width: 768px) {
+    .events-grid {
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    }
+  }
+</style>

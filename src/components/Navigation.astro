@@ -1,0 +1,73 @@
+---
+import { siteConfig } from '../config/site';
+import { Icon } from 'astro-icon/components';
+---
+
+<nav>
+  <menu>
+    <li><a href="/">Home</a></li>
+    <li>
+      <a href="/learn/">Learn</a>
+      <menu>
+        <li><a href="/learn/#about">About</a></li>
+        <li><a href="/learn/#coverage">Network coverage</a></li>
+        <li><a href="/learn/#comparisons">Similar technology</a></li>
+      </menu>
+    </li>
+    <li>
+      <a href="/join/">Join</a>
+      <menu>
+        <li><a href="/join/#network">Join the network</a></li>
+        <li><a href="/join/#best-practices">Best practices</a></li>
+        <li><a href="/join/#group">Join the group</a></li>
+      </menu>
+    </li>
+    <li>
+      <a href="/devices/">Devices & Hardware</a>
+      <menu>
+        <li><a href="/devices/#options">Options & Recommendations</a>
+          <menu>
+            <li><a href="/devices/#pocket-portable">Pocket/Portable</a></li>
+            <li><a href="/devices/#stationary-solar">Stationary/Solar</a></li>
+          </menu>
+        </li>
+        <li><a href="/devices/#solar">Building a Solar Repeater</a>
+          <menu>
+            <li><a href="/devices/#history">History</a></li>
+            <li><a href="/devices/#parts-list">Parts list</a></li>
+          </menu>
+        </li>
+      </menu>
+    </li>
+    <li>
+      <a href="/similar-networks/">Similar networks</a>
+      <menu>
+        <li><a href="/similar-networks/#other-meshes">Other meshes</a></li>
+        <li><a href="/similar-networks/#start-a-similar-network">Start a similar network</a></li>
+      </menu>
+    </li>
+    <li><a href="/partners/">Partners</a></li>
+  </menu>
+  <menu class="menu--social">
+    <li>
+      <a href={siteConfig.social.github} target="_blank" title="Austin Mesh GitHub">
+        <Icon name="simple-icons:github" size="21" />
+      </a>
+    </li>
+    <li>
+      <a href={siteConfig.social.discord} target="_blank" title="Join the AustinMesh Discord">
+        <Icon name="simple-icons:discord" size="21" />
+      </a>
+    </li>
+    <li>
+      <a href={siteConfig.social.youtube} target="_blank" title="Join the AustinMesh YouTube">
+        <Icon name="simple-icons:youtube" size="21" />
+      </a>
+    </li>
+    <li>
+      <a href={siteConfig.social.instagram} target="_blank" title="Join the AustinMesh Instagram">
+        <Icon name="simple-icons:instagram" size="21" />
+      </a>
+    </li>
+  </menu>
+</nav>

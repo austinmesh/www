@@ -1,0 +1,25 @@
+---
+import { siteConfig } from '../config/site';
+import Navigation from './Navigation.astro';
+---
+
+<header>
+  <a href="/">
+    <img 
+      src="/images/Austin-Mesh-Logo.svg" 
+      class="logo" 
+      alt={`Logo for ${siteConfig.name}`} 
+      title={siteConfig.name} 
+      width="500" 
+      height="121" 
+    />
+  </a>
+</header>
+
+<Navigation />
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("header").classList.add("loaded");
+  });
+</script>

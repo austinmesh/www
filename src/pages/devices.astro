@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout 
+  title="Meshtastic Devices | Austin Mesh" 
+  description="Tried and tested solar-powered repeater build methods and parts for making your own Meshtastic repeater."
+>
+  <h1>Meshtastic Devices & Hardware</h1>
+  
+  <section id="options">
+    <h2>Device Options & Recommendations</h2>
+    
+    <section id="pocket-portable">
+      <h3>Pocket/Portable Options</h3>
+      <p>For users who want a portable device to connect to the mesh network:</p>
+      <ul>
+        <li><strong>LILYGO T-Echo</strong> - Good first meshtastic radio (~$70), ready to go out of the box</li>
+        <li><strong>DIY Build</strong> - Build your own for about $35 using supported hardware</li>
+        <li><strong>Pre-built Battery Powered</strong> - Available on Etsy/eBay ($50-$100) with 3D printed cases</li>
+      </ul>
+      <p>Check the official <a href="https://meshtastic.org/docs/hardware/devices/">Meshtastic Supported Hardware</a> list for current recommendations.</p>
+    </section>
+    
+    <section id="stationary-solar">
+      <h3>Stationary/Solar Options</h3>
+      <p>For fixed installations that help extend the network:</p>
+      <ul>
+        <li><strong>Pre-built Solar Nodes</strong> - Available on Etsy ($100-$200), mount as high as possible</li>
+        <li><strong>DIY Solar Build</strong> - <a href="#solar">Build your own</a> using our tested parts list</li>
+      </ul>
+    </section>
+  </section>
+  
+  <section id="solar">
+    <h2>Building a Solar Repeater</h2>
+    
+    <section id="history">
+      <h3>History</h3>
+      <p>Austin Mesh has been experimenting with solar-powered repeaters since our early days. Our nodes are designed to be self-sufficient, requiring no external power or internet connectivity.</p>
+    </section>
+    
+    <section id="parts-list">
+      <h3>Recommended Parts List</h3>
+      <p>Based on our experience with nodes across Austin, here are the components we recommend:</p>
+      
+      <h4>Core Components</h4>
+      <ul>
+        <li><strong>Radio Board</strong>: RAK19007 WisBlock Base Board</li>
+        <li><strong>LoRa Module</strong>: RAK4631 WisBlock Core</li>
+        <li><strong>Battery</strong>: Voltaic Systems V50 (or similar lithium battery)</li>
+        <li><strong>Solar Panel</strong>: 20W solar panel (weather resistant)</li>
+        <li><strong>Antenna</strong>: 10dBi omni-directional antenna for best coverage</li>
+        <li><strong>Enclosure</strong>: Weather-resistant enclosure (IP65 rated or better)</li>
+      </ul>
+      
+      <h4>Additional Hardware</h4>
+      <ul>
+        <li>Mounting hardware (depends on installation location)</li>
+        <li>Coaxial cable and connectors</li>
+        <li>Weatherproofing materials</li>
+      </ul>
+      
+      <p><strong>Note:</strong> This is a simplified parts list. For detailed build instructions, wiring diagrams, and specific part numbers, please join our <a href="/join/#group">Discord community</a> where we share detailed build guides and provide support.</p>
+    </section>
+    
+    <section>
+      <h3>Installation Tips</h3>
+      <ul>
+        <li><strong>Height is key</strong> - Install as high as possible for maximum coverage</li>
+        <li><strong>Solar orientation</strong> - Face panels south (in Northern Hemisphere) with proper tilt</li>
+        <li><strong>Weather protection</strong> - Ensure all connections are weatherproofed</li>
+        <li><strong>Antenna placement</strong> - Clear line of sight improves performance</li>
+        <li><strong>Ground plane</strong> - Proper antenna grounding improves signal quality</li>
+      </ul>
+    </section>
+    
+    <section>
+      <h3>Get Help Building</h3>
+      <p>Building solar repeaters can be complex. We encourage builders to:</p>
+      <ul>
+        <li>Join our <a href="/join/#group">Discord community</a> for real-time help</li>
+        <li>Attend our quarterly meetups for hands-on assistance</li>
+        <li>Start with a simple portable build before attempting solar installations</li>
+        <li>Partner with experienced builders in your area</li>
+      </ul>
+    </section>
+  </section>
+</BaseLayout>

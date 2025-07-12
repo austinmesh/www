@@ -1,0 +1,187 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const partners = await getCollection('partners');
+  return partners.map((partner) => ({
+    params: { slug: partner.slug },
+    props: partner,
+  }));
+}
+
+const partner = Astro.props;
+const { Content } = await partner.render();
+---
+
+<BaseLayout 
+  title={`${partner.data.name} | Austin Mesh Partners`}
+  description={partner.data.description}
+>
+  <article class="partner-detail">
+    <header class="partner-header">
+      <h1>{partner.data.name}</h1>
+      <p class="partner-description">{partner.data.description}</p>
+      
+      {partner.data.headerImages.length > 0 && (
+        <div class="partner-logos">
+          {partner.data.headerImages.map((image) => (
+            <div class="logo-container">
+              <img 
+                src={image} 
+                alt={`${partner.data.name} logo`}
+                class="partner-logo"
+                loading="lazy"
+              />
+            </div>
+          ))}
+        </div>
+      )}
+    </header>
+
+    <div class="partner-content">
+      <Content />
+    </div>
+
+    {partner.data.heroImage && (
+      <div class="partner-hero">
+        <img 
+          src={partner.data.heroImage}
+          alt={`${partner.data.name} installation`}
+          class="hero-image"
+          loading="lazy"
+        />
+      </div>
+    )}
+
+    <footer class="partner-footer">
+      {partner.data.location && (
+        <div class="partner-location">
+          <strong>Location:</strong> {partner.data.location}
+        </div>
+      )}
+      
+      {partner.data.website && (
+        <div class="partner-website">
+          <a href={partner.data.website} target="_blank" rel="noopener">
+            Visit {partner.data.name} Website
+          </a>
+        </div>
+      )}
+      
+      <div class="back-link">
+        <a href="/partners/">← Back to Partners</a>
+      </div>
+    </footer>
+  </article>
+</BaseLayout>
+
+<style>
+  .partner-detail {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+  }
+  
+  .partner-header {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  
+  .partner-header h1 {
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .partner-description {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 2rem;
+  }
+  
+  .partner-logos {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+  
+  .logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 70px;
+  }
+  
+  .partner-logo {
+    max-width: 240px;
+    height: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  .partner-content {
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .partner-hero {
+    text-align: center;
+    margin: 2rem 0;
+  }
+  
+  .hero-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .partner-footer {
+    border-top: 1px solid #e5e7eb;
+    padding-top: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
+  .partner-location, .partner-website {
+    margin-bottom: 1rem;
+  }
+  
+  .partner-website a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .partner-website a:hover {
+    text-decoration: underline;
+  }
+  
+  .back-link {
+    margin-top: 2rem;
+  }
+  
+  .back-link a {
+    color: var(--accent);
+    text-decoration: none;
+  }
+  
+  .back-link a:hover {
+    text-decoration: underline;
+  }
+  
+  @media (min-width: 768px) {
+    .partner-logos {
+      flex-direction: row;
+    }
+    
+    .partner-detail {
+      padding: 2rem;
+    }
+  }
+</style>
