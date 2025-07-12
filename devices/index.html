@@ -51,20 +51,11 @@
                         </menu>
                     </li>
                     <li>
-                        <a href="/devices/">Devices & Hardware</a>
+                        <a href="/devices/">Devices</a>
                         <menu>
-                            <li><a href="/devices/#options">Options & Recommendations</a>
-                                <menu>
-                                    <li><a href="/devices/#pocket-portable">Pocket/Portable</a></li>
-                                    <li><a href="/devices/#stationary-solar">Stationary/Solar</a></li>
-                                </menu>
-                            </li>
-                            <li><a href="/devices/#solar">Building a Solar Repeater</a>
-                                <menu>
-                                    <li><a href="/devices/#history">History</a></li>
-                                    <li><a href="/devices/#parts-list">Parts list</a></li>
-                                </menu>
-                            </li>
+                            <li><a href="/devices/#options">Recommended Options</a></li>
+                            <li><a href="/devices/#solar">DIY Solar Repeaters</a></li>
+                            <li><a href="/devices/#aerial">Aerial Nodes</a></li>
                         </menu>
                     </li>
                     <li>
@@ -121,7 +112,7 @@
 
 
             <section id="options">
-                <h2>Options and Recommendations</h2>
+                <h2>Recommended Options</h2>
                 <p>I recently created a new tool, <a href="https://www.rfindex.com">RF Index</a>, which compares the various node options. This includes DIY, "Off the shelf", solar, etc. Let me know if you <a href="https://forms.gle/CNUbVP5eUTqZNsdX6" target="_blank" rel="nofollow">have any feedback</a>!
             </section>
 
@@ -306,6 +297,87 @@
                         </tbody>
                     </table>
                 </div>
+            </section>
+
+            <section>
+                <h2>Aerial Nodes</h2>
+                <p>As you may already know, the mesh technology we use relies on the LoRa technology in the 900mhz frequency range. This means that connection is dependent on Line of Site(LoS) between the antennas. <b>The easiest way to ensure LoS is with height</b>. The easiest (though temporary) way to get height is through an aerial platform including but not limited to UAVs(drones or planes) or kites!</p>
+
+                <h3>Drone Nodes</h3>
+                <p>In our <a href="">starting a similar network</a> section we discussed the intentional usage of drones to help grow your network. This section will cover some key tips around hardware, strategy, and safety.</p>
+                <ul>
+                    <li><b>Schedule:</b> Most drones will only fly for 15-30m per battery. Schedule communication windows specifically so that batteries are not wasted. Consider prescheduling times with your group to either have multiple drones up at once, or extend windows by alternating who is in the air.</li>
+                    <li><b>Weight:</b> Due to the short flight times, your node can use a very small battery. Think 100mah. Strip all non necessary items.</li>
+                    <li><b>Safety:</b> Fly in open areas. Use minimum height necessary. Make sure the node is secure and can't tip or the antenna fold which may hit propellers which will cause a crash. Avoid hanging the node unless there is no other solution. Hanging nodes easily swing up and hit propellers.</li>
+                    <li><b>Configuration:</b> Use 2 nodes. One on the ground that you connect to with your devices and one on the drone. Set the node on the drone Router or Router Late to ensure messages actually pass through. If set to Client it may not retransmit the packet as it has already heard the packet from multiple other ground nodes. Consider setting the ground node to Client Mute.</li>
+                </ul>
+
+                <h4>Examples</h4>
+                <ul>
+                    <li><a href="https://amzn.to/3TCedo8" target="_blank">DJI Air 3</a></li>
+                    <li><a href="https://www.rfindex.com/meshtastic/devices/seeedstudio-wio-sx1262-xiao-esp32s3" target="_blank">Seeed/XIAO</a></li>
+                </ul>
+                <img src="../images/aerial/dji-air-3-1.webp" width="290" loading="lazy" />
+                <img src="../images/aerial/dji-air-3-2.webp" width="290" loading="lazy" />
+                <img src="../images/aerial/dji-air-3-3.webp" width="290" loading="lazy" />
+                <img src="../images/aerial/dji-air-3-4.webp" width="290" loading="lazy" />
+                <hr />
+                <ul>
+                    <li><a href="https://amzn.to/467sdOc" target="_blank">DJI Mavic Mini</a></li>
+                    <li><a href="https://www.rfindex.com/meshtastic/devices/lilygo-t-echo" target="_blank">LilyGo T-Echo</a></li>
+                </ul>
+                <img src="../images/aerial/techo-drone.webp" width="290" loading="lazy" />
+
+                <h5>Other Examples</h5>
+                <figure>
+                    <figcaption>DIY Quadcopter</figcaption>
+                    <img src="../images/aerial/diy-quad.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>Unknown Drone with a T-Echo</figcaption>
+                    <img src="../images/aerial/drone-unknown.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>Mavic Air 3 with a custom small node</figcaption>
+                    <img src="../images/aerial/mavic-air-3-small.webp" width="290" loading="lazy" />
+                    <img src="../images/aerial/mavic-air-3-small-2.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>Mavic Pro with a custom printed backpack</figcaption>
+                    <img src="../images/aerial/mavic-pro-backpack.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>Mavic with rubberbands holding a node on</figcaption>
+                    <img src="../images/aerial/mavic-rubberband.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>DJI Mini 2 Printed Backpack</figcaption>
+                    <img src="../images/aerial/mavic-ultralight.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>THIS IS A JOKE! Though I would love to see a video of someone really trying this</figcaption>
+                    <img src="../images/aerial/g2-joke.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>GoPro Node Case in a DIY Quad</figcaption>
+                    <img src="../images/aerial/go-pro-czase-node.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>Mavic with a hanging flexible antenna</figcaption>
+                    <img src="../images/aerial/mavic-hanging-antenna.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>Mavic Mini with a custom node</figcaption>
+                    <img src="../images/aerial/mavic-mini-node.webp" width="290" loading="lazy" />
+                </figure>
+                <figure>
+                    <figcaption>Mavic Pro 2 with a RAK</figcaption>
+                    <img src="../images/aerial/mavic-pro-2-rak.webp" width="290" loading="lazy" />
+                </figure>
+
+                <h3>Kite Nodes</h3>
+                <p>Coming soon!</p>
+
             </section>
         </main>
         <footer>
