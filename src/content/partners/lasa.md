@@ -4,8 +4,7 @@ description: "Rooftop node supporting coverage for East, South East, and South W
 featured: true
 order: 3
 active: true
-images: 
-  - "/images/lasa/austin-mesh-liberal-arts-and-sciences-academy-cropped.webp"
+# Images are now imported directly in Astro components
 location: "Rooftop installation"
 website: "https://github.com/willmartindotcom/austinmesh/tree/main/images/lasa"
 ---

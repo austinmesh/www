@@ -1,6 +1,31 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+
+// Import all partner images
+import aisdLogo1 from '../../images/aisd/AISD-GusGarcia-Logo.svg';
+import aisdLogo2 from '../../images/aisd/AISD-Hart-Logo.svg';
+import aisdLogo3 from '../../images/aisd/AISD-LBJ-Logo.svg';
+import aisdHero from '../../images/aisd/aisd-hart-elementary-meshtastic-install.webp';
+import lasaImage from '../../images/lasa/austin-mesh-liberal-arts-and-sciences-academy-cropped.webp';
+import utAustinImage from '../../images/ut-austin/University-of-Texas-at-Austin-Meshtastic-Repeater.webp';
+
+// Create image map for partner assets
+const partnerImages = {
+  'aisd': {
+    headerImages: [aisdLogo1, aisdLogo2, aisdLogo3],
+    heroImage: aisdHero
+  },
+  'lasa': {
+    headerImages: [],
+    heroImage: lasaImage
+  },
+  'ut-austin': {
+    headerImages: [],
+    heroImage: utAustinImage
+  }
+};
 
 export async function getStaticPaths() {
   const partners = await getCollection('partners');
@@ -23,15 +48,16 @@ const { Content } = await partner.render();
       <h1>{partner.data.name}</h1>
       <p class="partner-description">{partner.data.description}</p>
       
-      {partner.data.headerImages.length > 0 && (
+      {partnerImages[partner.slug]?.headerImages.length > 0 && (
         <div class="partner-logos">
-          {partner.data.headerImages.map((image) => (
+          {partnerImages[partner.slug].headerImages.map((image) => (
             <div class="logo-container">
-              <img 
+              <Image 
                 src={image} 
                 alt={`${partner.data.name} logo`}
                 class="partner-logo"
                 loading="lazy"
+                width={240}
               />
             </div>
           ))}
@@ -43,13 +69,14 @@ const { Content } = await partner.render();
       <Content />
     </div>
 
-    {partner.data.heroImage && (
+    {partnerImages[partner.slug]?.heroImage && (
       <div class="partner-hero">
-        <img 
-          src={partner.data.heroImage}
+        <Image 
+          src={partnerImages[partner.slug].heroImage}
           alt={`${partner.data.name} installation`}
           class="hero-image"
           loading="lazy"
+          width={800}
         />
       </div>
     )}

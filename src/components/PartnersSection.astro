@@ -1,5 +1,33 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
+
+// Import all partner images
+import aisdLogo1 from '../images/aisd/AISD-GusGarcia-Logo.svg';
+import aisdLogo2 from '../images/aisd/AISD-Hart-Logo.svg';
+import aisdLogo3 from '../images/aisd/AISD-LBJ-Logo.svg';
+import aisdHero from '../images/aisd/aisd-hart-elementary-meshtastic-install.webp';
+import lasaImage from '../images/lasa/austin-mesh-liberal-arts-and-sciences-academy-cropped.webp';
+import utAustinImage from '../images/ut-austin/University-of-Texas-at-Austin-Meshtastic-Repeater.webp';
+
+// Create image map for partner assets
+const partnerImages = {
+  'aisd': {
+    headerImages: [aisdLogo1, aisdLogo2, aisdLogo3],
+    images: [aisdHero],
+    heroImage: aisdHero
+  },
+  'lasa': {
+    headerImages: [],
+    images: [lasaImage],
+    heroImage: null
+  },
+  'ut-austin': {
+    headerImages: [],
+    images: [utAustinImage],
+    heroImage: null
+  }
+};
 
 export interface Props {
   featured?: boolean;
@@ -56,15 +84,16 @@ const partnersWithContent = await Promise.all(
           </h3>
           
           {/* Show header images in a row if they exist */}
-          {partner.data.headerImages.length > 0 && (
+          {partnerImages[partner.slug]?.headerImages.length > 0 && (
             <div class="partner-header-images">
-              {partner.data.headerImages.map((image) => (
+              {partnerImages[partner.slug].headerImages.map((image) => (
                 <a href={`/partners/${partner.slug}`}>
-                  <img 
+                  <Image 
                     src={image}
                     alt={`${partner.data.name} logo`}
                     loading="lazy"
                     class="header-image"
+                    width={240}
                   />
                 </a>
               ))}
@@ -72,7 +101,7 @@ const partnersWithContent = await Promise.all(
           )}
           
           {/* Fallback to single logo if no header images */}
-          {partner.data.headerImages.length === 0 && partner.data.logo && (
+          {partnerImages[partner.slug]?.headerImages.length === 0 && partner.data.logo && (
             <div class="partner-logo">
               <a href={`/partners/${partner.slug}`}>
                 <img 
@@ -90,15 +119,16 @@ const partnersWithContent = await Promise.all(
           </div>
           
           {/* Show all images from the images array */}
-          {partner.data.images.length > 0 && (
+          {partnerImages[partner.slug]?.images.length > 0 && (
             <div class="partner-images">
-              {partner.data.images.map((image) => (
+              {partnerImages[partner.slug].images.map((image) => (
                 <a href={`/partners/${partner.slug}`}>
-                  <img 
+                  <Image 
                     src={image}
                     alt={`${partner.data.name} installation`}
                     loading="lazy"
                     class="partner-image"
+                    width={400}
                   />
                 </a>
               ))}

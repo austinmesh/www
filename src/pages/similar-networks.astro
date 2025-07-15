@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { Image } from 'astro:assets';
+import techoDrone from '../images/techo-drone.webp';
 ---
 
 <BaseLayout 
@@ -46,7 +48,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h3>Using drones to grow your Meshtastic network</h3>
     <aside>
       <h4 style="margin-top:0;">LilyGo T-Echo<br/>Hanging from a Drone</h4>
-      <img src="/images/techo-drone.webp" width="200" />
+      <Image src={techoDrone} width={200} alt="LilyGo T-Echo hanging from a drone" />
     </aside>
     <p>Once a week, anyone in the area with a drone should coordinate a time and get up to altitude. Use a node on the ground set to client_mute to send out a number of messages inviting people to your internet chat room and generally stir up some traffic on the mesh.</p>
     <p>Why? We found is that there are a lot of people out there who have a node, and it's just sitting on their desk because they didn't see any nodes when they first turned it on. They may not see your message right then, but they will in the coming days or weeks.</p>

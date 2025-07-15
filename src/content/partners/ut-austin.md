@@ -4,8 +4,7 @@ description: "Solar-powered repeater providing coverage for West, South, and Eas
 featured: true
 order: 2
 active: true
-images: 
-  - "/images/ut-austin/University-of-Texas-at-Austin-Meshtastic-Repeater.webp"
+# Images are now imported directly in Astro components
 location: "Physics, Math, and Astronomy building"
 website: "https://github.com/willmartindotcom/austinmesh/tree/main/images/ut-austin"
 ---

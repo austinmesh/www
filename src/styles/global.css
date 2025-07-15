@@ -138,12 +138,26 @@ menu > li > a > img {
 
 /* ===== HERO SECTION ===== */
 .hero {
+  position: relative;
   display: flex;
   align-items: center;
   align-content: center;
-  background-size: cover;
-  background-position: center;
-  transition: background-image 0.5s ease-in-out;
+  min-height: 400px;
+}
+
+.hero-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+.hero-background {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .hero-content {

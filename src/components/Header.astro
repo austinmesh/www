@@ -1,17 +1,19 @@
 ---
 import { siteConfig } from '../config/site';
 import Navigation from './Navigation.astro';
+import { Image } from 'astro:assets';
+import logo from '../images/Austin-Mesh-Logo.svg';
 ---
 
 <header>
   <a href="/">
-    <img 
-      src="/images/Austin-Mesh-Logo.svg" 
+    <Image 
+      src={logo}
       class="logo" 
       alt={`Logo for ${siteConfig.name}`} 
       title={siteConfig.name} 
-      width="500" 
-      height="121" 
+      width={500} 
+      height={121} 
     />
   </a>
 </header>

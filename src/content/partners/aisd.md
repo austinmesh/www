@@ -4,13 +4,7 @@ description: "Educational partnership supporting three schools with rooftop mesh
 featured: true
 order: 1
 active: true
-headerImages:
-  - "/images/aisd/AISD-GusGarcia-Logo.svg"
-  - "/images/aisd/AISD-Hart-Logo.svg"
-  - "/images/aisd/AISD-LBJ-Logo.svg"
-heroImage: "/images/aisd/aisd-hart-elementary-meshtastic-install.webp"
-images:
-  - "/images/aisd/aisd-hart-elementary-meshtastic-install.webp"
+# Images are now imported directly in Astro components
 location: "Multiple school campuses across Austin"
 website: "https://austinisd.org/"
 ---
