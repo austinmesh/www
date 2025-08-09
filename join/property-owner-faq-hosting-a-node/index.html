@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Join Austin Mesh</title>
+        <meta name="description" content="Learn about joining the Austin Mesh network, group, and our best practices.">
+        <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="stylesheet" href="https://matcha.mizu.sh/matcha.css">
+        <link rel="stylesheet" href="../../styles.css?v=6">
+    </head>
+    <body>
+        <header>
+            <a href="/"><img src="../../images/Austin-Mesh-Logo.svg" class="logo" alt="Logo for Austin Mesh" title="Austin Mesh" width="500" height="121" /></a>
+            <button onclick="document.getElementById('event').showModal()" class="default meet-button">📅 Upcoming Meeting 8/5</button>
+        </header>
+        <dialog id="event">
+        <header>
+            <h1>Austin Mesh Meetings</h1>
+        </header>
+        <p>Bring a node, bring a friend, just don't bring your friend's node. We'll be at Blacksheep Lodge on South Lamar for a couple of hours!</p>
+        <p><b>Tuesday, August 5, 2025, 6:30 PM CDT</b> (<a href="https://discord.com/events/1204595620204249138/1393730158698954885" target="_blank">Save the date</a>)</p>
+        <p>Blacksheep Lodge</p>
+        <footer>
+            <form method="dialog">
+                <a class="default" href="https://discord.com/events/1204595620204249138/1393730158698954885" type="button">Save the date</a>
+                <button type="submit">Close</button>
+            </form>
+        </footer>
+        </dialog>
+        <main>
+            <nav>
+                <menu>
+                <li><a href="/">Home</a></li>
+                <li>
+                    <a href="/learn/">Learn</a>
+                    <menu>
+                        <li><a href="/learn/#about">About</a></li>
+                        <li><a href="/learn/#coverage">Network coverage</a></li>
+                        <li><a href="/learn/#comparisons">Similar technology</a></li>
+                    </menu>
+                </li>
+                <li>
+                    <a href="/join/">Join</a>
+                    <menu>
+                        <li><a href="/join/#network">Join the network</a></li>
+                        <li><a href="/join/#best-practices">Best practices</a></li>
+                        <li><a href="/join/#group">Join the group</a></li>
+                        <li><a href="/join/property-owner-faq-hosting-a-node">Property Owner FAQ</a></li>
+                    </menu>
+                </li>
+                <li>
+                    <a href="/devices/">Devices</a>
+                    <menu>
+                        <li><a href="/devices/#options">Recommended Options</a></li>
+                        <li><a href="/devices/#solar">DIY Solar Repeaters</a></li>
+                        <li><a href="/devices/#aerial">Aerial Nodes</a></li>
+                    </menu>
+                </li>
+                <li>
+                    <a href="/similar-networks/">Similar networks</a>
+                    <menu>
+                        <li><a href="/similar-networks/#other-meshes">Other meshes</a></li>
+                        <li><a href="/similar-networks/#start-a-similar-network">Start a similar network</a></li>
+                    </menu>
+                </li>
+                <li><a href="/partners/">Partners</a></li>
+                </menu>
+                <menu class="menu--social">
+                    <li>
+                        <a href="https://discord.gg/6a5Sv2s9bG" target="_blank" title="Join the AustinMesh Discord">
+                            <img src="../../images/social/discord.svg" height="21" alt="Discord Logo" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/channel/UCtFl5gdwv0SdrP8sHlDMKNA" target="_blank" title="Join the AustinMesh YouTube">
+                            <img src="../../images/social/youtube.svg" height="21" alt="YouTube Logo" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/p/Cq0jOpYLpZy/" target="_blank" title="Join the AustinMesh Instagram">
+                            <img src="../../images/social/instagram.svg" height="21" alt="Instagram Logo" />
+                        </a>
+                    </li>
+                </menu>
+            </nav>
+            <section class="faq" aria-labelledby="faq-title">
+                <h1 id="faq-title">FAQ: Hosting an AustinMesh Node on Your Property</h1>
+
+                <div class="flex space-evenly">
+                    <figure class="p-1 mx-.5 flash muted">
+                        <figcaption>Pole mounted node on UT Austin</figcaption>
+                        <a href="/images/faq/ut-austin-node.webp" target="_blank"><img src="../../images/faq/ut-austin-node.webp" width="200" /></a>
+                    </figure>
+                    <figure class="p-1 mx-.5 flash muted">
+                        <figcaption>Magnetic mounted node on AISD</figcaption>
+                        <a href="/images/faq/aisd-magnet-node-mount.webp" target="_blank"><img src="../../images/faq/aisd-magnet-node-mount.webp" width="200" /></a>
+                    </figure>
+                    <figure class="p-1 mx-.5 flash muted">
+                        <figcaption>Magnetic mounted node on ADRN</figcaption>
+                        <a href="/images/faq/adrn-magnet-node.webp" target="_blank"><img src="../../images/faq/adrn-magnet-node.webp" width="200" /></a>
+                    </figure>
+                </div>
+
+                <h4>1. What exactly is the node being used for?</h4>
+                <ul>
+                    <li>Expands a free, open source, community mesh network using low-power radio</li>
+                    <li>Enables text-based communication in areas with limited cellular or internet coverage</li>
+                    <li>Often used for emergency readiness and local community support</li>
+                </ul>
+
+                <h4>2. What kind of equipment will be installed?</h4>
+                <ul>
+                    <li>Typically a small, weatherproof box containing a microcontroller and battery</li>
+                    <li>A lightweight antenna and a solar panel</li>
+                    <li>Usually under 2 pounds and compact (roughly the size of a router, but the antenna is longer)</li>
+                </ul>
+
+                <h4>3. How will it be powered?</h4>
+                <ul>
+                    <li>Nodes are solar-powered and self-sufficient</li>
+                </ul>
+
+                <h4>4. What kind of antenna or cabling will be involved?</h4>
+                <ul>
+                    <li>Usually a small external antenna mounted to a mast or pole</li>
+                    <li>No cabling into the building.</li>
+                    <li>Typical installation uses either magnets, u-bolts around a mast or pole, or hose clamps. No drilling or screwing required unless agreed upon.</li>
+                </ul>
+
+                <h4>5. What is the expected maintenance requirement?</h4>
+                <ul>
+                    <li>Very low, nodes are designed to run autonomously for long periods.</li>
+                    <li>Occasional visits (e.g., once or twice a year) may be needed for firmware updates or hardware checks.</li>
+                    <li>Access terms can be set in writing.</li>
+                </ul>
+
+                <h4>6. What exactly is the node being used for? (More detail)</h4>
+                <ul>
+                    <li>Expands the AustinMesh community mesh network using low-power radio</li>
+                    <li>Acts as a city-wide text messaging system, allowing people to communicate publicly or privately with anyone on the network.</li>
+                    <li>Often used for hiking, emergency readiness, and local community support</li>
+                </ul>
+
+                <h4>7. What range and signal coverage will this node support?</h4>
+                <ul>
+                    <li>Depends on elevation and antenna, typically 2–10 miles or more</li>
+                    <li>Helps connect devices over long distances through mesh relaying</li>
+                    <li>Operates in license-free Industrial, Science, and Medical band (902–928mhz)</li>
+                </ul>
+
+                <h4>8. Will the equipment cause any interference with my existing systems?</h4>
+                <ul>
+                    <li>Extremely unlikely, Meshtastic operates on different frequencies from Wi-Fi, cell, or TV systems and is extremely low power.</li>
+                    <li>Designed to be non-disruptive and FCC-compliant.</li>
+                    <li>You can request testing or documentation if concerned.</li>
+                </ul>
+
+                <h4>9. What are the liability implications?</h4>
+                <ul>
+                    <li>The building owner carries the liability, though the likelihood of an incident is not expected to be material</li>
+                </ul>
+
+                <h4>10. Are there any permits, HOA, zoning, or regulatory issues to be aware of?</h4>
+                <ul>
+                    <li>Permits are not needed for small antennas or non-commercial installations</li>
+                    <li>HOA or building rules may restrict roof modifications — check before proceeding</li>
+                    <li>It's best to get written permission if you're a tenant or part of a shared property</li>
+                </ul>
+
+                <h4>11. How long is the node expected to stay there? Can it be removed at any time?</h4>
+                <ul>
+                    <li>We will work together to determine a clear timeframe or agreement</li>
+                    <li>No long-term obligation required. Ultimately, you may request removal at any time, with coordination and time allowance for removal.</li>
+                    <li>Removal should leave no permanent marks or damage</li>
+                </ul>
+
+                <h4>12. Who else in Austin has one of this community’s nodes installed?</h4>
+                <ul>
+                    <li>Austin Independent School District (4 schools so far)</li>
+                    <li>Austin Liberal Arts and Sciences Academy</li>
+                    <li>University of Texas</li>
+                    <li>Austin Disaster Relief Network</li>
+                    <li>Google (500 W 2nd St, Austin, TX 78701) coming soon</li>
+                </ul>
+            </section>
+        </main>
+        <footer>
+            <p>Our website content is licensed under Creative Commons
+                <br>feel free to use if for your club's website: <a href="https://github.com/austinmesh/www">Github</a>
+                <br>If we've inspired you, please <a href="mailto:info@austinmesh.org">email us</a>!
+            <br>This site is (c) by Tommy Ekstrand and is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.</p>
+        </footer>
+        <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What exactly is the node being used for?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It expands a free, open source, community mesh network using low-power radio, enables text-based communication in areas with limited cellular or internet coverage, and is often used for emergency readiness and local community support."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What kind of equipment will be installed?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A small, weatherproof box containing a microcontroller and battery, a lightweight antenna, and a solar panel, usually under 2 pounds and compact."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How will it be powered?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Nodes are solar-powered and self-sufficient."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What kind of antenna or cabling will be involved?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Usually a small external antenna mounted to a mast or pole with no cabling into the building, and installation typically requires no drilling unless agreed upon."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the expected maintenance requirement?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Very low, with occasional visits once or twice a year for firmware updates or checks, and access terms can be set in writing."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What exactly is the node being used for? (More detail)",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "It expands the AustinMesh community mesh network using low-power radio, acts as a city-wide text messaging system, and supports hiking, emergency readiness, and community use."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What range and signal coverage will this node support?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Depends on elevation and antenna, typically 2–10 miles or more, helping connect devices over long distances through mesh relaying, in the 902–928 MHz ISM band."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Will the equipment cause any interference with my existing systems?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Extremely unlikely; Meshtastic uses different frequencies than Wi-Fi, cell, or TV systems, is low power, and is FCC-compliant."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What are the liability implications?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The building owner carries the liability, though the likelihood of an incident is not expected to be material."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Are there any permits, HOA, zoning, or regulatory issues to be aware of?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Permits are not needed for small antennas or non-commercial installs, but HOA or building rules may apply. Written permission is recommended for tenants."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long is the node expected to stay there? Can it be removed at any time?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The timeframe can be agreed upon, with no long-term obligation, and removal can be requested at any time without leaving permanent damage."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Who else in Austin has one of this community’s nodes installed?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Austin Independent School District (4 schools), Austin Liberal Arts and Sciences Academy, University of Texas, Austin Disaster Relief Network, and Google."
+              }
+            }
+          ]
+        }
+        </script>
+    </body>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("header").classList.add("loaded");
+    });
+    </script>
+</html>

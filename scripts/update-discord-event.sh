@@ -8,6 +8,7 @@ TOKEN="${DISCORD_BOT_TOKEN:?}"
 HTML_FILES=(
     "index.html"
     "join/index.html"
+    "join/property-owner-faq-hosting-a-node/index.html"
     "learn/index.html"
     "devices/index.html"
     "partners/index.html"
