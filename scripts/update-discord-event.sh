@@ -13,6 +13,7 @@ HTML_FILES=(
     "devices/index.html"
     "partners/index.html"
     "similar-networks/index.html"
+    "privacy/index.html"
 )
 
 # Detect OS for sed compatibility
