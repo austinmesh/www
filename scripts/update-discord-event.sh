@@ -10,6 +10,7 @@ HTML_FILES=(
     "join/index.html"
     "join/property-owner-faq-hosting-a-node/index.html"
     "learn/index.html"
+    "learn/kite-nodes-for-mesh-networking/index.html"
     "learn/tuning-cavity-filter/index.html"
     "devices/index.html"
     "partners/index.html"
