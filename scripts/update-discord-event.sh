@@ -12,6 +12,7 @@ HTML_FILES=(
     "learn/index.html"
     "learn/kite-nodes-for-mesh-networking/index.html"
     "learn/tuning-cavity-filter/index.html"
+    "learn/meshcore-vs-meshtastic/index.html"
     "devices/index.html"
     "partners/index.html"
     "similar-networks/index.html"
