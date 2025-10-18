@@ -123,10 +123,10 @@
 
 
             <section>
-                <h2 id="solar">Building a Solar-Powered Repeater for Meshtastic</h2>
+                <h2 id="solar">Building a Solar Repeater for Meshtastic</h2>
                 <h3 id="history">A brief history</h3>
                 <h4>History of versions</h4>
-                <p>We have tried 5 permutations of solar powering nodes:</p>
+                <p>We have tried 5 permutations of solar powering repeater nodes:</p>
                 <details>
                     <summary>Version 1.0 RAKBox-B2 2000mah LiPo</summary>
                     <p>Using RAK RAKBox-B2 Enclosure with solar panel. The panel was connected directly to the RAK Wireless WisBlock Meshtastic Starter Kit US915. We connected a 2000 MAh Lithium Polymer battery directly to the RAK board. We drilled a hole in the top of the box and attached a fiberglass antenna, which was connected to the RAK board with an iPEX to N-Type connector. We mounted this on top of one of the UT buildings and it died within a month. The 0.4 watt panel is way too small.</p>
@@ -178,9 +178,9 @@
                     <li>Coastal Climates: salt spray and condensation from fog can kill electronics quickly. In coastal climates it is best to spray the electronics with conformal coating.</li>
                 </ol>
 
-                <h3 id="parts-list">Parts list</h3>
+                <h3 id="parts-list">Meshtastic Solar Repeater Parts list</h3>
                 <p>With all that said, here is the parts list for our most-preferred way to build a solar powered repeater. This design doesn’t require any soldering or complicated connectors. It also doesn’t require any battery management chips (which often have long shipping lead times and can be hard to get). For this design the solar panel is connected directly to the battery pack via USB. Then the battery pack is connected to the board via USB. The Voltaic Systems V25 battery is nice because it is optimized to charge from a solar panel and it is set standard to an “always on” mode which means the battery bank does not shut off after a set amount of time like other battery packs – this is useful as the RAK chip uses very little power and can trick other battery packs into shutting off. The other really nice thing about the Voltaic pack is than when it drains down completely it shuts down, but then once the solar panel has sufficiently charged it back up it will automatically turn itself back on again. The RAK radio uses between 100 and 1000 mAh per day, with about 400 mAh per day being average so theoretically the 6,400mAh Voltaic V25 could keep the radio running for 16 days without solar.</p>
-                <h4>Regular parts</h4>
+                <h4>Standard Parts</h4>
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -267,7 +267,7 @@
                         </tfoot>
                     </table>
                 </div>
-                <h4 id="rf-filtered">Robust RF Filtered Parts List</h4>
+                <h4 id="rf-filtered">RF Filtered Parts</h4>
                 <div class="flex">
                     <p>One of our nodes is on top of a building surrounded my 2200w of public service antennas which operate around 850mhz. The result is that the RAK (and any other) board is quickly desensitized. We've had the best success doing 2 things. Keeping cable runs as short as possible, and use a notch or bandpass filter.</p>
                     <a target="_blank" href="../images/ut-austin/ut-austin-rf-filtered-meshtastic-node.jpeg"><img src="../images/ut-austin/ut-austin-rf-filtered-meshtastic-node.jpeg" width="300" /></a>
@@ -383,7 +383,7 @@
                     </table>
                 </div>
                 <h4>Birdhouse parts</h4>
-                <p>To turn this repeater into a solar-powered meshtastic birdhouse you can just add the following components. Simply paint the top of the birdhouse black and glue on the solar panel, cut a hole in the back of the birdhouse big enough to put the box into it, attach the antenna mount L-Bracket to the side of the birdhouse, and connect the box to the antenna on the mount with the pigtail using the jam nut.</p>
+                <p>To turn this solar powered meshtastic repeater into birdhouse you can just add the following components. Simply paint the top of the birdhouse black and glue on the solar panel, cut a hole in the back of the birdhouse big enough to put the box into it, attach the antenna mount L-Bracket to the side of the birdhouse, and connect the box to the antenna on the mount with the pigtail using the jam nut.</p>
                 <div class="table-wrapper">
                     <table>
                         <thead>
@@ -506,7 +506,7 @@
                 </figure>
 
                 <h3>Kite Nodes</h3>
-                <p>Coming soon!</p>
+                <p>Read more about our <a href="/learn/kite-nodes-for-mesh-networking/">Kite Node operations</a>.</p>
 
             </section>
         </main>
