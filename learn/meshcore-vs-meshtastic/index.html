@@ -119,46 +119,46 @@
     </ul>
     <h2 id="mesh-30s">Mesh networking in 30 seconds</h2>
     <ul>
-        <li><strong>Self-healing + multi-hop.</strong> Messages can traverse multiple radios (“hops”). If one link disappears, the mesh finds another path.</li>
-        <li><strong>Flood routing.</strong> On low-power radios, many systems use a simple “managed flood” where nodes selectively rebroadcast packets without maintaining big routing tables.<sup><a href="#fn-mflood" id="fnref-mflood">[1]</a></sup></li>
-        <li><strong>Direct paths.</strong> Some systems learn a path during the first flood, then send future messages via a more efficient “next-hop” route, falling back to flood if the path breaks.<sup><a href="#fn-meshnexthop" id="fnref-meshnexthop">[2]</a></sup><sup><a href="#fn-mc_path" id="fnref-mc_path">[3]</a></sup></li>
+        <li>Self-healing + multi-hop: Messages can traverse multiple radios (“hops”). If one link disappears, the mesh finds another path.</li>
+        <li>Flood routing: On low-power radios, many systems use a simple “managed flood” where nodes selectively rebroadcast packets without maintaining big routing tables.<sup><a href="#fn-mflood" id="fnref-mflood">[1]</a></sup></li>
+        <li>Direct paths: Some systems learn a path during the first flood, then send future messages via a more efficient “next-hop” route, falling back to flood if the path breaks.<sup><a href="#fn-meshnexthop" id="fnref-meshnexthop">[2]</a></sup><sup><a href="#fn-mc_path" id="fnref-mc_path">[3]</a></sup></li>
     </ul>
     <h2 id="default-roles-behavior">Default roles &amp; behavior</h2>
     <ul>
-        <li><strong>Meshtastic:</strong> Default role is <strong>CLIENT</strong>, which <em>does</em> take part in rebroadcasting in most cases. This helps ad-hoc, moving groups connect even without fixed infrastructure.<sup><a href="#fn-roles" id="fnref-roles">[4]</a></sup></li>
-        <li><strong>MeshCore:</strong> Default end-user firmware is <strong>Companion</strong> (USB/BLE app companion). Companions <strong>do not rebroadcast</strong> other people’s packets; <strong>Repeaters</strong> handle forwarding. This concentrates airtime on purpose-built, well-placed infrastructure nodes.<sup><a href="#fn-mc_philosophy" id="fnref-mc_philosophy">[5]</a></sup><sup><a href="#fn-mc_companion" id="fnref-mc_companion">[6]</a></sup><sup><a href="#fn-mc_cli" id="fnref-mc_cli">[7]</a></sup></li>
+        <li>Meshtastic: Default role is CLIENT, which <i>does</i> take part in rebroadcasting in most cases. This helps ad-hoc, moving groups connect even without fixed infrastructure.<sup><a href="#fn-roles" id="fnref-roles">[4]</a></sup></li>
+        <li>MeshCore: Default end-user firmware is Companion (USB/BLE app companion). Companions do not rebroadcast other people’s packets; Repeaters handle forwarding. This concentrates airtime on purpose-built, well-placed infrastructure nodes.<sup><a href="#fn-mc_philosophy" id="fnref-mc_philosophy">[5]</a></sup><sup><a href="#fn-mc_companion" id="fnref-mc_companion">[6]</a></sup><sup><a href="#fn-mc_cli" id="fnref-mc_cli">[7]</a></sup></li>
     </ul>
-    <p><strong>Why this matters:</strong> Meshtastic shines for <strong>non-geostationary</strong> groups (e.g., a ski hill with moving parties). MeshCore is optimized for <strong>city-scale meshes</strong> with <strong>infrastructure nodes</strong> (repeaters) placed on towers/rooftops.</p>
+    <p>Meshtastic shines for non-geostationary groups (e.g. a ski hill or a bike ride with moving parties). MeshCore is optimized for large scale meshes with infrastructure nodes (repeaters) placed on high points.</p>
     <h2>Routing strategies</h2>
     <ul>
-        <li><strong>Meshtastic:</strong> Broadcasts use <strong>managed flood</strong>. Since v2.6, <strong>Direct Messages</strong> use <strong>next-hop routing</strong>: flood to discover, then optimized relays for subsequent DMs.<sup><a href="#fn-mflood" id="fnref-mflood2">[1]</a></sup><sup><a href="#fn-meshnexthop" id="fnref-meshnexthop2">[2]</a></sup></li>
-        <li><strong>MeshCore:</strong> <strong>Flood-then-direct</strong> by design: first message floods to learn a path; later messages embed the learned path; if that route fails after a few retries, the node automatically <strong>falls back to flood</strong>.<sup><a href="#fn-mc_path" id="fnref-mc_path2">[3]</a></sup></li>
+        <li>Meshtastic: Managed flood. Since v2.6, Direct Messages use next-hop routing: flood to discover, then optimized relays for subsequent DMs.<sup><a href="#fn-mflood" id="fnref-mflood2">[1]</a></sup><sup><a href="#fn-meshnexthop" id="fnref-meshnexthop2">[2]</a></sup></li>
+        <li>MeshCore: Flood-then-direct by design: first message floods to learn a path; later messages embed the learned path; if that route fails after a few retries, the node automatically falls back to flood.<sup><a href="#fn-mc_path" id="fnref-mc_path2">[3]</a></sup></li>
     </ul>
     <h2 id="hop-limits">Hop limits</h2>
     <ul>
-        <li><strong>Meshtastic:</strong> Default <strong>Max Hops = 3</strong> (configurable to <strong>max 7</strong>)<sup><a href="#fn-hops" id="fnref-hops">[8]</a></sup></li>
-        <li><strong>MeshCore:</strong> Internal <strong>max hop limit = 64</strong><sup><a href="#fn-mc_hops" id="fnref-mc_hops">[9]</a></sup></li>
+        <li>Meshtastic: Default Max Hops = 3 (configurable to max 7)<sup><a href="#fn-hops" id="fnref-hops">[8]</a></sup></li>
+        <li>MeshCore: Internal max hop limit = 64<sup><a href="#fn-mc_hops" id="fnref-mc_hops">[9]</a></sup></li>
     </ul>
-    <p><strong>Implication for Austin:</strong> Hill/valley terrain often needs many relays. Seven hops can be a hard ceiling for Meshtastic across the whole metro, while MeshCore’s higher limit gives more headroom.</p>
+    <p><strong>Implication for AustinMesh:</strong> Hill/valley terrain often needs many relays. Seven hops can be a hard ceiling for Meshtastic across the whole metro, while MeshCore's higher limit gives more headroom.</p>
     <h2 id="telemetry-airtime">Telemetry &amp; airtime</h2>
     <ul>
-        <li><strong>Meshtastic</strong> periodically transmits <strong>device telemetry</strong>, <strong>position</strong>, and <strong>node info</strong> on timers (defaults ~30 min, 15 min*, and 3 hours). As meshes grow, the firmware <strong>auto-backs off</strong> these intervals to reduce congestion.<sup><a href="#fn-intervals" id="fnref-intervals">[10]</a></sup> This is good for tracking/telemetry, but on very large meshes the background traffic can consume valuable airtime.</li>
-        <li><strong>MeshCore</strong> avoids frequent network-wide telemetry by default. Repeaters can send periodic <strong>adverts</strong> (local or flood) on long intervals, and you can tune or disable them to conserve airtime.<sup><a href="#fn-mc_cli" id="fnref-mc_cli2">[7]</a></sup><sup><a href="#fn-mc_adverts" id="fnref-mc_adverts">[16]</a></sup></li>
+        <li>Meshtastic periodically transmits device telemetry, position, and node info on timers (defaults ~30 min, 15 min*, and 3 hours). As meshes grow, the firmware auto-backs off these intervals to reduce congestion.<sup><a href="#fn-intervals" id="fnref-intervals">[10]</a></sup> This is good for tracking/telemetry, but on very large meshes the background traffic can consume valuable airtime.</li>
+        <li>MeshCore avoids frequent network-wide telemetry by default. Repeaters can send periodic adverts (local or flood) on long intervals, and you can tune or disable them to conserve airtime.<sup><a href="#fn-mc_cli" id="fnref-mc_cli2">[7]</a></sup><sup><a href="#fn-mc_adverts" id="fnref-mc_adverts">[16]</a></sup></li>
     </ul>
-    <p>For Austin Mesh—where the goal is <strong>citywide messaging</strong> (not sensor telemetry)—MeshCore’s default traffic profile typically leaves <strong>more airtime for actual messages</strong>.</p>
+    <p>For Austin Mesh—where the goal is region wide messaging (not sensor telemetry)—MeshCore’s default traffic profile typically leaves more airtime for actual messages.</p>
     <h2 id="presets-throughput-interference">Radio presets, throughput &amp; interference</h2>
-    <p>Both systems use <strong>LoRa (Chirp Spread Spectrum)</strong>, where <strong>bandwidth (kHz)</strong>, <strong>spreading factor (SF)</strong>, and <strong>coding rate (CR)</strong> trade range for speed and airtime.<sup><a href="#fn-css" id="fnref-css">[11]</a></sup></p>
+    <p>Both systems use LoRa (Chirp Spread Spectrum), where bandwidth, spreading factor (SF), and coding rate (CR) trade range for speed and airtime.<sup><a href="#fn-css" id="fnref-css">[11]</a></sup></p>
     <ul>
-        <li><strong>Meshtastic defaults:</strong> The standard preset is <strong>LongFast</strong>, which (in US) uses <strong>250 kHz</strong> bandwidth and a conservative SF/CR mix. It’s robust, but airtime per message is relatively high, especially over multiple hops.<sup><a href="#fn-preset_enum" id="fnref-preset_enum">[12]</a></sup><sup><a href="#fn-preset_blog" id="fnref-preset_blog">[13]</a></sup>
-            <br /><em>You can switch Meshtastic to faster presets (e.g., MediumFast/ShortFast) or even custom narrow bandwidths; Meshtastic supports special narrow values like <strong>31.25 kHz</strong> and <strong>62.5 kHz</strong> when manually configured.</em><sup><a href="#fn-bw_values" id="fnref-bw_values">[14]</a></sup>
+        <li>Meshtastic defaults: The standard preset is LongFast, which (in US) uses 250 kHz bandwidth and a conservative SF/CR mix. It's robust, but airtime per message is relatively high, especially over multiple hops.<sup><a href="#fn-preset_enum" id="fnref-preset_enum">[12]</a></sup><sup><a href="#fn-preset_blog" id="fnref-preset_blog">[13]</a></sup>
+            <br /><small>NOTE: You can switch Meshtastic to faster presets (e.g., MediumFast/ShortFast) or even custom narrow bandwidths; Meshtastic supports special narrow values like 31.25 kHz and 62.5 kHz when manually configured.</small><sup><a href="#fn-bw_values" id="fnref-bw_values">[14]</a></sup>
         </li>
-        <li><strong>MeshCore defaults:</strong> In the US, the default preset is a <strong>narrower bandwidth</strong> (62.5 kHz) with moderate SF/CR to slot between noisy parts of the US 902–928 MHz ISM band, improving SNR and airtime efficiency while maintaining city-scale coverage.<sup><a href="#fn-mc_bw_rationale" id="fnref-mc_bw_rationale">[15]</a></sup><sup><a href="#fn-mc_ottawa" id="fnref-mc_ottawa">[17]</a></sup></li>
+        <li>MeshCore defaults: In the US, the default preset is a narrower bandwidth (62.5 kHz) with moderate SF/CR to slot between noisy parts of the US 902–928 MHz ISM band, improving SNR and airtime efficiency while maintaining city-scale coverage.<sup><a href="#fn-mc_bw_rationale" id="fnref-mc_bw_rationale">[15]</a></sup><sup><a href="#fn-mc_ottawa" id="fnref-mc_ottawa">[17]</a></sup></li>
     </ul>
-    <p>In real Austin-area testing, the narrower-BW MeshCore configs have produced noticeably <strong>snappier delivery</strong> (often sub-second for nearby peers, and sub-2 second for 9 hop routes) compared to default Meshtastic presets—especially as node count rises. Your mileage will vary by terrain, antenna quality, and infrastructure density, but the <strong>airtime math</strong> generally favors <strong>higher data rates + less background traffic</strong>.</p>
+    <p>In real Austin-area testing, the narrower default MeshCore configs have produced noticeably snappier delivery (often sub-second for nearby peers, and sub-2 second for 9 hop routes) compared to default Meshtastic presets. Your mileage will vary by terrain, antenna quality, and infrastructure density, but the airtime math generally favors higher data rates + less background traffic.</p>
     <h2 id="when">When to use which</h2>
     <ul>
-        <li><strong>Choose Meshtastic</strong> if you want a <strong>bring-a-radio, it just works</strong> experience for roaming groups, mapping, and rich telemetry modules, with minimal setup and no guaranteed infrastructure.</li>
-        <li><strong>Choose MeshCore</strong> if your aim is a <strong>resilient, city-scale messaging network</strong> with <strong>fixed repeaters</strong> and <strong>tunable airtime</strong>, where end-users don’t rebroadcast by default.</li>
+        <li>Choose Meshtastic if you want a "bring-a-radio, it just works" experience for roaming groups, mapping, and rich telemetry modules, with minimal setup and no guaranteed infrastructure.</li>
+        <li>Choose MeshCore if your aim is a resilient, city or region scale messaging network with fixed repeaters, where end-users don’t rebroadcast by default.</li>
     </ul>
     <h2 id="comparison">Quick comparison</h2>
     <table>
