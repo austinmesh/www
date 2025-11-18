@@ -1,0 +1,6 @@
+<header>
+    <a href="/"><img src="{{ site.logo }}" class="logo" alt="Logo for {{ site.name }}" title="{{ site.name }}" width="500" height="121" /></a>
+    {% if events.upcoming.size > 0 %}
+    <button onclick="document.getElementById('event').showModal()" class="default meet-button">📅 Upcoming Meeting {{ events.upcoming[0].date | date: "%m/%d" }}</button>
+    {% endif %}
+</header>

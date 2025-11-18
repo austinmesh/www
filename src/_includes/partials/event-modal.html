@@ -1,0 +1,19 @@
+{% if events.upcoming.size > 0 %}
+{% assign event = events.upcoming[0] %}
+<dialog id="event">
+    <header>
+        <h1>{{ event.title }}</h1>
+    </header>
+    <p>{{ event.description }}</p>
+    <p><b>{{ event.date | readableDate }}, {{ event.time }}</b> {% if event.registrationUrl %}(<a href="{{ event.registrationUrl }}" target="_blank">Save the date</a>){% endif %}</p>
+    <p>{{ event.location }}</p>
+    <footer>
+        <form method="dialog">
+            {% if event.registrationUrl %}
+            <a class="default" href="{{ event.registrationUrl }}" type="button">Save the date</a>
+            {% endif %}
+            <button type="submit">Close</button>
+        </form>
+    </footer>
+</dialog>
+{% endif %}

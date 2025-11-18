@@ -1,0 +1,195 @@
+---
+layout: layouts/page.html
+title: MeshCore vs Meshtastic
+description: What we've learned about MeshCore and Meshtastic, offering a comparison
+eleventyNavigation:
+  key: MeshCore vs Meshtastic
+  parent: Learn
+---
+
+<hgroup>
+    <h1>Meshtastic vs. MeshCore on Austin Mesh</h1>
+    <p>Austin Mesh is technology-agnostic. We care about reliable, decentralized mesh networking that keeps working even if the internet or cell towers don't. This page explains (1) how mesh networking works at a high level, and (2) the practical differences between <strong>Meshtastic</strong> and <strong>MeshCore</strong> so you can pick the right tool for your use case.</p>
+</hgroup>
+
+<ul>
+    <li><a href="#tldr">TL;DR; ELI5</a></li>
+    <li><a href="#mesh-30s">Mesh networking in 30 seconds</a></li>
+    <li><a href="#default-roles-behavior">Default roles &amp; behavior</a></li>
+    <li><a href="#hop-limits">Hop Limits</a></li>
+    <li><a href="#telemetry-airtime">Telemetry &amp; airtime</a></li>
+    <li><a href="#presets-throughput-interference">Radio presets, throughput &amp; interference</a></li>
+    <li><a href="#when">When to use each</a></li>
+    <li><a href="#comparison">Comparison table</a></li>
+</ul>
+
+<h2 id="tldr">TL;DR; ELI5</h2>
+
+### ELI5
+
+Think of sending a whisper across a playground. With Meshtastic, everyone passes your whisper along, so the "chain" can move and grow as people move around, but they stop sharing your message after it's passed through 7 people. With MeshCore, only special helpers (repeaters) pass the whisper, but they can pass it to up to 64 more helpers.
+
+By default, with MeshCore those helpers also talk faster and there are fewer side conversations that might delay your whisper. On Meshtastic, the other people talk slower and are having side conversations that have to finish before your whisper can be shared, slowing down the rate at which your whisper makes its way through the crowd.
+
+### TL;DR;
+
+Meshtastic works well when people and links are moving (friends at an event, a hike, a bike ride). Regular nodes help by rebroadcasting, so coverage can shift and grow as people move. MeshCore works well when you can place fixed repeaters on rooftops or hills. Phones connect through companion radios; companions do not rebroadcast, so repeaters are what grow the mesh.
+
+#### Main differences
+
+<ul>
+    <li>Hop limits: Meshtastic default 3 (max 7); MeshCore up to 64.</li>
+    <li>Who rebroadcasts: Meshtastic clients help relay; MeshCore companions do not. Only repeaters relay.</li>
+    <li>Telemetry(battery, temperature, etc): Meshtastic pushes data regularly; MeshCore pushes rarely, and allows manual pulling.</li>
+    <li>Responsiveness: MeshCore feels considerably faster with default config; Meshtastic can be manually tuned to similar results.</li>
+</ul>
+
+<h2 id="mesh-30s">Mesh networking in 30 seconds</h2>
+
+<ul>
+    <li>Self-healing + multi-hop: Messages can traverse multiple radios ("hops"). If one link disappears, the mesh finds another path.</li>
+    <li>Flood routing: On low-power radios, many systems use a simple "managed flood" where nodes selectively rebroadcast packets without maintaining big routing tables.<sup><a href="#fn-mflood" id="fnref-mflood">[1]</a></sup></li>
+    <li>Direct paths: Some systems learn a path during the first flood, then send future messages via a more efficient "next-hop" route, falling back to flood if the path breaks.<sup><a href="#fn-meshnexthop" id="fnref-meshnexthop">[2]</a></sup><sup><a href="#fn-mc_path" id="fnref-mc_path">[3]</a></sup></li>
+</ul>
+
+<h2 id="default-roles-behavior">Default roles &amp; behavior</h2>
+
+<ul>
+    <li>Meshtastic: Default role is CLIENT, which <i>does</i> take part in rebroadcasting in most cases. This helps ad-hoc, moving groups connect even without fixed infrastructure.<sup><a href="#fn-roles" id="fnref-roles">[4]</a></sup></li>
+    <li>MeshCore: Default end-user firmware is Companion (USB/BLE app companion). Companions do not rebroadcast other people's packets; Repeaters handle forwarding. This concentrates airtime on purpose-built, well-placed infrastructure nodes.<sup><a href="#fn-mc_philosophy" id="fnref-mc_philosophy">[5]</a></sup><sup><a href="#fn-mc_companion" id="fnref-mc_companion">[6]</a></sup><sup><a href="#fn-mc_cli" id="fnref-mc_cli">[7]</a></sup></li>
+</ul>
+
+Meshtastic shines for non-geostationary groups (e.g. a ski hill or a bike ride with moving parties). MeshCore is optimized for large scale meshes with infrastructure nodes (repeaters) placed on high points.
+
+## Routing strategies
+
+<ul>
+    <li>Meshtastic: Managed flood. Since v2.6, Direct Messages use next-hop routing: flood to discover, then optimized relays for subsequent DMs.<sup><a href="#fn-mflood" id="fnref-mflood2">[1]</a></sup><sup><a href="#fn-meshnexthop" id="fnref-meshnexthop2">[2]</a></sup></li>
+    <li>MeshCore: Flood-then-direct by design: first message floods to learn a path; later messages embed the learned path; if that route fails after a few retries, the node automatically falls back to flood.<sup><a href="#fn-mc_path" id="fnref-mc_path2">[3]</a></sup></li>
+</ul>
+
+<h2 id="hop-limits">Hop limits</h2>
+
+<ul>
+    <li>Meshtastic: Default Max Hops = 3 (configurable to max 7)<sup><a href="#fn-hops" id="fnref-hops">[8]</a></sup></li>
+    <li>MeshCore: Internal max hop limit = 64<sup><a href="#fn-mc_hops" id="fnref-mc_hops">[9]</a></sup></li>
+</ul>
+
+**Implication for AustinMesh:** Hill/valley terrain often needs many relays. Seven hops can be a hard ceiling for Meshtastic across the whole metro, while MeshCore's higher limit gives more headroom.
+
+<h2 id="telemetry-airtime">Telemetry &amp; airtime</h2>
+
+<ul>
+    <li>Meshtastic periodically transmits device telemetry, position, and node info on timers (defaults ~30 min, 15 min*, and 3 hours). As meshes grow, the firmware auto-backs off these intervals to reduce congestion.<sup><a href="#fn-intervals" id="fnref-intervals">[10]</a></sup> This is good for tracking/telemetry, but on very large meshes the background traffic can consume valuable airtime.</li>
+    <li>MeshCore avoids frequent network-wide telemetry by default. Repeaters can send periodic adverts (local or flood) on long intervals, and you can tune or disable them to conserve airtime.<sup><a href="#fn-mc_cli" id="fnref-mc_cli2">[7]</a></sup><sup><a href="#fn-mc_adverts" id="fnref-mc_adverts">[16]</a></sup></li>
+</ul>
+
+For Austin Mesh—where the goal is region wide messaging (not sensor telemetry)—MeshCore's default traffic profile typically leaves more airtime for actual messages.
+
+<h2 id="presets-throughput-interference">Radio presets, throughput &amp; interference</h2>
+
+Both systems use LoRa (Chirp Spread Spectrum), where bandwidth, spreading factor (SF), and coding rate (CR) trade range for speed and airtime.<sup><a href="#fn-css" id="fnref-css">[11]</a></sup>
+
+<ul>
+    <li>Meshtastic defaults: The standard preset is LongFast, which (in US) uses 250 kHz bandwidth and a conservative SF/CR mix. It's robust, but airtime per message is relatively high, especially over multiple hops.<sup><a href="#fn-preset_enum" id="fnref-preset_enum">[12]</a></sup><sup><a href="#fn-preset_blog" id="fnref-preset_blog">[13]</a></sup>
+        <br /><small>NOTE: You can switch Meshtastic to faster presets (e.g., MediumFast/ShortFast) or even custom narrow bandwidths; Meshtastic supports special narrow values like 31.25 kHz and 62.5 kHz when manually configured.</small><sup><a href="#fn-bw_values" id="fnref-bw_values">[14]</a></sup>
+    </li>
+    <li>MeshCore defaults: In the US, the default preset is a narrower bandwidth (62.5 kHz) with moderate SF/CR to slot between noisy parts of the US 902–928 MHz ISM band, improving SNR and airtime efficiency while maintaining city-scale coverage.<sup><a href="#fn-mc_bw_rationale" id="fnref-mc_bw_rationale">[15]</a></sup><sup><a href="#fn-mc_ottawa" id="fnref-mc_ottawa">[17]</a></sup></li>
+</ul>
+
+In real Austin-area testing, the narrower default MeshCore configs have produced noticeably snappier delivery (often sub-second for nearby peers, and sub-2 second for 9 hop routes) compared to default Meshtastic presets. Your mileage will vary by terrain, antenna quality, and infrastructure density, but the airtime math generally favors higher data rates + less background traffic.
+
+<h2 id="when">When to use which</h2>
+
+<ul>
+    <li>Choose Meshtastic if you want a "bring-a-radio, it just works" experience for roaming groups, mapping, and rich telemetry modules, with minimal setup and no guaranteed infrastructure.</li>
+    <li>Choose MeshCore if your aim is a resilient, city or region scale messaging network with fixed repeaters, where end-users don't rebroadcast by default.</li>
+</ul>
+
+<h2 id="comparison">Quick comparison</h2>
+
+<table>
+    <thead>
+        <tr>
+            <th>Topic</th>
+            <th>Meshtastic</th>
+            <th>MeshCore</th>
+            <th>Notes for Austin Mesh</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Default behavior</td>
+            <td>CLIENT rebroadcasts when needed<sup><a href="#fn-roles">[4]</a></sup></td>
+            <td>Companion does not forward; Repeaters do<sup><a href="#fn-mc_companion">[6]</a></sup><sup><a href="#fn-mc_philosophy">[5]</a></sup><sup><a href="#fn-mc_cli">[7]</a></sup></td>
+            <td>MeshCore reduces edge-node airtime; invest in good repeater sites.</td>
+        </tr>
+        <tr>
+            <td>Broadcast routing</td>
+            <td>Managed flood<sup><a href="#fn-mflood">[1]</a></sup></td>
+            <td>Flood (for discovery &amp; fallback)<sup><a href="#fn-mc_path">[3]</a></sup></td>
+            <td>Both robust under mobility; MeshCore expects infra for scale.</td>
+        </tr>
+        <tr>
+            <td>Direct messages</td>
+            <td>Next-hop routing since v2.6<sup><a href="#fn-meshnexthop">[2]</a></sup></td>
+            <td>Learned direct path with fallback to flood<sup><a href="#fn-mc_path">[3]</a></sup></td>
+            <td>Both learn paths; reduces duplicate airtime when stable.</td>
+        </tr>
+        <tr>
+            <td>Max hops (default / max)</td>
+            <td>3 / 7<sup><a href="#fn-hops">[8]</a></sup></td>
+            <td>Configurable, internal max 64<sup><a href="#fn-mc_hops">[9]</a></sup></td>
+            <td>More headroom for citywide reach.</td>
+        </tr>
+        <tr>
+            <td>Telemetry cadence</td>
+            <td>Regular NodeInfo/Telemetry/Position; auto back-off on big meshes "Push" model<sup><a href="#fn-intervals">[10]</a></sup></td>
+            <td>Minimal by default; "Pull" model<sup><a href="#fn-mc_cli">[7]</a></sup><sup><a href="#fn-mc_adverts">[16]</a></sup></td>
+            <td>Leaves more airtime for chat on MeshCore.</td>
+        </tr>
+        <tr>
+            <td>Radio presets</td>
+            <td>LongFast (250 kHz)<sup><a href="#fn-preset_enum">[12]</a></sup><sup><a href="#fn-preset_blog">[13]</a></sup><sup><a href="#fn-bw_values">[14]</a></sup></td>
+            <td>62.5 kHz BW with tuned SF/CR<sup><a href="#fn-mc_bw_rationale">[15]</a></sup><sup><a href="#fn-mc_ottawa">[17]</a></sup></td>
+            <td>Narrower BW can fit between interference.</td>
+        </tr>
+        <tr>
+            <td>Typical responsiveness</td>
+            <td>Good at small scale; can slow as hops + telemetry rise</td>
+            <td>Very responsive with infra + higher data-rate configs</td>
+            <td>Our field tests show faster multi-hop messaging on MeshCore.</td>
+        </tr>
+        <tr>
+            <td>Best fit</td>
+            <td>Ad-hoc, highly mobile, telemetry-heavy scenarios</td>
+            <td>City-scale, repeater-backed, messaging-centric scenarios</td>
+            <td>Austin Mesh is biasing toward MeshCore for the citywide link layer.</td>
+        </tr>
+    </tbody>
+</table>
+
+## Footnotes
+
+<ol>
+    <li id="fn-mflood">Meshtastic uses Managed Flood Routing for broadcast messages to avoid heavy route maintenance on low-bandwidth radios. Meshtastic blog: "Why Meshtastic Uses Managed Flood Routing." <a href="https://meshtastic.org/blog/why-meshtastic-uses-managed-flood-routing/">link</a> <a href="#fnref-mflood" aria-label="Back to content">↩</a> <a href="#fnref-mflood2" aria-label="Back to content">↩</a></li>
+    <li id="fn-meshnexthop">Meshtastic v2.6 adds next-hop routing for Direct Messages (DMs): flood to discover, then optimized relays. Docs ("Mesh Algorithm") &amp; 2.6 preview post. Docs: <a href="https://meshtastic.org/docs/overview/mesh-algo/">link</a> · Blog: <a href="https://meshtastic.org/blog/meshtastic-2-6-preview/">link</a> <a href="#fnref-meshnexthop" aria-label="Back to content">↩</a> <a href="#fnref-meshnexthop2" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_path">MeshCore flood-then-direct routing: flood to learn → embed path → fallback to flood if direct fails. (Concept pages &amp; explainer.) Deep dive: <a href="https://deepwiki.com/ripplebiz/MeshCore/1.2-key-concepts-and-terminology">link</a> · Packet handling: <a href="https://deepwiki.com/ripplebiz/MeshCore/2.1-packet-handling-and-routing">link</a> · Explainer: <a href="https://gist.github.com/recrof/504dca2a96950b0870230c6cc4cfc437">link</a> <a href="#fnref-mc_path" aria-label="Back to content">↩</a> <a href="#fnref-mc_path2" aria-label="Back to content">↩</a></li>
+    <li id="fn-roles">Device roles — default role is CLIENT; CLIENT "rebroadcasts packets when no other node has done so." Meshtastic Device Configuration. <a href="https://meshtastic.org/docs/configuration/radio/device/">link</a> <a href="#fnref-roles" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_philosophy">"Repeaters route; edge nodes don't pollute the airwaves." MeshCore Philosophy. <a href="https://buymeacoffee.com/ripplebiz/meshcore-philosophy">link</a> <a href="#fnref-mc_philosophy" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_companion">Companion Radio Protocol (USB/BLE) connects apps to radios; it is an edge/client firmware, not a repeater. MeshCore Wiki. <a href="https://github.com/meshcore-dev/MeshCore/wiki/Companion-Radio-Protocol">link</a> <a href="#fnref-mc_companion" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_cli">Repeater/Room Server CLI (e.g., <code>set repeat on</code>, <code>set flood.max {hops}</code>, <code>set advert.interval {minutes}</code>, <code>set flood.advert.interval {hours}</code>). MeshCore Wiki. <a href="https://github.com/meshcore-dev/MeshCore/wiki/Repeater-%26-Room-Server-CLI-Reference">link</a> <a href="#fnref-mc_cli" aria-label="Back to content">↩</a> <a href="#fnref-mc_cli2" aria-label="Back to content">↩</a></li>
+    <li id="fn-hops">Max Hops defaults to 3 and "can't be greater than 7." Meshtastic LoRa Configuration. <a href="https://meshtastic.org/docs/configuration/radio/lora/">link</a> <a href="#fnref-hops" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_hops">MeshCore internal max hop limit = 64. MeshCore Wiki (FAQ). <a href="https://github.com/meshcore-dev/MeshCore/wiki/FAQ/119842064315bf9aa07ffada0b08f9ca46401fac">link</a> <a href="#fnref-mc_hops" aria-label="Back to content">↩</a></li>
+    <li id="fn-intervals">Regular broadcast intervals (defaults) and auto-backoff as meshes grow. Meshtastic "Mesh Algorithm" overview. <a href="https://meshtastic.org/docs/overview/mesh-algo/">link</a> · Telemetry module reference: <a href="https://meshtastic.org/docs/configuration/module/telemetry/">link</a> <a href="#fnref-intervals" aria-label="Back to content">↩</a></li>
+    <li id="fn-css">LoRa = Chirp Spread Spectrum (CSS); SF/BW/CR drive data rate vs. range/airtime. Semtech AN1200.22 "LoRa Modulation Basics." <a href="https://www.frugalprototype.com/wp-content/uploads/2016/08/an1200.22.pdf">link</a> <a href="#fnref-css" aria-label="Back to content">↩</a></li>
+    <li id="fn-preset_enum">Meshtastic modem presets (LongFast, MediumFast, ShortFast, etc.). Protobuf enum docs. <a href="https://docs.rs/meshtastic_protobufs/latest/meshtastic_protobufs/meshtastic/config/lo_ra_config/enum.ModemPreset.html">link</a> <a href="#fnref-preset_enum" aria-label="Back to content">↩</a></li>
+    <li id="fn-preset_blog">Comparative preset table (BW, SF, approximate kbps) and why LongFast isn't ideal for dense meshes. Meshtastic blog. <a href="https://meshtastic.org/blog/why-your-mesh-should-switch-from-longfast/">link</a> <a href="#fnref-preset_blog" aria-label="Back to content">↩</a></li>
+    <li id="fn-bw_values">Special bandwidth values supported in Meshtastic custom modem settings (e.g., 31.25 kHz, 62.5 kHz). Meshtastic LoRa Configuration. <a href="https://meshtastic.org/docs/configuration/radio/lora/#bandwidth">link</a> <a href="#fnref-bw_values" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_bw_rationale">MeshCore docs note that narrower BW + lower SF can fit between ISM-band interference and yield better SNR/airtime. MeshCore FAQ. <a href="https://github.com/meshcore-dev/MeshCore/blob/main/docs/faq.md">link</a> <a href="#fnref-mc_bw_rationale" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_adverts">MeshCore communities commonly configure long flood-advert intervals (e.g., ~12 h) to conserve airtime; tooling and issues reflect this direction. CLI reference (adverts): <a href="https://github.com/meshcore-dev/MeshCore/wiki/Repeater-%26-Room-Server-CLI-Reference">link</a> · Issue: <a href="https://github.com/meshcore-dev/MeshCore/issues/919">link</a> · FAQ note: <a href="https://github.com/meshcore-dev/MeshCore/blob/main/docs/faq.md">link</a> <a href="#fnref-mc_adverts" aria-label="Back to content">↩</a></li>
+    <li id="fn-mc_ottawa">Example community settings (US/CAN): 910.525 MHz, 62.5 kHz BW, SF7/CR5. Ottawa Mesh. <a href="https://ottawamesh.ca/index.php?title=MeshCore%2FFrequency_Settings">link</a> <a href="#fnref-mc_ottawa" aria-label="Back to content">↩</a></li>
+    <li id="fn-tips">Meshtastic docs caution against over-using infrastructure roles and hop counts on dense meshes; a network of CLIENTs with a small number of well-placed ROUTER/REPEATERs is usually best. Configuration Tips. <a href="https://meshtastic.org/docs/configuration/tips/">link</a> <a href="#fnref-tips" aria-label="Back to content">↩</a></li>
+</ol>
+
+Questions or edits? Open a PR on [austinmesh.org's repo](https://github.com/austinmesh/www) or ping the Austin Mesh chat.
