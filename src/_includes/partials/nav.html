@@ -1,22 +1,5 @@
-{% assign navPages = collections.all | eleventyNavigation %}
 <nav>
-    <menu>
-        {% for entry in navPages %}
-        <li{% if entry.url == page.url %} class="active"{% endif %}>
-            <a href="{{ entry.url }}">{{ entry.title }}</a>
-            {% assign children = collections.all | eleventyNavigation: entry.key %}
-            {% if children.size > 0 %}
-            <menu>
-                {% for child in children %}
-                <li{% if child.url == page.url %} class="active"{% endif %}>
-                    <a href="{{ child.url }}">{{ child.title }}</a>
-                </li>
-                {% endfor %}
-            </menu>
-            {% endif %}
-        </li>
-        {% endfor %}
-    </menu>
+    {{ collections.all | eleventyNavigation | eleventyNavigationToHtml: navigationOptions }}
     <div class="menu--social">
         {% include "partials/social-icons.html" %}
     </div>
