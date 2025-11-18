@@ -1,0 +1,6 @@
+<nav>
+    {{ collections.all | eleventyNavigation | eleventyNavigationToHtml: navigationOptions }}
+    <div class="menu--social">
+        {% include "partials/social-icons.html" %}
+    </div>
+</nav>

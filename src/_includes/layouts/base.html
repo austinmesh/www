@@ -1,0 +1,36 @@
+---
+navigationOptions:
+  listElement: "menu"
+  listItemElement: "li"
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% if title %}{{ title }} | {% endif %}{{ site.name }}</title>
+        <meta name="description" content="{% if description %}{{ description }}{% else %}{{ site.description }}{% endif %}">
+        <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="stylesheet" href="{{ '/assets/css/matcha.css' | hash }}">
+        <link rel="stylesheet" href="{{ '/assets/css/styles.css' | hash }}">
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% include "partials/header.html" %}
+        {% include "partials/event-modal.html" %}
+        <main>
+            {% include "partials/nav.html" %}
+            {{ content }}
+        </main>
+        {% include "partials/footer.html" %}
+    </body>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.querySelector("header").classList.add("loaded");
+        });
+    </script>
+    {% block scripts %}{% endblock %}
+</html>

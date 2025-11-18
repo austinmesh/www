@@ -1,0 +1,39 @@
+{
+  "name": "www",
+  "version": "1.0.0",
+  "description": "Austin Mesh website build",
+  "keywords": [
+    "austinmesh",
+    "meshtastic",
+    "meshcore"
+  ],
+  "homepage": "https://www.austinmesh.org",
+  "bugs": {
+    "url": "https://github.com/austinmesh/www/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/austinmesh/www.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "build": "eleventy",
+    "start": "eleventy --serve",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@11ty/eleventy": "^3.1.2",
+    "@11ty/eleventy-img": "^6.0.4",
+    "@11ty/eleventy-navigation": "^1.0.4",
+    "@11ty/is-land": "^5.0.0",
+    "@lowlighter/matcha": "^3.0.1",
+    "leaflet": "^1.9.4",
+    "leaflet.heat": "^0.2.0"
+  }
+}
