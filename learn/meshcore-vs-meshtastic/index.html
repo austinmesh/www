@@ -148,7 +148,7 @@
         <li>As of Meshtastic firmware v2.7.15, some device telemetry broadcasts are disabled by default. If devices manually opt-in, they periodically transmit telemetry, position, and node info on timers (defaults ~30 min, 15 min*, and 3 hours). As device counts increase on a network, Meshtastic decreases intervals to reduce congestion. On very large meshes, background telemetry can consume valuable airtime, and it should only be enabled when necessary.<sup><a href="#fn-intervals" id="fnref-intervals">[10]</a></sup><sup><a href="#fn-mt_telemetry" id="fnref-mt_telemetry">[19]</a></sup></li>
         <li>MeshCore avoids frequent network-wide telemetry by default. Repeaters can send periodic adverts (local or flood) on long intervals, and you can tune or disable them to conserve airtime.<sup><a href="#fn-mc_cli" id="fnref-mc_cli2">[7]</a></sup><sup><a href="#fn-mc_adverts" id="fnref-mc_adverts">[16]</a></sup></li>
     </ul>
-    <p>For Austin Mesh—where the goal is region wide messaging (not sensor telemetry)—MeshCore’s default traffic profile typically leaves more airtime for actual messages, though recent Meshtastic firmware updates have narrowed the gap significantly.</p>
+    <p>For Austin Mesh—where the goal is region wide messaging (not sensor telemetry)—MeshCore’s default traffic profile typically leaves more airtime for actual messages, though recent Meshtastic firmware updates have begun to narrow the gap.</p>
     <h2 id="presets-throughput-interference">Radio presets, throughput &amp; interference</h2>
     <p>Both systems use LoRa (Chirp Spread Spectrum), where bandwidth, spreading factor (SF), and coding rate (CR) trade range for speed and airtime.<sup><a href="#fn-css" id="fnref-css">[11]</a></sup></p>
     <ul>
