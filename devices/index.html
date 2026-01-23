@@ -2,8 +2,8 @@
 <html lang="en">
     <head>
         <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
-        <title>Meshtastic Devices | Austin Mesh</title>
-        <meta name="description" content="Tried and tested solar-powered repeater build methods and parts for making your own Meshtastic repeater.">
+        <title>MeshCore and Meshtastic Devices | Austin Mesh</title>
+        <meta name="description" content="Tried and tested solar-powered repeater build methods and parts for making your own Meshtastic or MeshCore repeater.">
         <link rel="stylesheet" href="../matcha.min.css">
         <link rel="stylesheet" href="../styles.css?v=6">
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -91,11 +91,11 @@
             </nav>
             <hgroup>
                 <h1>Devices for the Mesh</h1>
-                <p>Austin mesh uses a technology called <a href="https://meshtastic.org" target="_blank">Meshtastic</a> to power the network here in Central Texas. In order to connect to this network, a relatively low cost device is required. You'll often hear these devices referred to as <b>nodes</b>. You can <a href="https://www.rfindex.com">compare the best meshtastic nodes on RF Index</a>.</p>
+                <p>Austin mesh uses two technologies(<a href="https://meshcore.co.uk/" rel="nofollow noopener" target="_blank">MeshCore</a> and <a href="https://meshtastic.org" rel="nofollow noopener" target="_blank">Meshtastic</a> to power the network here in Central Texas. In order to connect to this network, a relatively low cost radio device is required. You'll often hear these radios referred to as <b>nodes</b>. You can <a href="https://www.rfindex.com" target="_blank">compare the best meshtastic nodes on RF Index</a>.</p>
             </hgroup>
             <ul>
                 <li><a href="#options">Device options and recommendations</a></li>
-                <li><a href="#solar">Building a Solar-Powered Repeater for Meshtastic</a>
+                <li><a href="#solar">Building a Solar-Powered Repeater</a>
                     <ul>
                         <li><a href="#history">A brief history</a>
                             <ul>
@@ -123,13 +123,13 @@
 
 
             <section>
-                <h2 id="solar">Building a Solar Repeater for Meshtastic</h2>
+                <h2 id="solar">Building a Solar Repeater</h2>
                 <h3 id="history">A brief history</h3>
                 <h4>History of versions</h4>
                 <p>We have tried 5 permutations of solar powering repeater nodes:</p>
                 <details>
                     <summary>Version 1.0 RAKBox-B2 2000mah LiPo</summary>
-                    <p>Using RAK RAKBox-B2 Enclosure with solar panel. The panel was connected directly to the RAK Wireless WisBlock Meshtastic Starter Kit US915. We connected a 2000 MAh Lithium Polymer battery directly to the RAK board. We drilled a hole in the top of the box and attached a fiberglass antenna, which was connected to the RAK board with an iPEX to N-Type connector. We mounted this on top of one of the UT buildings and it died within a month. The 0.4 watt panel is way too small.</p>
+                    <p>Using RAK RAKBox-B2 Enclosure with solar panel. The panel was connected directly to the RAK Wireless WisBlock Starter Kit US915. We connected a 2000 MAh Lithium Polymer battery directly to the RAK board. We drilled a hole in the top of the box and attached a fiberglass antenna, which was connected to the RAK board with an iPEX to N-Type connector. We mounted this on top of one of the UT buildings and it died within a month. The 0.4 watt panel is way too small.</p>
                 </details>
                 <details>
                     <summary>Version 2.0 USB Solar</summary>
@@ -178,7 +178,7 @@
                     <li>Coastal Climates: salt spray and condensation from fog can kill electronics quickly. In coastal climates it is best to spray the electronics with conformal coating.</li>
                 </ol>
 
-                <h3 id="parts-list">Meshtastic Solar Repeater Parts list</h3>
+                <h3 id="parts-list">MeshCore and Meshtastic Solar Repeater Parts list</h3>
                 <p>With all that said, here is the parts list for our most-preferred way to build a solar powered repeater. This design doesn’t require any soldering or complicated connectors. It also doesn’t require any battery management chips (which often have long shipping lead times and can be hard to get). For this design the solar panel is connected directly to the battery pack via USB. Then the battery pack is connected to the board via USB. The Voltaic Systems V25 battery is nice because it is optimized to charge from a solar panel and it is set standard to an “always on” mode which means the battery bank does not shut off after a set amount of time like other battery packs – this is useful as the RAK chip uses very little power and can trick other battery packs into shutting off. The other really nice thing about the Voltaic pack is than when it drains down completely it shuts down, but then once the solar panel has sufficiently charged it back up it will automatically turn itself back on again. The RAK radio uses between 100 and 1000 mAh per day, with about 400 mAh per day being average so theoretically the 6,400mAh Voltaic V25 could keep the radio running for 16 days without solar.</p>
                 <h4>Standard Parts</h4>
                 <div class="table-wrapper">
@@ -383,7 +383,7 @@
                     </table>
                 </div>
                 <h4>Birdhouse parts</h4>
-                <p>To turn this solar powered meshtastic repeater into birdhouse you can just add the following components. Simply paint the top of the birdhouse black and glue on the solar panel, cut a hole in the back of the birdhouse big enough to put the box into it, attach the antenna mount L-Bracket to the side of the birdhouse, and connect the box to the antenna on the mount with the pigtail using the jam nut.</p>
+                <p>To turn this solar powered repeater into birdhouse you can just add the following components. Simply paint the top of the birdhouse black and glue on the solar panel, cut a hole in the back of the birdhouse big enough to put the box into it, attach the antenna mount L-Bracket to the side of the birdhouse, and connect the box to the antenna on the mount with the pigtail using the jam nut.</p>
                 <div class="table-wrapper">
                     <table>
                         <thead>
