@@ -48,9 +48,7 @@
                     <li>
                         <a href="/join/">Join</a>
                         <menu>
-                            <li><a href="/join/#network">Join the network</a></li>
-                            <li><a href="/join/#best-practices">Best practices</a></li>
-                            <li><a href="/join/#group">Join the group</a></li>
+                            <li><a href="/join/">Join the network</a></li>
                             <li><a href="/join/property-owner-faq-hosting-a-node/">Property Owner FAQ</a></li>
                             <li><a href="/join/getting-started-meshcore/">Getting started with MeshCore</a></li>
                         </menu>
@@ -100,27 +98,24 @@
                 <h2>TL;DR</h2>
                 <ul>
                     <li>Works on (almost) all the same hardware as Meshtastic.</li>
-                    <li>Flash devices in-browser: <a href="https://flasher.meshcore.co.uk/" rel="noopener">https://flasher.meshcore.co.uk/</a></li>
+                    <li>Flash devices in-browser: <a href="https://flasher.meshcore.co.uk/" rel=" nofollow noopener">https://flasher.meshcore.co.uk/</a></li>
                     <li>Pick a role:
                         <ul>
                             <li><strong>Companion</strong>: Bluetooth; pairs with your phone.</li>
                             <li><strong>Repeater</strong>: No Bluetooth; repeats only. Configure before deployment (use <em>Repeater Setup</em> in the flasher after flashing).</li>
                         </ul>
                     </li>
-                    <li>Use the <strong>US Recommended</strong> preset. <i>NOT</i> Alternate.</li>
-                    <li>MeshCore <b>firmware</b> is free/open source. The phone app is not. It offers an optional upgrade for faster remote management(10s wait timer otherwise). The PWA bypasses this if desired.</li>
-                    <li>You can switch back and forth between MeshCore and Meshtastic to your heart's content.</li>
-                    <li>Full comparison: <a href="https://www.austinmesh.org/learn/meshcore-vs-meshtastic/" rel="noopener">MeshCore vs Meshtastic</a></li>
+                    <li>Use the <strong>US Recommended</strong> preset.</li>
                 </ul>
             </section>
             <section id="roles">
-                <h2>Choose a Role: Companion vs Repeater</h2>
+                <h2>1) Choose a Role: Companion vs Repeater</h2>
                 <p><strong>Companion</strong> is your phone-connected node. <strong>Repeater</strong> is a headless coverage extender that must be configured before mounting.</p>
             </section>
             <section id="flash">
-                <h2>Flash the Firmware</h2>
+                <h2>2) Flash the Firmware</h2>
                 <ol>
-                    <li>Open <a href="https://flasher.meshcore.co.uk/" rel="noopener">flasher.meshcore.co.uk</a>.</li>
+                    <li>Open <a href="https://flasher.meshcore.co.uk/" rel="nofollow noopener">flasher.meshcore.co.uk</a>.</li>
                     <li>Connect your device via USB and select the correct port/board.</li>
                     <li>Select the role</li>
                     <li>Enter DFU</li>
@@ -130,7 +125,7 @@
                 </ol>
             </section>
             <section id="configure">
-                <h2>Configure</h2>
+                <h2>3) Configure</h2>
                 <h3>Companion</h3>
                 <ol>
                     <li>Pair with the phone app over Bluetooth.</li>
@@ -138,7 +133,7 @@
                     <li>Set position if desired.</li>
                     <li>Send a <b>Flood Routed Advert</b> (signal/wave icon at top of app).</li>
                     <li>Remember, you may not see other contacts. Unlike Meshtastic, MeshCore only discovers other nodes when they send an advert. Patience is key!</li>
-                    <li>Send a test message. If you see "Heard {num} repeats" then you are being heard. If you only see "Sent", the message was sent but no <b>repeaters</b> heard the message. A companion may have.</li>
+                    <li>Send a test message. If you see "Heard {x} repeat(s)" then you are connected! If you only see "Sent", try moving to a higher location with fewer obstructions.</li>
                 </ol>
                 <h3>Repeater</h3>
                 <ol>
@@ -161,7 +156,7 @@
                     <h2>Resources</h2>
                     <ul>
                         <li>MeshCore FAQ/Wiki: <a href="https://github.com/meshcore-dev/MeshCore/blob/main/docs/faq.md" rel="noopener">Wiki</a></li>
-                        <li>Online flasher: <a href="https://flasher.meshcore.co.uk/" rel="noopener">flasher.meshcore.co.uk</a></li>
+                        <li>Online flasher: <a href="https://flasher.meshcore.co.uk/" rel="nofollow noopener">flasher.meshcore.co.uk</a></li>
                         <li>MeshCore vs Meshtastic: <a href="https://www.austinmesh.org/learn/meshcore-vs-meshtastic/" rel="noopener">austinmesh.org/learn/meshcore-vs-meshtastic/</a></li>
                     </ul>
                 </section>

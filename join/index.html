@@ -48,9 +48,7 @@
                     <li>
                         <a href="/join/">Join</a>
                         <menu>
-                            <li><a href="/join/#network">Join the network</a></li>
-                            <li><a href="/join/#best-practices">Best practices</a></li>
-                            <li><a href="/join/#group">Join the group</a></li>
+                            <li><a href="/join/">Join the network</a></li>
                             <li><a href="/join/property-owner-faq-hosting-a-node/">Property Owner FAQ</a></li>
                             <li><a href="/join/getting-started-meshcore/">Getting started with MeshCore</a></li>
                         </menu>
@@ -90,34 +88,13 @@
                     </li>
                 </menu>
             </nav>
-            <section class="social">
-                <h5>Join us on</h5>
-                <a href="https://www.instagram.com/p/Cq0jOpYLpZy/" target="_blank"><img src="../images/social/instagram.svg"
-                    title="Austin Mesh Instagram"
-                    alt="Instagram logo"
-                    width="40"
-                height="40" /></a>
-                <a href="https://discord.gg/6a5Sv2s9bG" target="_blank"><img src="../images/social/discord.svg"
-                    title="Austin Mesh Discord"
-                    alt="Discord logo"
-                    width="40"
-                height="40" /></a>
-                <a href="https://youtube.com/channel/UCtFl5gdwv0SdrP8sHlDMKNA"><img src="../images/social/youtube.svg"
-                    title="Austin Mesh YouTube Channel"
-                    alt="Youtube logo"
-                    width="40"
-                height="40" /></a>
-            </section>
 
-            <h1>How to join AustinMesh</h1>
-            <ul>
-                <li><a href="#group">Join the group</a></li>
-                <li><a href="#network">Connect to the network</a></li>
-                <li><a href="#best-practices">Best practices</a></li>
-            </ul>
+            <hgroup>
+                <h1>How to join AustinMesh</h1>
+            </hgroup>
 
             <section id="group">
-                <h2>Join the group</h2>
+                <h2>1) Join the group (optional)</h2>
                 <p>Outside of the mesh network itself, we're most active in our public <a href="https://discord.gg/6a5Sv2s9bG" target="_blank">Discord Server</a>. You can <a href="mailto:info@austinmesh.org">email us</a> to be added to our mailing list for our in-person meetings in Austin. You can also follow us on <a href="https://twitter.com/AustinMeshOrg" target="_blank">Twitter</a>,
                 <a href="https://www.instagram.com/p/Cq0jOpYLpZy/" target="_blank">Instagram</a>,
                 <a href="https://www.tiktok.com/@austinmesh.org" target="_blank">TikTok</a>,
@@ -125,47 +102,104 @@
             </section>
             
             <section id="network">
-                <h2>Connect to the network</h2>
+                <h2>2) Connect to the network</h2>
+                <p>Austin Mesh currently supports 2 networking technologies. <strong>We recommend MeshCore for all beginners</strong>.</p>
                 <ol>
-                    <li>
-                        Get a Meshtastic Radio.
-                        <br> You can build one yourself for about $35. The official Meshtastic page keeps a current list of <a href="https://meshtastic.org/docs/hardware/devices/">Supported Hardware.</a> The LILYGO T-Echo is a good first meshtastic radio, as it costs around $70 and is ready to go out of the box (besides having to flash the firmware).
-                        <br> You can also buy a pre-built battery-powered radio for between $50-$100 on Etsy or eBay - these usually have 3D printed cases.
-                        <br> If you can afford it, and have a place to mount it outside, we recommend you buy a pre-built solar-powered node for between $100 and $200 on Etsy and mount it as high off the ground as you can. Alternatively you can <a href="/devices/">build your own</a>.
-                    </li>
-                    <li>Download the <a href="https://meshtastic.org/docs/software">Meshtastic App</a> on your iPhone or Android.</li>
-                    <li>Pair your radio to your phone with Bluetooth.</li>
-                    <li>Open the Meshtastic app and say hi!</li>
+                    <li>MeshCore: Best for text message communication</li>
+                    <li>Meshtastic: Best for data(e.g. weather, air quality) and travel</li>
                 </ol>
-            </section>
-            <section id="best-practices">
-                <h2>Best practices</h2>
-                <h3>TL;DR;</h3>
-                <ul>
-                    <li><strong>Ignore MQTT</strong>: True</li>
-                    <li><strong>OK to MQTT</strong>: True(if you want to be on graphs.austinmesh.org)</li>
-                    <li><strong>Role</strong>: Client or Client Mute (<strong>NOT</strong> Router or Repeater)</li>
-                    <li><strong>Hop Count</strong>: 3</li>
-                    <li><strong>Broadcast intervals</strong>(info, position, telemetry): 6 hours</li>
-                </ul>
-                <p>This is a community driven project, following these guidelines will ensure the best experience for everyone as we continue to grow. (credit @Nick, @AdvJosh (TEX#) - KJ5FZD, @edsai KI5OSB)</p>
-                <h3>MQTT</h3>
-                <p>The vast majority of us have chosen not to use MQTT with Meshtastic in the spirit of building out a stronger RF based mesh network, instead of relying on the internet to patch coverage gaps. We also recommend setting your nodes to ignore any MQTT traffic.</p>
-                <p>If you use a busy MQTT server/topic it can quickly overwhelm your node and flood the entire network with traffic rendering local communications difficult or impossible. Additionally, using MQTT can give us a false sense of how robust our local RF network is, make it difficult to optimize, diagnose issues and plan future network expansion. Our goal is to build a robust, reliable off grid network that can be utilized by our community during internet/power outages.</p>
-                <h3>Device Role</h3>
-                <p>It may be tempting to set your device to ‘client/router’ or one of the other infrastructure modes, however from our extensive testing we’ve seen the best results for the end user, and the network as a whole using the ‘client’ role. Meshtastic does not currently have any intelligent routing built into the firmware. Nodes are set to rebroadcast any message they receive that they have not heard rebroadcast from another node at a random time interval. The ‘client/router’ and other infrastructure role takes that random interval and subtracts another random interval ensuring that they rebroadcast first.</p>
-                <p>While this may sound good on paper, due to constantly changing environmental variables you may be inadvertently creating dead ends in the network, bypassing intended recipients, and closing off redundant routing paths. We highly recommend starting with a ‘client’ role even for well placed nodes.</p>
-                <p>For device connected nodes (the ones you're sending messages from) that are not contributing to the network we recommend a device role of ‘client mute’ to reduce overall network airtime. An example of this would be a device connected node in your home that goes through a relay node on your roof.</p>
-                <h3>Hop Count</h3>
-                <p>We recommend starting with a hop count of 3, and always using the minimum number of hops needed to reach your destination. If you are running a device connected node in your home and a relay node that your client always goes through, a hop count of 4 is advised. If you are on the edge of the network and are not achieving results with the above, 5 hops may be useful however we recommend ensuring that you've done all you can with regard to optimizing your node hardware and placement first, if these are not taken care of additional hops will not yield greater distance and will degrade the performance of the wider network.</p>
-                <h3>Broadcast Interval (Position, Telemetry, Node Info)</h3>
-                <p>In order to reduce overall channel utilization and ensure messages are delivered we recommend the following settings for everyday use unless you have a specific use case or are running a test that requires more frequent updates.</p>
-                <h4>Device Config</h4>
-                <p>Node Info Broadcast Interval: 3 Hours</p>
-                <h4>Position</h4>
-                <p>Broadcast Interval: 1 Hour, Enable Smart Position, Minimum Interval: One Minute, Minimum Distance: 100, Position Flags: Disable all flags that are not explicitly needed for your use case.</p>
-                <h4>Telemetry (Sensors) Config</h4>
-                <p>Device Metrics: 3 Hours, Sensor Metrics: 1 Hour</p>
+                <p>(<small><a href="/learn/meshcore-vs-meshtastic/">In depth comparison of MeshCore and Meshtastic</a></small>)</p>
+
+                <h3>Getting started using MeshCore</h3>
+                <details>
+                    <summary>1) Hardware/Radio</summary>
+                    <p>You'll need a radio to get started. Prices range from $13 - hundreds. Most sit in the $30-80 range.</p>
+                    <h4>Companion Radio</h4>
+                    <ul>
+                        <li>More time than money: <a href="https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html" rel="nofollow noopener">Seeed XIAO nRF52</a> ($13)</li>
+                        <li>More money than time, <i>tiny package</i>: <a href="https://www.rfindex.com/meshtastic/devices/seeedstudio-sensecap-t1000e">Seeed SenseCAP T1000-E</a> ($35-50)</li>
+                        <li>More money than time, <i>better performance</i>: <a href="https://www.rfindex.com/meshtastic/devices/wismesh-pocket-v2">WisMesh Pocket V2</a> ($90)</li>
+                        <li>Phone-free/All in one: <a href="https://www.rfindex.com/meshtastic/devices/lilygo-t-deck">LILYGO T-Deck</a> ($40-100)</li>
+                    </ul>
+                    <h4>Solar / Infrastructure Radio Repeater</h4>
+                    <ul>
+                        <li>More time than money: <a href="/devices/#solar">DIY Build</a> ($30-???)</li>
+                        <li>More money than time: <a href="https://www.rfindex.com/meshtastic/devices/wismesh-repeater-mini">WisMesh Repeater Mini</a> ($109)</li>
+                        <li>Money is really no object: <a href="https://www.rfindex.com/meshtastic/devices/atlavox-beacon-solar">AtlaVox Beacon</a> ($235-300)</li>
+                        <li>You just love to tinker: <a href="/devices/#solar">DIY build</a> ($30-???)</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>2) Software Setup</summary>
+                    <ol>
+                        <li>Flash the MeshCore firmware to your radio using <a href="https://flasher.meshcore.co.uk/" rel="nofollow noopener">flasher.meshcore.co.uk</a>.</li>
+                        <li>Download the MeshCore app to your phone.</li>
+                        <li>Connect to your radio via bluetooth.</li>
+                        <li>Select the <strong>USA/Canada (Recommended)</strong> preset.</li>
+                        <li><strong>Do not adjust</strong> frequency, bandwidth, spreading factor, or coding rate.</li>
+                        <li>Set your name. This will be visible to others on the network.</li>
+                        <li>Having trouble? View our full <a href="/join/getting-started-meshcore/">Getting Started with MeshCore guide</a> or <a href="https://discord.gg/6a5Sv2s9bG">join our Discord server</a>.</li>
+                    </ol>
+                </details>
+                <details>
+                    <summary>3) Channels and Use</summary>
+                    <ol>
+                        <li>Austin Mesh uses the default <strong>Public</strong> channel that is automatically configured.</li>
+                        <li>Optionally, you may add #testing and #meetup.</li>
+                        <li>Send your first message in <strong>Public</strong>. Does it say "Heard {x} repeat(s)"? If so, that means you're connected!
+                            <ul>
+                                <li>If not, try moving your radio. The higher/fewer obstructions the better.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Send away</strong>! It's very unlikely you'll bother anyone by being chatty or saying hello a bunch.</li>
+                        <li>Consider <a href="https://discord.gg/6a5Sv2s9bG">joining the Discord server</a> for more advice.</li>
+                    </ol>
+                </details>
+                <h3>Getting started using Meshtastic</h3>
+                <details>
+                    <summary>1) Hardware/Radio</summary>
+                    <p>You'll need a radio to get started. Prices range from $13 - hundreds. Most sit in the $30-80 range.</p>
+                    <h4>Companion Radio</h4>
+                    <ul>
+                        <li>More time than money: <a href="https://www.seeedstudio.com/XIAO-nRF52840-Wio-SX1262-Kit-for-Meshtastic-p-6400.html" rel="nofollow noopener">Seeed XIAO nRF52</a> ($13)</li>
+                        <li>More money than time, <i>tiny package</i>: <a href="https://www.rfindex.com/meshtastic/devices/seeedstudio-sensecap-t1000e">Seeed SenseCAP T1000-E</a> ($35-50)</li>
+                        <li>More money than time, <i>better performance</i>: <a href="https://www.rfindex.com/meshtastic/devices/wismesh-pocket-v2">WisMesh Pocket V2</a> ($90)</li>
+                        <li>Phone-free/All in one: <a href="https://www.rfindex.com/meshtastic/devices/lilygo-t-deck">LILYGO T-Deck</a> ($40-100)</li>
+                    </ul>
+                    <h4>Solar / Infrastructure Radio Repeater</h4>
+                    <ul>
+                        <li>More time than money: <a href="/devices/#solar">DIY Build</a> ($30-???)</li>
+                        <li>More money than time: <a href="https://www.rfindex.com/meshtastic/devices/wismesh-repeater-mini">WisMesh Repeater Mini</a> ($109)</li>
+                        <li>Money is really no object: <a href="https://www.rfindex.com/meshtastic/devices/atlavox-beacon-solar">AtlaVox Beacon</a> ($235-300)</li>
+                        <li>You just love to tinker: <a href="/devices/#solar">DIY build</a> ($30-???)</li>
+                    </ul>
+                </details>
+                <details>
+                    <summary>2) Software Setup</summary>
+                    <ol>
+                        <li>Flash the Meshtastic firmware to your radio using <a href="https://flasher.meshtastic.org/" rel="nofollow noopener">flasher.meshtastic.org</a>.</li>
+                        <li>Download the Meshtastic app to your phone.</li>
+                        <li>Connect to your radio via bluetooth.</li>
+                        <li>Select the <strong>United States</strong> region.</li>
+                        <li>Select the <strong>Long Range - Fast</strong> preset.</li>
+                        <li><strong>Turn on</strong>: Ignore MQTT, OK to MQTT</li>
+                        <li><strong>Do not adjust</strong> frequency slot, frequency override.</li>
+                        <li>Set your Long Name and Short Name. These will be visible to others on the network.</li>
+                    </ol>
+                </details>
+                <details>
+                    <summary>3) Channels and Use</summary>
+                    <ol>
+                        <li>Austin Mesh uses the default <strong>Primary Channel</strong> that is automatically configured.</li>
+                        <li>Send your first message in <strong>Public</strong>. Does it say "Acknowledged"? If so, that means you're connected!
+                            <ul>
+                                <li>If it says "Max Retransmission Reached" try moving your radio. The higher/fewer obstructions the better.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Send away</strong>! It's very unlikely you'll bother anyone by being chatty or saying hello a bunch.</li>
+                        <li>Consider <a href="https://discord.gg/6a5Sv2s9bG">joining the Discord server</a> for more advice.</li>
+                    </ol>
+                </details>
             </section>
         </main>
         <footer>
