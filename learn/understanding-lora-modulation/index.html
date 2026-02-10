@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" charset="utf-8" content="width=device-width, initial-scale=1.0">
+        <title>Tuning an Airframes Filter for Meshtastic and MeshCore | Austin Mesh</title>
+        <meta name="description" content="Step by step guide to tune the Airframes cavity filter for Meshtastic or MeshCore.">
+        <link rel="stylesheet" href="../../matcha.min.css">
+        <link rel="stylesheet" href="../../styles.css?v=6">
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+    </head>
+    <body>
+        <header>
+            <a href="/"><img src="../../images/Austin-Mesh-Logo.svg" class="logo" alt="Logo for Austin Mesh" title="Austin Mesh" width="500" height="121" /></a>
+            <button onclick="document.getElementById('event').showModal()" class="default meet-button">📅 Upcoming Meeting 2/25</button>
+        </header>
+        <dialog id="event">
+    <header>
+        <h1>Meetup at Meanwhile Brewery</h1>
+    </header>
+    <p>Meetup organized by  at Meanwhile Brewery</p>
+    <p><b>Wednesday, February 25, 2026, 6:00 PM CST</b> (<a href="https://discord.com/events/1204595620204249138/1458969795100676126" target="_blank">Save the date</a>)</p>
+    <p>3901 Promontory Point Dr, Austin, TX, 78744</p>
+    <footer>
+        <form method="dialog">
+            <a class="default" href="https://discord.com/events/1204595620204249138/1458969795100676126" type="button">Save the date</a>
+            <button type="submit">Close</button>
+        </form>
+    </footer>
+</dialog>
+        <main>
+            <nav>
+                <menu>
+                    <li><a href="/">Home</a></li>
+                    <li>
+                        <a href="/learn/">Learn</a>
+                        <menu>
+                            <li><a href="/learn/#about">About</a></li>
+                            <li><a href="/learn/#coverage">Network coverage</a></li>
+                            <li><a href="/learn/#comparisons">Similar technology</a></li>
+                            <li><a href="/learn/meshcore-vs-meshtastic/">MeshCore vs Meshtastic</a></li>
+                            <li><a href="/learn/tuning-cavity-filter/">Tuning a cavity filter</a></li>
+                            <li><a href="/learn/kite-nodes-for-mesh-networking/">Kite Nodes for Mesh Networking</a></li>
+                            <li><a href="/learn/understanding-lora-modulation/">Understanding LoRa Modulations</a></li>
+                        </menu>
+                    </li>
+                    <li>
+                        <a href="/join/">Join</a>
+                        <menu>
+                            <li><a href="/join/">Join the network</a></li>
+                            <li><a href="/join/property-owner-faq-hosting-a-node/">Property Owner FAQ</a></li>
+                            <li><a href="/join/getting-started-meshcore/">Getting started with MeshCore</a></li>
+                        </menu>
+                    </li>
+                    <li>
+                        <a href="/devices/">Devices</a>
+                        <menu>
+                            <li><a href="/devices/#options">Recommended Options</a></li>
+                            <li><a href="/devices/#solar">DIY Solar Repeaters</a></li>
+                            <li><a href="/devices/#aerial">Aerial Nodes</a></li>
+                        </menu>
+                    </li>
+                    <li>
+                        <a href="/similar-networks/">Similar networks</a>
+                        <menu>
+                            <li><a href="/similar-networks/#other-meshes">Other meshes</a></li>
+                            <li><a href="/similar-networks/#start-a-similar-network">Start a similar network</a></li>
+                        </menu>
+                    </li>
+                    <li><a href="/partners/">Partners</a></li>
+                </menu>
+
+                <menu class="menu--social">
+                    <li>
+                        <a href="https://discord.gg/6a5Sv2s9bG" target="_blank" title="Join the AustinMesh Discord">
+                            <img src="../../images/social/discord.svg" height="21" alt="Discord Logo" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://youtube.com/channel/UCtFl5gdwv0SdrP8sHlDMKNA" target="_blank" title="Join the AustinMesh YouTube">
+                            <img src="../../images/social/youtube.svg" height="21" alt="YouTube Logo" />
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://www.instagram.com/p/Cq0jOpYLpZy/" target="_blank" title="Join the AustinMesh Instagram">
+                            <img src="../../images/social/instagram.svg" height="21" alt="Instagram Logo" />
+                        </a>
+                    </li>
+                </menu>
+            </nav>
+
+            <section>
+                <header>
+                    <h1>Understanding LoRa Modulation through Comparison</h1>
+                    <p>Written by <a href="https://k2xap.radio">Alex, K2XAP</a> of <a href="https://nyme.sh" rel="nofollow noopener" target="_blank">nyme.sh</a>
+                    <p>LoRa packets come in a wide variety of shapes and sizes, depending on their parameters. These shapes bring with them pros and cons. One of the biggest impacts is the airtime. Meshes have to <a href="https://meshtastic.org/blog/why-your-mesh-should-switch-from-longfast/">choose</a> between range, noise tolerance, and time on the air, finding the right balance of link reliability and congestion for their density and location.</p>
+                </header>
+                <figure>
+                    <a href="../../images/understanding-lora-modulation/lora-preset-comparison.webp"><img src="../../images/understanding-lora-modulation/lora-preset-comparison.webp" alt="Series of transmissions at varying widths and lengths, labeled with the preset names." loading="lazy" width="400"></a>
+                    <figcaption>
+                        <a href="../../images/understanding-lora-modulation/lora-shapes-assets/lora-preset-comparison-sm.av1.mp4">Real-time video (345kb) of the above waterfall</a>. This graphic and the video are <a href="https://creativecommons.org/publicdomain/zero/1.0/">CC 0</a> or public domain, feel free to share and republish as useful.
+                    </figcaption>
+                </figure>
+
+                <p>At the default settings, a Meshtastic packet can take literally a <strong>whole second</strong> to transmit. This gives it great range and resilience, but a mesh can quickly become congested as soon as it exceeds the number of contacts a typical device can hold. Faster settings sacrifice range for much lower airtime, and can use infrastructure to compensate for lower link reliability with retries of packets. Each step faster in Meshtastic presets is a roughly 45% reduction in airtime.</p>
+                <p>The bandwidth also changes the exposure to noise. Wider bandwidth gives LoRa a much quicker transmission speed and reduces risk of &quot;vertical&quot; collisions in the temporal dimension, but it increases the chance of &quot;horizontal&quot; collisions in the spectral dimension—in addition to increased thermal noise exposure.</p>
+                <figure>
+                    <a href="../../images/xapy-rtlpower-jam5.webp"><img src="../../images/understanding-lora-modulation/xapy-rtlpower-jam5.webp" alt="SDR view of several hours showing spectral density of different frequencies. Large blocks of yellow get progressively wider and wider amid various columns of transmissions." loading="lazy" width="400"></a>
+                    <figcaption>
+                        Every permutation of bandwidth, spread factor, coding rate, from 62.5 kHz to 500 MHz.
+                    </figcaption>
+                </figure>
+
+                <h2 id="calculated-attributes">Presets and calculated attributes</h2>
+                <p>These are the presets and their calculated attributes based on the <a href="https://www.semtech.com/design-support/lora-calculator" rel="nofollow noopener" target="_blank">Semtech LoRa calculator</a>:</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>preset</th>
+                            <th>bandwidth</th>
+                            <th>spread_factor</th>
+                            <th>coding_rate</th>
+                            <th>effective_data_rate_bps</th>
+                            <th>time_on_air_ms</th>
+                            <th>link_budget_dB</th>
+                            <th>range_km</th>
+                            <th>processing_gain_dB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>MC Narrow–Long</td>
+                            <td>62.5</td>
+                            <td>9</td>
+                            <td>5</td>
+                            <td>879</td>
+                            <td>248</td>
+                            <td>154.0</td>
+                            <td>4.89</td>
+                            <td>27</td>
+                        </tr>
+                        <tr>
+                            <td>LongMod</td>
+                            <td>250</td>
+                            <td>11</td>
+                            <td>8</td>
+                            <td>671</td>
+                            <td>297</td>
+                            <td>153.0</td>
+                            <td>4.58</td>
+                            <td>33</td>
+                        </tr>
+                        <tr>
+                            <td>LongFast</td>
+                            <td>250</td>
+                            <td>11</td>
+                            <td>5</td>
+                            <td>1074</td>
+                            <td>248</td>
+                            <td>153.0</td>
+                            <td>4.58</td>
+                            <td>33</td>
+                        </tr>
+                        <tr>
+                            <td>MediumSlow</td>
+                            <td>250</td>
+                            <td>10</td>
+                            <td>5</td>
+                            <td>1953</td>
+                            <td>124</td>
+                            <td>150.5</td>
+                            <td>3.89</td>
+                            <td>30</td>
+                        </tr>
+                        <tr>
+                            <td>MC Narrow</td>
+                            <td>62.5</td>
+                            <td>7</td>
+                            <td>5</td>
+                            <td>2734</td>
+                            <td>72</td>
+                            <td>149.0</td>
+                            <td>3.53</td>
+                            <td>21</td>
+                        </tr>
+                        <tr>
+                            <td>Meshoregon</td>
+                            <td>125</td>
+                            <td>8</td>
+                            <td>5</td>
+                            <td>3125</td>
+                            <td>72</td>
+                            <td>148.5</td>
+                            <td>3.41</td>
+                            <td>24</td>
+                        </tr>
+                        <tr>
+                            <td>MediumFast</td>
+                            <td>250</td>
+                            <td>9</td>
+                            <td>5</td>
+                            <td>3516</td>
+                            <td>62</td>
+                            <td>148.0</td>
+                            <td>3.30</td>
+                            <td>27</td>
+                        </tr>
+                        <tr>
+                            <td>LongTurbo</td>
+                            <td>500</td>
+                            <td>11</td>
+                            <td>8</td>
+                            <td>1343</td>
+                            <td>148</td>
+                            <td>148.0</td>
+                            <td>3.30</td>
+                            <td>33</td>
+                        </tr>
+                        <tr>
+                            <td>ShortSlow</td>
+                            <td>250</td>
+                            <td>8</td>
+                            <td>5</td>
+                            <td>6250</td>
+                            <td>36</td>
+                            <td>145.5</td>
+                            <td>2.80</td>
+                            <td>24</td>
+                        </tr>
+                        <tr>
+                            <td>ShortFast</td>
+                            <td>250</td>
+                            <td>7</td>
+                            <td>5</td>
+                            <td>10938</td>
+                            <td>18</td>
+                            <td>143.0</td>
+                            <td>2.38</td>
+                            <td>21</td>
+                        </tr>
+                        <tr>
+                            <td>ShortTurbo</td>
+                            <td>500</td>
+                            <td>7</td>
+                            <td>5</td>
+                            <td>21875</td>
+                            <td>9</td>
+                            <td>138.0</td>
+                            <td>1.72</td>
+                            <td>21</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h2 id="demonstration">Demonstration</h2>
+                <p>These steps will reproduce the above demonstration. This uses MeshCore because it can change radio settings without a device reboot, but the output is equivalent to any LoRa transmission.</p>
+                <ol>
+                    <li>
+                        <p>Tune an SDR to the desired frequency. The script defaults to 912.4 MHz.</p>
+                    </li>
+                    <li>
+                        <p><a href="https://flasher.meshcore.co.uk/" rel="nofollow noopener" target="_blank">Flash</a> a node as a USB MeshCore companion.</p>
+                    </li>
+                    <li>
+                        <p>Install the <a href="https://github.com/meshcore-dev/meshcore_py" rel="nofollow noopener" target="_blank">meshcore python library</a>: <code>pip install meshcore</code>.</p>
+                    </li>
+                    <li>
+                        <p>Run the script (set the <code>INTERFACE</code> to the connected device):</p>
+                    </li>
+                </ol>
+<pre><code class="language-python">import asyncio
+from meshcore import MeshCore, EventType
+
+INTERFACE = &quot;/dev/tty.usbmodem1301&quot;  # Set this to your local device
+FREQUENCY = 912.4 # MHz, Change this to the desired frequency
+PRESETS = [
+    (250,11,5),   # MT LongFast
+    (250,10,5),   # MT MediumSlow
+    (250,9,5),    # MT MediumFast
+    (250,8,5),    # MT ShortSlow
+    (250,7,5),    # MT ShortFast
+    (125,8,5),    # MeshOregon
+    (62,7,5),     # MC Narrow
+    (62,9,5),     # MC Narrow Long
+    (500,11,8),   # MT LongTurbo
+    (500,7,5),    # MT ShortTurbo
+]
+
+async def main():
+    meshcore = await MeshCore.create_serial(INTERFACE)
+    await meshcore.commands.set_tx_power(1) # Be a good RF neighbor
+    await asyncio.sleep(1)
+    for (bw,sf,cr) in PRESETS:
+        await meshcore.commands.set_radio(FREQUENCY, bw, sf, cr)
+        print((bw, sf, cr))
+        result = await meshcore.commands.send_chan_msg(0, &quot;The quick brown fox jumped over the lazy dog&quot;)
+        print(result)
+        await asyncio.sleep(1)
+    await meshcore.disconnect()
+
+asyncio.run(main())
+</code></pre>
+            </section>
+        </main>
+        <footer>
+            <p>Our website content is licensed under Creative Commons
+                <br>feel free to use if for your club's website: <a href="https://github.com/austinmesh/www">Github</a>
+                <br>If we've inspired you, please <a href="mailto:info@austinmesh.org">email us</a>!
+                <br>This site is (c) by Tommy Ekstrand and is licensed under a Creative Commons Attribution-ShareAlike 4.0 International License.
+                <br><a href="/privacy/">Privacy Policy</a>
+            </p>
+        </footer>
+    </body>
+    <script>
+    document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector("header").classList.add("loaded");
+    });
+    </script>
+</html>
