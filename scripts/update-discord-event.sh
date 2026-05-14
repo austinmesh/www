@@ -6,19 +6,20 @@ TOKEN="${DISCORD_BOT_TOKEN:?}"
 
 # List of HTML files that contain the event dialog
 HTML_FILES=(
+    "devices/index.html"
     "index.html"
+    "join/getting-started-meshcore/index.html"
     "join/index.html"
     "join/property-owner-faq-hosting-a-node/index.html"
-    "join/getting-started-meshcore/index.html"
     "learn/index.html"
     "learn/kite-nodes-for-mesh-networking/index.html"
-    "learn/tuning-cavity-filter/index.html"
+    "learn/meshcore-2-byte/index.html"
     "learn/meshcore-vs-meshtastic/index.html"
+    "learn/tuning-cavity-filter/index.html"
     "learn/understanding-lora-modulation/index.html"
-    "devices/index.html"
     "partners/index.html"
-    "similar-networks/index.html"
     "privacy/index.html"
+    "similar-networks/index.html"
 )
 
 # Detect OS for sed compatibility
