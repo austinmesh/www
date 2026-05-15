@@ -99,6 +99,10 @@
                 <p>Every node in the mesh has a Public Key. The first characters of that key are treated as the address so other nodes know how to route messages. With 1-byte paths(the first 2 characters of the public key), there are only 256 possible nicknames to go around, so as the network grows, more and more nodes end up sharing the same one. When that happens, messages can get handed off to the wrong node and routing breaks down.</p>
                 <p>2-byte paths use the first 4 characters of the public key, allowing 65,536 possibilities instead of 256. More room, fewer mix-ups, much healthier mesh as it grows.</p>
                 <p><strong>The catch(es)</strong>: every repeater between you and the person you're messaging has to understand 2-byte nicknames, or it'll drop the message. That means firmware upgrades. It also reduces the max number of hops from 64 to 32.</p>
+                <figure>
+                    <img src="../../images/meshcore-2-byte-routing-diagram.webp" alt="Diagram showing how 1 and 2 byte packets are repeated through a meshcore network with repeaters on different firmware versions" title="only repeaters with firmware at or above 1.14.1 repeat 2-byte packets" />
+                    <figcaption>only repeaters with firmware at or above 1.14.1 repeat 2-byte packets</figcaption>
+                </figure>
                 <h2>Requirements</h2>
                 <ul>
                     <li><strong>Repeaters:</strong> firmware <strong>1.14 or later</strong>. Older repeaters can't forward 2-byte paths.</li>
