@@ -1,0 +1,72 @@
+---
+title: Getting Started with MeshCore | Austin Mesh
+description: A simple guide for those already familiar with Mesh networks to get started with MeshCore.
+---
+
+<hgroup>
+  <h1>Getting Started with MeshCore</h1>
+  <p>This page will serve well as a <b>starting point</b> for users who are familiar with Mesh networking, specifically Meshtastic, and are either looking to try, or fully switch to MeshCore. For those seeking more detail, check out a <a href="/learn/meshcore-vs-meshtastic/">full comparison between MeshCore and Meshtastic</a>.</p>
+</hgroup>
+
+<section id="tldr">
+  <h2>TL;DR</h2>
+  <ul>
+    <li>Works on (almost) all the same hardware as Meshtastic.</li>
+    <li>Flash devices in-browser: <a href="https://flasher.meshcore.io/" rel="nofollow noopener">https://flasher.meshcore.io/</a></li>
+    <li>Pick a role:<ul><li><strong>Companion</strong>: Bluetooth; pairs with your phone.</li><li><strong>Repeater</strong>: No Bluetooth; repeats only. Configure before deployment (use <em>Repeater Setup</em> in the flasher after flashing).</li></ul></li>
+    <li>Use the <strong>US Recommended</strong> preset.</li>
+  </ul>
+</section>
+
+<section id="roles">
+  <h2>1) Choose a Role: Companion vs Repeater</h2>
+  <p><strong>Companion</strong> is your phone-connected node. <strong>Repeater</strong> is a headless coverage extender that must be configured before mounting.</p>
+</section>
+
+<section id="flash">
+  <h2>2) Flash the Firmware</h2>
+  <ol>
+    <li>Open <a href="https://flasher.meshcore.io/" rel="nofollow noopener">flasher.meshcore.io</a>.</li>
+    <li>Connect your device via USB and select the correct port/board.</li>
+    <li>Select the role</li>
+    <li>Enter DFU</li>
+    <li>Erase the device</li>
+    <li><strong>Flash</strong> the role firmware.</li>
+    <li>For repeaters, click "Repeater Setup" (see below).</li>
+  </ol>
+</section>
+
+<section id="configure">
+  <h2>3) Configure</h2>
+  <h3>Companion</h3>
+  <ol>
+    <li>Pair with the phone app over Bluetooth.</li>
+    <li>Set <strong>Region/Preset = US Recommended</strong>.</li>
+    <li>Set position if desired.</li>
+    <li>Send a <b>Flood Routed Advert</b> (signal/wave icon at top of app).</li>
+    <li>Remember, you may not see other contacts. Unlike Meshtastic, MeshCore only discovers other nodes when they send an advert. Patience is key!</li>
+    <li><strong>optional but recommended:</strong> turn on 2-byte path size under <strong>Experimental Settings</strong>. (<a href="/learn/meshcore-2-byte/">Learn more about Meshcore 2-byte routing</a>)</li>
+    <li>Send a test message. If you see "Heard &#123;x&#125; repeat(s)" then you are connected! If you only see "Sent", try moving to a higher location with fewer obstructions.</li>
+  </ol>
+  <h3>Repeater</h3>
+  <ol>
+    <li>After flashing, in the flasher click <strong>Repeater Setup</strong>.</li>
+    <li>Set <strong>US Recommended</strong>.</li>
+    <li>Set the name and position as desired. Positions are exact.</li>
+    <li>Set the guest password and admin password.</li>
+    <li><strong>Optional but recommended:</strong> turn on 2-byte path mode via console with command `set path.hash.mode 1` (<a href="/learn/meshcore-2-byte/">learn more about Meshcore 2-byte routing</a>).</li>
+    <li>Reboot</li>
+    <li>Send advert, make sure it shows up to your companion node</li>
+    <li>From your companion node<ol><li>Log in (tap on the contact)</li><li>Go to Settings &gt; Sync Clock</li><li>Reboot</li></ol></li>
+    <li>Deploy/mount the repeater.</li>
+  </ol>
+</section>
+
+<section id="resources">
+  <h2>Resources</h2>
+  <ul>
+    <li>MeshCore FAQ/Wiki: <a href="https://github.com/meshcore-dev/MeshCore/blob/main/docs/faq.md" rel="noopener">Wiki</a></li>
+    <li>Online flasher: <a href="https://flasher.meshcore.io/" rel="nofollow noopener">flasher.meshcore.io</a></li>
+    <li>MeshCore vs Meshtastic: <a href="https://www.austinmesh.org/learn/meshcore-vs-meshtastic/" rel="noopener">austinmesh.org/learn/meshcore-vs-meshtastic/</a></li>
+  </ul>
+</section>
