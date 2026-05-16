@@ -70,7 +70,7 @@ The `/projects/` section is for community writeups of anything you've built for 
 
 ### Reporting issues
 
-Use [GitHub Issues](https://github.com/austinmesh/austinmesh/issues) for bugs in the site itself. For questions about the network, joining, or hosting a node, we prefer that you join the Discord (link in the site footer).
+Use [GitHub Issues](https://github.com/austinmesh/www/issues) for bugs in the site itself. For questions about the network, joining, or hosting a node, we prefer that you join the Discord (link in the site footer).
 
 ## License
 
