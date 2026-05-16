@@ -244,10 +244,13 @@ dialog#event {
     font-size: 0.9rem;
 }
 
-.project-body img {
+.project-body img,
+.project-body video {
     display: block;
     margin: 1rem auto;
+    max-width: 100%;
 }
 @media only screen and (min-width: 720px) {
-    .project-body img { max-width: 50%; }
+    .project-body img,
+    .project-body video { max-width: 50%; }
 }

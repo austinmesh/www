@@ -1,0 +1,59 @@
+---
+title: Solar MeshCore Repeater With Ikoka Nano and Cavity Filter
+description: Solar meshcore repeater with 1w radio(Ikoka Nano), cavity filter, for RF noisy environment
+thumbnail: ../../assets/ikoka-nano-filtered-repeater/ikoka-nano.jpeg
+thumbnailAlt: Ikoka Nano 1W LoRa radio used in the Austin Mesh UT Austin solar repeater build
+author: tekstrand
+publishedAt: 2026-05-16
+---
+import { Image } from 'astro:assets';
+import ikokaNano from '../../assets/ikoka-nano-filtered-repeater/ikoka-nano.jpeg';
+import testBeforeInstall from '../../assets/ikoka-nano-filtered-repeater/ikoka-nano-test-before-installing.jpeg';
+import printedMount from '../../assets/ikoka-nano-filtered-repeater/ikoka-nano-3d-printed-mount.jpeg';
+
+# Solar MeshCore Repeater With Ikoka Nano and Cavity Filter
+
+<video src="/videos/ikoka-nano-360.mp4" autoplay loop muted playsinline></video>
+
+This is the build Austin Mesh has installed on top of the University of Texas at Austin's Physics, Math, and Astronomy building as of September 2025.
+
+## Surrounded by 2200w of public service radio
+
+The installation location is surrounded by 2.2kw of RF radiation from the [Austin GATRRS radio system](https://www.austintexas.gov/council/greater-austin-travis-county-regional-radio-system-governing-board). This means we need extra filtering to avoid overload on the low power LoRa radio that we're using to run MeshCore.
+
+We're currently using the [Acasom Cavity Filter](https://acasom.com/products/915mhz-cavity-filter-for-helium-network-amplifier-filter-sma-type-high-out-band-rejection) to accomplish this task. It has been performing successfully for 9 months as of the writing of this post. Historically, we've also used the Airframes filter with success. The Airframes has a much small bandpass, and so requires tuning when switching from Meshtastic(908mhz) to MeshCore(910mhz). As a result, when Austin Mesh switched to MeshCore, we simply swapped the existing box for a new prebuilt box and what we had available was the Acasom.
+
+While tuning the Airframes isn't trivial, it also isn't particularly difficult. You can [read our guide for tuning the Airframes cavity filter here](/learn/tuning-cavity-filter/).
+
+### Keep cables short
+
+As you can see in the photo of the inside of the box, keeping cables short is a priority when you have a lot of RF noise. This box is by no means fully optimized or perfect, but it's better than many we see floating around the web!
+
+<Image src={ikokaNano} alt="Inside of the Ikoka Nano install with short wires" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+### Reduce connectors
+
+To maintain as much power as possible, and to reduce any entry for external RF, we want to reduce the number of adapters. The chain is Ikoka Ipex -> Acasom SMA -> Antenna N-Type. Rather than using a bulkhead N-Type, we simply pass a SMA->N Type cable through a cable gland, direct to the Acasom filter, cutting out at least one adapter and fitting.
+
+## Power Source
+
+As you may have seen from our now commonly referenced [Solar Parts List](/devices/#solar) we stick to Voltaic Systems batteries. On this install, we're using the [V25](https://voltaicsystems.com/v25/), mated to the [10w Voltaic Systems solar panel](https://amzn.to/4deFKqj). The primary downside of this approach is that you won't be able to see your battery level remotely. However, based on math you'd be able to run for more than a week with ZERO solar. In Austin, that's just not a reality.
+
+## Testing
+
+Always test before installing in less accessible locations! We took a bit of risk with this one, only letting it run for 2 weeks before installing, but it proved successful.
+
+<Image src={testBeforeInstall} alt="The full Ikoka Nano solar repeater installed on a temporary mast for testing" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+## Heat Mitigation
+
+Did you know it gets hot in Texas? Yes, believe it. Double approach here.
+
+1. Solar panel shades the box
+2. We use [ColdRays Reflective Film](https://coldrays.com/product/reflective-film-linear-ft/) which uses "Black Magic" (aka multi spectral reflective polymer) to help keep the box _below_ ambient temperatures.
+
+## Box Buildout
+
+<Image src={printedMount} alt="The custom 3D-printed mount that holds the Ikoka Nano inside the enclosure" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+The box is nothing special. The Ikoka required a custom 3d mount (shoutout to Andy Shinn), other than that it's a simple layout. The v25 using zip ties is certainly the least "professional" thing about this box, but we've had boxes running zip tied v25's installed for over 2 years now, they still run great!
