@@ -1,0 +1,16 @@
+{
+  // Replace `name` with the slug of your existing Cloudflare project so wrangler
+  // deploys to the same binding (otherwise it will create a new one with this name).
+  "name": "austinmesh",
+  "compatibility_date": "2026-05-15",
+  "assets": {
+    // `npm run build` emits into ./dist (Astro static output + Pagefind index).
+    "directory": "./dist",
+    // Serve a static 404 page from dist/404.html if Astro generates one; otherwise
+    // Workers returns its default 404. _redirects in dist/ is honored automatically.
+    "not_found_handling": "404-page"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

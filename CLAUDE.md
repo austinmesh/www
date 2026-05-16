@@ -45,7 +45,7 @@ The GitHub Action `.github/workflows/update-discord-event.yml` runs on `workflow
 
 ## Deploy
 
-Cloudflare Pages builds with `npm run build` and serves `dist/` directly. No adapter is configured — every page is prerendered. `site: 'https://www.austinmesh.org'` in `astro.config.mjs` is what the sitemap and OG absolute URLs are built against.
+Deployed to Cloudflare via Workers Static Assets (Workers Builds, not the legacy Pages project). `wrangler.jsonc` declares the `assets.directory` as `./dist` and `not_found_handling` as `404-page`. CI runs `npm run build` (Astro + Pagefind postbuild), then `npx wrangler deploy` for the production branch or `npx wrangler versions upload` for preview branches. No Astro adapter — every page is prerendered. `site: 'https://www.austinmesh.org'` in `astro.config.mjs` is what the sitemap and OG absolute URLs are built against. The `name` field in `wrangler.jsonc` must match the Cloudflare project slug or wrangler will create a new project on the next deploy.
 
 ## Gotchas
 

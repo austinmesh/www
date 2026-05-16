@@ -9,7 +9,9 @@
     "build": "astro build",
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "deploy": "npm run build && wrangler deploy",
+    "deploy:preview": "npm run build && wrangler versions upload"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.0.0",
@@ -18,6 +20,7 @@
     "sharp": "^0.34.0"
   },
   "devDependencies": {
-    "pagefind": "^1.1.0"
+    "pagefind": "^1.1.0",
+    "wrangler": "^4.0.0"
   }
 }
