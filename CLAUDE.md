@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-The Austin Mesh website — `www.austinmesh.org`. Built with Astro + MDX, deployed as a fully static site to Cloudflare Pages. Page content is authored in markdown/MDX under a single `pages` content collection; the layout, head/OG tags, header, nav, and footer are centralized so adding a new page is one MDX file.
+The Austin Mesh website — `www.austinmesh.org`. Built with Astro + MDX, deployed as a fully static site to Cloudflare via Workers Static Assets (Workers Builds, not the legacy Pages product). Page content is authored in markdown/MDX under a single `pages` content collection; the layout, head/OG tags, header, nav, and footer are centralized so adding a new page is one MDX file.
 
-Hard constraint to honor: **no client-side framework runtime**. The only client JS the build ships is (a) Pagefind on `/search/`, and (b) the inline `onclick="document.getElementById('event').showModal()"` on the event-dialog trigger. Don't add React/Vue/Svelte hydration; don't add page-wide JS scripts.
+Hard constraint to honor: **no client-side framework runtime**. The only client JS the build ships is (a) the ~30-line vanilla handler on `/search/` that calls Pagefind's JS API and renders results into matcha-native markup, and (b) the inline `onclick="document.getElementById('event').showModal()"` on the event-dialog trigger. Don't add React/Vue/Svelte hydration; don't add page-wide JS scripts.
 
 ## Common commands
 
@@ -19,7 +19,7 @@ Hard constraint to honor: **no client-side framework runtime**. The only client 
 
 - **Pages live in `src/content/pages/`** as `.mdx` files. Frontmatter is validated against the Zod schema in `src/content/config.ts` (`title`, `description` required; `ogImage`, `ogImageAlt`, `canonical`, `eventDialog`, `pagefind`, `publishedAt` optional). The URL is derived from the file path — `src/content/pages/learn/meshcore-2-byte.mdx` → `/learn/meshcore-2-byte/`. Top-level routes like `/devices/` come from `devices.mdx`.
 - **Routing is a single catch-all** at `src/pages/[...slug].astro` that renders any entry in the pages collection through `BaseLayout`. Trailing-slash directory-style URLs are pinned via `trailingSlash: 'always'` and `build.format: 'directory'` in `astro.config.mjs`.
-- **One exception page**: `src/pages/search.astro` is a stand-alone Astro page (not in the collection) because it ships Pagefind UI client JS. It's excluded from the sitemap.
+- **One exception page**: `src/pages/search.astro` is a stand-alone Astro page (not in the collection) because it ships client JS — a small vanilla handler that dynamically imports `/pagefind/pagefind.js` and renders results into a matcha-styled `<ul>`. No `pagefind-ui.*` bundle. Excluded from the sitemap.
 - **BaseLayout owns the `<head>`**: title, description, canonical, full OG/Twitter set, favicons, manifest, sitemap link. The default `og:image` is `src/assets/hero/austin-mesh-wildflower-center-large.webp`, processed through `getImage()` to produce a hashed, absolute URL. Pages override via `ogImage` in frontmatter.
 - **`pagefind` and `eventDialog` are opt-out per page** (defaults true). `pagefind: false` omits the `data-pagefind-body` attribute on `<main>` so the page isn't indexed (`privacy.mdx` uses this). `eventDialog: false` hides the meet button + modal (also `privacy.mdx`). The search page hard-codes `pagefind: false`.
 
@@ -33,7 +33,7 @@ Hard constraint to honor: **no client-side framework runtime**. The only client 
 
 ## Redirects
 
-`public/_redirects` is read by Cloudflare Pages. Today it 301s `/faq/`, `/solar/`, and `/coverage-map/` to existing pages. Add more in the same format. Hash fragments after the destination are resolved client-side after the 301.
+`public/_redirects` is read by Cloudflare Workers Static Assets (same syntax as the legacy Pages `_redirects`). Today it 301s `/faq/`, `/solar/`, and `/coverage-map/` to existing pages. Add more in the same format. Hash fragments after the destination are resolved client-side after the 301.
 
 ## Discord event automation
 
@@ -45,11 +45,24 @@ The GitHub Action `.github/workflows/update-discord-event.yml` runs on `workflow
 
 ## Deploy
 
-Deployed to Cloudflare via Workers Static Assets (Workers Builds, not the legacy Pages project). `wrangler.jsonc` declares the `assets.directory` as `./dist` and `not_found_handling` as `404-page`. CI runs `npm run build` (Astro + Pagefind postbuild), then `npx wrangler deploy` for the production branch or `npx wrangler versions upload` for preview branches. No Astro adapter — every page is prerendered. `site: 'https://www.austinmesh.org'` in `astro.config.mjs` is what the sitemap and OG absolute URLs are built against. The `name` field in `wrangler.jsonc` must match the Cloudflare project slug or wrangler will create a new project on the next deploy.
+Production lives on Cloudflare Workers Static Assets. `wrangler.jsonc` declares the `assets.directory` as `./dist` and `not_found_handling` as `404-page`; `name` must match the Cloudflare project slug or wrangler will create a duplicate project on the next deploy.
+
+Workers Builds runs on every push to the repo:
+- **Build command:** `npm run build` (Astro + Pagefind postbuild)
+- **Deploy command (production / main):** `npx wrangler deploy`
+- **Non-production branch deploy command:** `npx wrangler versions upload` (creates a Version with a preview URL; doesn't promote to prod)
+- **Path:** blank (build runs from repo root)
+- **Env var:** `NODE_VERSION=24` (Node 24 is current LTS; also pinned via `.nvmrc` and `engines.node` in `package.json`)
+
+These four fields are stored at the project level in Cloudflare's backend, not in the repo — they have to be changed in the dashboard. No Astro adapter is installed; every page is prerendered. `site: 'https://www.austinmesh.org'` in `astro.config.mjs` is what the sitemap and OG absolute URLs are built against. DNS for `austinmesh.org` is on Cloudflare's nameservers, which is what makes the Workers Custom Domain for `www.austinmesh.org` possible.
+
+Two local convenience scripts mirror what CI runs: `npm run deploy` (build + `wrangler deploy`) and `npm run deploy:preview` (build + `wrangler versions upload`).
 
 ## Gotchas
 
 - After editing `src/content/config.ts`, run `npx astro sync` so the TypeScript types for `getCollection('pages')` regenerate.
 - Raw HTML works inside `.mdx`, including `<iframe>`, `<details>`/`<summary>`, `<aside>`, `<hgroup>`. The Grafana iframe on `/learn/` is a notable example.
 - The `<dialog>` opens via an inline `onclick` handler — this is intentional and the only client JS on non-search pages. Don't replace it with a script tag or hydration.
-- Pagefind's "Default UI" works but is on a deprecation path; if you upgrade the search experience, prefer Pagefind's Component UI per its `pagefind.app` docs.
+- `data-pagefind-ignore="all"` is set on `SiteHeader`, `Nav`, and `SiteFooter` so Pagefind uses each page's actual MDX `<h1>` as the result title (the event dialog's `<h1>` would otherwise win because it appears earlier in the DOM than `<main>`). Don't remove that attribute.
+- The hero overlay forces `color: #fff` on `.hero-content` because matcha's light-mode `--default` is dark and would render dark-on-dark over the hero's dark `rgba(31,32,49,.8)` panel. Don't switch hero text to a CSS variable that inherits color-scheme without checking light mode.
+- `main img:not(.hero-bg) { height: auto }` and `.partner-logos img { object-fit: contain }` in `src/styles/site.css` exist specifically because Astro `<Image>` emits explicit `width`/`height` attributes; without these rules, matcha's `article { display: flex }` and the `min-height: 70px` partner-logo rule would distort image aspect ratios.
