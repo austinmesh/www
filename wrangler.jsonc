@@ -1,6 +1,4 @@
 {
-  // Replace `name` with the slug of your existing Cloudflare project so wrangler
-  // deploys to the same binding (otherwise it will create a new one with this name).
   "name": "austinmesh",
   "compatibility_date": "2026-05-15",
   "assets": {
