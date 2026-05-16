@@ -1,0 +1,80 @@
+---
+import '../styles/matcha.min.css';
+import '../styles/site.css';
+import { getImage } from 'astro:assets';
+import defaultOg from '../assets/hero/austin-mesh-wildflower-center-large.webp';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import Nav from '../components/Nav.astro';
+
+interface Frontmatter {
+  title: string;
+  description: string;
+  ogImage?: ImageMetadata;
+  ogImageAlt?: string;
+  canonical?: string;
+  eventDialog?: boolean;
+  pagefind?: boolean;
+}
+interface Props {
+  frontmatter: Frontmatter;
+}
+
+const { frontmatter } = Astro.props;
+const {
+  title,
+  description,
+  ogImage,
+  ogImageAlt,
+  canonical,
+  eventDialog = true,
+  pagefind = true,
+} = frontmatter;
+
+const ogSource = ogImage ?? defaultOg;
+const ogProcessed = await getImage({
+  src: ogSource,
+  width: 1200,
+  format: 'webp',
+});
+const ogImageAbsolute = new URL(ogProcessed.src, Astro.site).toString();
+const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const canonicalUrl = canonical ?? pageUrl;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Austin Mesh" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageAbsolute} />
+    {ogImageAlt && <meta property="og:image:alt" content={ogImageAlt} />}
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageAbsolute} />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+  </head>
+  <body>
+    <SiteHeader eventDialog={eventDialog} />
+    <main {...(pagefind ? { 'data-pagefind-body': '' } : {})}>
+      <Nav />
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>

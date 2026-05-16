@@ -1,0 +1,135 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const frontmatter = {
+  title: 'Search | Austin Mesh',
+  description: 'Search Austin Mesh — find guides, devices, partner pages, and more.',
+  eventDialog: true,
+  pagefind: false,
+};
+---
+<BaseLayout frontmatter={frontmatter}>
+  <h1>Search</h1>
+  <form role="search" onsubmit="return false;">
+    <input
+      id="q"
+      type="search"
+      autofocus
+      autocomplete="off"
+      placeholder="Search all Austin Mesh pages…"
+      aria-label="Search"
+    />
+  </form>
+  <p id="status" aria-live="polite"></p>
+  <ul id="results"></ul>
+
+  <script is:inline>
+    const input = document.getElementById('q');
+    const status = document.getElementById('status');
+    const list = document.getElementById('results');
+    let pagefind = null;
+    let pending = 0;
+    let debounceTimer = null;
+
+    const esc = (s) =>
+      String(s).replace(/[&<>"']/g, (c) =>
+        ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])
+      );
+
+    async function loadPagefind() {
+      if (pagefind) return pagefind;
+      pagefind = await import('/pagefind/pagefind.js');
+      await pagefind.options({});
+      return pagefind;
+    }
+
+    function render(results, query) {
+      if (!results.length) {
+        status.textContent = `No results for "${query}".`;
+        list.innerHTML = '';
+        return;
+      }
+      status.textContent = `${results.length} result${results.length === 1 ? '' : 's'} for "${query}".`;
+      list.innerHTML = results
+        .map((r) => {
+          const title = esc(r.meta?.title || r.url);
+          // sub_results[0] is the page itself; further entries are matched headings within it
+          const subs = (r.sub_results || [])
+            .slice(1, 4)
+            .map(
+              (s) => `<li><a href="${esc(s.url)}">${esc(s.title)}</a></li>`
+            )
+            .join('');
+          // r.excerpt comes from Pagefind already wrapped with <mark>…</mark>; safe innerHTML
+          return `<li>
+            <h3><a href="${esc(r.url)}">${title}</a></h3>
+            <blockquote>
+              <p>${r.excerpt}</p>
+              ${subs ? `<ul>${subs}</ul>` : ''}
+            </blockquote>
+          </li>`;
+        })
+        .join('');
+    }
+
+    async function doSearch(query) {
+      const seq = ++pending;
+      const trimmed = query.trim();
+      if (!trimmed) {
+        list.innerHTML = '';
+        status.textContent = '';
+        return;
+      }
+      const pf = await loadPagefind();
+      const search = await pf.search(trimmed);
+      if (seq !== pending) return; // stale; a newer query is in flight
+      const data = await Promise.all(
+        search.results.slice(0, 20).map((r) => r.data())
+      );
+      if (seq !== pending) return;
+      render(data, trimmed);
+    }
+
+    input.addEventListener('input', () => {
+      clearTimeout(debounceTimer);
+      const q = input.value;
+      debounceTimer = setTimeout(() => doSearch(q), 100);
+    });
+  </script>
+</BaseLayout>
+
+<style>
+  /* Minimal nudges so matcha defaults sit nicely; everything else inherits. */
+  form[role='search'] input {
+    width: 100%;
+    max-width: 36rem;
+  }
+  #results {
+    list-style: none;
+    padding: 0;
+  }
+  #results > li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--bd-muted);
+  }
+  #results > li:last-child {
+    border-bottom: none;
+  }
+  #results h3 {
+    margin: 0 0 0.25rem;
+  }
+  #results p {
+    margin: 0.25rem 0;
+  }
+  /* Pagefind emits <mark> around matched terms inside excerpts. */
+  #results mark {
+    background: rgba(44, 226, 106, 0.25);
+    color: inherit;
+    padding: 0 0.15em;
+    border-radius: 2px;
+  }
+  #results ul {
+    margin: 0.5rem 0 0 1rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--bd-muted);
+  }
+</style>

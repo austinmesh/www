@@ -1,0 +1,22 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('pages');
+  return entries.map((entry) => {
+    const raw = entry.slug === 'index' ? '' : entry.slug.replace(/\/index$/, '');
+    return {
+      params: { slug: raw === '' ? undefined : raw },
+      props: { entry },
+    };
+  });
+}
+
+interface Props { entry: CollectionEntry<'pages'>; }
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+<BaseLayout frontmatter={entry.data}>
+  <Content />
+</BaseLayout>

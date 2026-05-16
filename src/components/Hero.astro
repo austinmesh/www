@@ -1,0 +1,21 @@
+---
+import { Image } from 'astro:assets';
+import heroLarge from '../assets/hero/austin-mesh-wildflower-center-large.webp';
+
+interface Props {
+  alt: string;
+}
+const { alt } = Astro.props;
+---
+<section class="hero" aria-label={alt}>
+  <Image
+    src={heroLarge}
+    alt=""
+    widths={[640, 960, 1280, 1920]}
+    sizes="100vw"
+    formats={['avif', 'webp']}
+    loading="eager"
+    class="hero-bg"
+  />
+  <div class="hero-content"><slot /></div>
+</section>
