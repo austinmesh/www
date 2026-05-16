@@ -1,0 +1,94 @@
+---
+title: Temporary(ish) Mesh Network Antenna Mast
+description: Height is might...the easiest way to get your mesh node 30' in the air for under $100
+thumbnail: ../../assets/painters-pole-mast/meshcore-node-top-of-mast.jpeg
+thumbnailAlt: MeshCore/Meshtastic node at the top of a temporary mast using a painters pole
+author: tekstrand
+publishedAt: 2026-05-16
+---
+import { Image } from 'astro:assets';
+import nodeAtTop from '../../assets/painters-pole-mast/meshcore-node-top-of-mast.jpeg';
+import nodeAtTop2 from '../../assets/painters-pole-mast/meshcore-node-top-of-mast-2.jpeg';
+import lowesEdition from '../../assets/painters-pole-mast/lowes-painters-pole-mesh-antenna-mast.jpeg';
+import docaLock from '../../assets/painters-pole-mast/DOCAZOO-DOCA-lock-mechanism.jpeg';
+import pvcInstall from '../../assets/painters-pole-mast/DOCAZOO-DOCA-PVC-Pipe-Install.jpeg';
+import gripHitch from '../../assets/painters-pole-mast/adjustable-grip-hitch-knot.jpeg';
+
+# Backyard Mast from a Painter's Pole
+
+<Image src={nodeAtTop} alt="Mesh node mounted at the top of the painter's pole mast against the sky" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+## Why build a radio tower mast
+
+As the mesh is still growing, sometime you're in a low area that doesn't have connection. I wanted a simple and expediant solution to "height is might" for those situations like camping, visiting a park, or really anywhere else where a few more feet of height would let me connect into the mesh. In the past, I had seen ham radio operators use a painters pole to make something called an Inverted V dipole. The idea was born!
+
+## My requirements
+
+I wanted at least 25' of elevation, that's about how tall a lot of trees around Austin are which would get me just over the top. It needed to be fairly light weight, less than 20lbs for sure, easily pack into my vehicle, and be raised by me when I am alone. Setups requiring two people didn't work for me. I also wanted to be able to leave it up for more than one day at a time, like when I am camping. I could have used a big battery, but weight at the top of a pole causes problems, so I decided solar power would be fun to try out.
+
+## Iterations
+
+### The Lowe's Edition
+
+<Image src={lowesEdition} alt="First iteration: the Lowe's painter's pole clamped to garden-bed posts in the backyard, spray-painted to look like a tree branch" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+In order to test the idea out, I wanted soemthing quick and easy. I grabbed the longest painters pole I could find(~22') from Lowes. I have these old raised garden beds in my yard which have 2x2 poles sticking up that I used to hang netting to protect my plants from the birds. I figured I could use a few clamps to hold the pole against them and try this idea out.
+
+It worked! Sort of. You can see the pole is already bending quite a bit, and in the wind it would really get swaying. You may also notice I spray painted the pole to look like a tree branch. I was a little bit nervous a bright yellow pole would be annoying to the neighbors. The other issue with this pole is that it used "screw" extension clamps. They can only get so tight, and so by day two the top section had started to drop down.
+
+### Concept works, better parts
+
+<Image src={docaLock} alt="Close-up of the DOCAZOO DOCA pole's aluminum lever-lock mechanism" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+Now that I knew I wasn't out of my mind, I started to search for a better pole. Stronger. Taller. Better locking mechanisms.
+
+I found the [DOCAZOO DOCA](https://amzn.to/4depyFB) on Amazon - 12, 24, and 30ft options, lever locks, and all aluminum construction. Reviews were very positive and said the lock up was great. The 30ft cost me $68 and it arrived next day.
+
+30 feet is really tall! I was impressed and a little concerned about the increase in height. The other one was already blowing in the wind. What would this do??
+
+The result was great, nice and strong, but yes, the wind really blew it around. The other thing I discovered was putting it up became more and more difficult with just one person.
+
+### The final form - put a hole in the ground and tie it down
+
+Only two problems to solve now
+1. Swaying in the wind
+2. "Installing" solo
+
+#### The wind
+
+Guy wires are the obvious solution. I wanted UV resistant and water resistant cord. [1/8" Polyester/Dacron](https://amzn.to/4tH1wIh) was the answer. I went with black but getting something high visibility like yellow, orange, or something reflective might be better. How long do guy lines need to be? Remember math class...right triangle, A2 + B2 = C2. Anyways, I just bought 500' and knew that would be enough for whatever :)
+
+#### Installing
+
+After some looking around online, I saw someone installing a HUGE mast (75', steel) into a pipe they had burried 3' into the ground, with 2' sticking out above the ground. That seemed like an idea I could use.
+
+measure the DOCA pole...almost exactly 1.5". That means 1.5" PVC pipe would have the perfect inner diameter. I grabbed a 10' section, cut it in half, used a [2" auger drill bit](https://amzn.to/4uyL7ad) to get it ~1.5' into the ground(Texas rock is no joke...). It's perfect!
+
+<Image src={pvcInstall} alt="The DOCAZOO pole slid into a section of 1.5-inch PVC pipe buried in the ground as a sleeve" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+## The setup method
+
+1. Drill the hole using the [Auger Bit](https://amzn.to/4uyL7ad)
+2. Mount the node to the top of the pole(I just used a hose clamp)
+3. Slide the pole into the PVC sleeve
+4. Drop the PVC and pole into the hole
+5. Pack some dirt back around the pipe if needed
+6. Raise the first section of the pole a few inches and tie the guy wires around the pole
+7. Raise it up all the way
+8. Stake out the guy wires equidistant from each other. Use an [Adjustable Grip Hitch knot, aka the Crawley Hitch](https://www.animatedknots.com/adjustable-grip-hitch-knot) for tensioning.
+
+<Image src={gripHitch} alt="An Adjustable Grip Hitch knot (Crawley Hitch) tied around a guy wire for tensioning" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+## Mesh hardware parts list
+
+We're all mesh heads here, so even though this post was about the pole, I'll share the mesh hardware I went with as well
+
+- [RAKwireless Wismesh Repeater Mini](https://store.rokland.com/products/wismesh-repeater-mini-reliable-coverage-expansion-for-smart-networks?ref=rfindex)
+- [RAKwireless Unify Pole Mounting Kit](https://store.rokland.com/products/rakwireless-unify-pole-mounting-vertical-kit-type-a-910247?ref=rfindex)
+- [RAK 19007](https://store.rokland.com/products/rakwireless-mini-meshtastic-starter-kit-us915-rak19003-4631-sku-115093?ref=rfindex)
+- [N-Type Bulkhead](https://amzn.to/4dggu34)
+- An 18650 with a JST 2.0 pigtail
+- [Taoglass 5dbi antenna TI.16.5F11](https://www.mouser.com/ProductDetail/Taoglas/TI.16.5F11?qs=L8NdhHdZHXx5ruumIU6KLQ%3D%3D)
+- [8" aluminum disc as a ground plane](https://amzn.to/4djRaaU)
+
+<Image src={nodeAtTop2} alt="Another angle of the assembled mesh node mounted at the top of the painter's pole mast" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />

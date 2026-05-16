@@ -1,0 +1,27 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('projects');
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+interface Props { entry: CollectionEntry<'projects'>; }
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+
+const frontmatter = {
+  ...entry.data,
+  ogImage: entry.data.ogImage ?? entry.data.thumbnail,
+  ogImageAlt: entry.data.ogImageAlt ?? entry.data.thumbnailAlt,
+};
+---
+<BaseLayout frontmatter={frontmatter}>
+  <div class="project-body">
+    <Content />
+  </div>
+</BaseLayout>

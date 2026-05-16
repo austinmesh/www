@@ -48,6 +48,26 @@ Open a PR against `main`. For one-line fixes, the GitHub web editor is fine.
 4. Images live under `src/assets/` and must be imported as ES modules so Astro can fingerprint and resize them. Use the `<Image>` component from `astro:assets`.
 5. Run `npm run dev` and check the page renders before opening the PR.
 
+### Contributing a project
+
+The `/projects/` section is for community writeups of anything you've built for the network — a radio, a node, an antenna, a packet analyzer, a piece of software, a tower install, etc. The body is open-ended; the index page builds itself from frontmatter.
+
+1. Create a `.mdx` file under `src/content/projects/`. The file name becomes the URL — `src/content/projects/my-yagi.mdx` → `/projects/my-yagi/`.
+2. Add a thumbnail image to `src/assets/` (a project-specific subdir is fine, e.g. `src/assets/my-yagi/thumbnail.webp`).
+3. Required frontmatter:
+   ```yaml
+   ---
+   title: My Yagi Build
+   description: A short one- or two-sentence pitch for the index page.
+   thumbnail: ../../assets/my-yagi/thumbnail.webp
+   thumbnailAlt: Photo of a four-element 915 MHz Yagi mounted on a chimney.
+   author: Your Name           # optional
+   publishedAt: 2026-05-16     # optional, used to sort the index newest-first
+   ---
+   ```
+4. Write the body in MDX. Use `<Image>` from `astro:assets` for any inline images. Raw HTML is allowed (e.g. `<details>`, `<iframe>`, `<aside>`).
+5. Run `npm run dev`, visit `/projects/` to see your card in the grid, click through, and open a PR.
+
 ### Reporting issues
 
 Use [GitHub Issues](https://github.com/austinmesh/austinmesh/issues) for bugs in the site itself. For questions about the network, joining, or hosting a node, we prefer that you join the Discord (link in the site footer).
