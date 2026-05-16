@@ -90,6 +90,9 @@ footer {
     max-width: 500px;
     margin: 20px auto;
     text-align: center;
+    /* Background is always dark; force light text regardless of color scheme so
+       matcha's light-mode --default (dark grey) doesn't render dark-on-dark. */
+    color: #fff;
 }
 .hero-content a {
     border: 1px solid;
@@ -100,6 +103,7 @@ footer {
     text-wrap: nowrap;
     display: inline-block;
     margin-top: 5px;
+    color: inherit;
 }
 .hero-content a + a {
     margin-left: 0.5rem;
