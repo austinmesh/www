@@ -1,0 +1,41 @@
+---
+title: Really Tiny N-Type with Remote Solar
+description: A tiny box for a specific install location that required remote solar and a low profile antenna
+thumbnail: ../../assets/really-tiny-n-type-remote-solar/really-tiny-solar-n-type-connector.jpeg
+thumbnailAlt: Close-up of the tiny junction-box with n-type connector on the outside
+author: tekstrand
+publishedAt: 2026-05-16
+---
+import { Image } from 'astro:assets';
+import nTypeConnector from '../../assets/really-tiny-n-type-remote-solar/really-tiny-solar-n-type-connector.jpeg';
+import internals from '../../assets/really-tiny-n-type-remote-solar/really-tiny-solar-internals.jpeg';
+import solarVent from '../../assets/really-tiny-n-type-remote-solar/really-tiny-solar-solar-and-vent-passthrough.jpeg';
+
+# Really Tiny N-Type with Remote Solar
+
+<Image src={nTypeConnector} alt="The completed tiny junction-box node with its N-Type antenna connector" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+This was a build for a unique situation - the node itself "needed" to use an Alfa antenna, be extremely discreet, and be mounted somewhere the sun didn't reach.
+
+## Parts List
+
+- [2.5"x2.2"x1.4" junction box](https://amzn.to/4eSmv79)
+- [1w USB C Solar Panel](https://amzn.to/4ugvunx)
+- [180° USB C Female to Male Adapter](https://amzn.to/4ujuq2j)
+- [RAK 19003](https://www.rfindex.com/mesh/devices/rak-rak19003-4631)
+- [Ipex/U.fl to N-Type Bulkhead](https://amzn.to/4fov7T8)
+- [Drain Plug](https://amzn.to/3FQVZf5)
+- [PG9 Cable Gland/Passthrough](https://amzn.to/3R5zskj)
+- [800mah 503048 LiPo Battery](https://amzn.to/3RJLWOA)
+
+<Image src={internals} alt="Inside view of the junction box showing the RAK 19003, battery, and short interconnects packed into the tiny enclosure" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+## Results
+
+It performed fine, although the Alfa continually disappoints in comparison to other antennas. It was installed for 9 months and then the location was no longer needed.
+
+## What I'd do different
+
+<Image src={solarVent} alt="External view showing the USB-C solar panel passthrough and the drain plug vent on the side of the junction box" widths={[480, 768, 1024]} sizes="(min-width: 720px) 700px, 100vw" />
+
+Technically I used a PG7 gland which was too tight to easily pass USB-C through, which is why I recommended PG9. Other than that, this build was successful for the use case. If at all possible, I would go with a better antenna, though!
