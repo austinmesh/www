@@ -1,0 +1,7 @@
+name = "your-worker-name"
+compatibility_date = "2026-05-15"
+
+[assets]
+directory = "./"
+html_handling = "auto-trailing-slash"  # or "drop-trailing-slash" if you don't like trailing slashes
+not_found_handling = "404-page"        # serves /404.html on misses; use "single-page-application" for SPAs
