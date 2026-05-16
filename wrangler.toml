@@ -1,0 +1,6 @@
+name = "www"
+compatibility_date = "2026-05-15"
+
+[assets]
+directory = "./"
+html_handling = "auto-trailing-slash"
