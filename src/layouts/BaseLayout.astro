@@ -40,6 +40,10 @@ const ogProcessed = await getImage({
 const ogImageAbsolute = new URL(ogProcessed.src, Astro.site).toString();
 const pageUrl = new URL(Astro.url.pathname, Astro.site).toString();
 const canonicalUrl = canonical ?? pageUrl;
+
+// Cloudflare Workers Builds sets WORKERS_CI_BRANCH; any non-main build is a preview.
+const branch = process.env.WORKERS_CI_BRANCH;
+const isPreview = branch !== undefined && branch !== 'main';
 ---
 <!doctype html>
 <html lang="en">
@@ -48,6 +52,7 @@ const canonicalUrl = canonical ?? pageUrl;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    {isPreview && <meta name="robots" content="noindex, nofollow" />}
     <link rel="canonical" href={canonicalUrl} />
 
     <meta property="og:type" content="website" />
