@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-The Austin Mesh website — `www.austinmesh.org`. Built with Astro + MDX, deployed as a fully static site to Cloudflare via Workers Static Assets (Workers Builds, not the legacy Pages product). Page content is authored in markdown/MDX under a single `pages` content collection; the layout, head/OG tags, header, nav, and footer are centralized so adding a new page is one MDX file.
+The Austin Mesh website — `www.austinmesh.org`. Built with Astro + MDX, deployed as a fully static site to Cloudflare via Workers Static Assets (Workers Builds, not the legacy Pages product). Page content is authored in markdown/MDX across two content collections (`pages` and `projects`); the layout, head/OG tags, header, nav, and footer are centralized so adding a new page or project is one MDX file.
 
 Hard constraint to honor: **no client-side framework runtime**. The only client JS the build ships is (a) the ~30-line vanilla handler on `/search/` that calls Pagefind's JS API and renders results into matcha-native markup, and (b) the inline `onclick="document.getElementById('event').showModal()"` on the event-dialog trigger. Don't add React/Vue/Svelte hydration; don't add page-wide JS scripts.
 
@@ -21,7 +21,7 @@ Hard constraint to honor: **no client-side framework runtime**. The only client 
 - **Projects are a second collection** at `src/content/projects/` with its own schema (adds required `thumbnail` + `thumbnailAlt`, optional `author`). They have dedicated routes: `src/pages/projects/index.astro` renders the browse grid, and `src/pages/projects/[...slug].astro` renders each writeup. Per-project pages fall back to the thumbnail as the OG image when `ogImage` isn't set in frontmatter.
 - **Routing is a single catch-all** at `src/pages/[...slug].astro` that renders any entry in the pages collection through `BaseLayout`. Trailing-slash directory-style URLs are pinned via `trailingSlash: 'always'` and `build.format: 'directory'` in `astro.config.mjs`.
 - **Stand-alone Astro pages** live in `src/pages/`: `search.astro` (ships the ~30-line vanilla Pagefind handler — no `pagefind-ui.*` bundle, excluded from the sitemap) and the `projects/` directory (uses BaseLayout but is not in the pages collection).
-- **BaseLayout owns the `<head>`**: title, description, canonical, full OG/Twitter set, favicons, manifest, sitemap link. The default `og:image` is `src/assets/hero/austin-mesh-wildflower-center-large.webp`, processed through `getImage()` to produce a hashed, absolute URL. Pages override via `ogImage` in frontmatter.
+- **BaseLayout owns the `<head>`**: title, description, canonical, full OG/Twitter set, favicons, manifest, sitemap link. The default `og:image` is `src/assets/hero/austin-mesh-wildflower-center-large.webp`, processed through `getImage()` to produce a hashed, absolute URL. Pages override via `ogImage` in frontmatter. A `<meta name="robots" content="noindex, nofollow">` is conditionally emitted when `process.env.WORKERS_CI_BRANCH` is set to anything other than `main` (so Workers Builds preview deploys aren't indexed; see Deploy).
 - **`pagefind` and `eventDialog` are opt-out per page** (defaults true). `pagefind: false` omits the `data-pagefind-body` attribute on `<main>` so the page isn't indexed (`privacy.mdx` uses this). `eventDialog: false` hides the meet button + modal (also `privacy.mdx`). The search page hard-codes `pagefind: false`.
 
 ## Working with content
@@ -35,7 +35,7 @@ Hard constraint to honor: **no client-side framework runtime**. The only client 
 
 ## Redirects
 
-`public/_redirects` is read by Cloudflare Workers Static Assets (same syntax as the legacy Pages `_redirects`). Today it 301s `/faq/`, `/solar/`, and `/coverage-map/` to existing pages. Add more in the same format. Hash fragments after the destination are resolved client-side after the 301.
+`public/_redirects` is read by Cloudflare Workers Static Assets (same syntax as the legacy Pages `_redirects`). It holds 301s for legacy URLs (old `/faq/`, `/solar/`, `/coverage-map/` paths, plus pages that have since moved between collections — see the file for the current list). Add more in the same format. Hash fragments after the destination are resolved client-side after the 301.
 
 ## Discord event automation
 
@@ -59,6 +59,8 @@ Workers Builds runs on every push to the repo:
 These four fields are stored at the project level in Cloudflare's backend, not in the repo — they have to be changed in the dashboard. No Astro adapter is installed; every page is prerendered. `site: 'https://www.austinmesh.org'` in `astro.config.mjs` is what the sitemap and OG absolute URLs are built against. DNS for `austinmesh.org` is on Cloudflare's nameservers, which is what makes the Workers Custom Domain for `www.austinmesh.org` possible.
 
 Two local convenience scripts mirror what CI runs: `npm run deploy` (build + `wrangler deploy`) and `npm run deploy:preview` (build + `wrangler versions upload`).
+
+**Preview deploys are noindexed.** BaseLayout reads `process.env.WORKERS_CI_BRANCH` at build time; anything other than `main` (or unset, for local builds) emits a `<meta name="robots" content="noindex, nofollow">`. The env var name comes from Cloudflare Workers Builds and has shifted historically (was `CF_PAGES_BRANCH` under Pages) — if a preview deploy shows up in search results, view-source on the preview URL and confirm the meta is present; if not, the env var name has likely changed and `src/layouts/BaseLayout.astro` needs updating.
 
 ## Gotchas
 
