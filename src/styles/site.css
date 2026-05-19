@@ -68,6 +68,8 @@ main {
 footer {
     margin: 0 auto !important;
     max-width: 900px;
+    text-align: center;
+    color: light-dark(#777, #999);
 }
 .hero {
     position: relative;
