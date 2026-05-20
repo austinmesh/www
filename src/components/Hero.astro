@@ -1,21 +1,174 @@
 ---
-import { Image } from 'astro:assets';
-import heroLarge from '../assets/hero/austin-mesh-wildflower-center-large.webp';
-
-interface Props {
-  alt: string;
-}
-const { alt } = Astro.props;
 ---
-<section class="hero" aria-label={alt}>
-  <Image
-    src={heroLarge}
-    alt=""
-    widths={[640, 960, 1280, 1920]}
-    sizes="100vw"
-    formats={['avif', 'webp']}
-    loading="eager"
-    class="hero-bg"
-  />
-  <div class="hero-content"><slot /></div>
+<section class="hero" aria-labelledby="hero-title">
+  <svg viewBox="0 0 600 220" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+    <!-- Active mesh edges (10) -->
+    <line class="edge" x1="80"  y1="158" x2="172" y2="95"  />
+    <line class="edge" x1="172" y1="95"  x2="245" y2="50"  />
+    <line class="edge" x1="172" y1="95"  x2="300" y2="135" />
+    <line class="edge" x1="172" y1="95"  x2="195" y2="178" />
+    <line class="edge" x1="245" y1="50"  x2="430" y2="88"  />
+    <line class="edge" x1="300" y1="135" x2="488" y2="165" />
+    <line class="edge" x1="300" y1="135" x2="335" y2="167" />
+    <line class="edge" x1="195" y1="178" x2="368" y2="195" />
+    <line class="edge" x1="430" y1="88"  x2="510" y2="55"  />
+    <line class="edge" x1="510" y1="55"  x2="380" y2="30"  />
+
+    <!-- Redundancy edges (static, no animation) -->
+    <line class="edge-2" x1="245" y1="50"  x2="380" y2="30"  />
+    <line class="edge-2" x1="488" y1="165" x2="368" y2="195" />
+    <line class="edge-2" x1="335" y1="167" x2="488" y2="165" />
+    <line class="edge-2" x1="430" y1="88"  x2="488" y2="165" />
+
+    <!-- Nodes (11) -->
+    <circle class="node n-origin" cx="80"  cy="158" r="4" />
+    <circle class="node n-hub"    cx="172" cy="95"  r="4" />
+    <circle class="node n-rn"     cx="245" cy="50"  r="4" />
+    <circle class="node n-re"     cx="300" cy="135" r="4" />
+    <circle class="node n-ns"     cx="195" cy="178" r="4" />
+    <circle class="node n-dne"    cx="430" cy="88"  r="4" />
+    <circle class="node n-de"     cx="488" cy="165" r="4" />
+    <circle class="node n-nse"    cx="335" cy="167" r="4" />
+    <circle class="node n-dse"    cx="368" cy="195" r="4" />
+    <circle class="node n-nne"    cx="510" cy="55"  r="4" />
+    <circle class="node n-dfn"    cx="380" cy="30"  r="4" />
+
+    <!-- Packets (10) -->
+    <circle class="pkt p-orig-hub" r="3" />
+    <circle class="pkt p-hub-rn"   r="3" />
+    <circle class="pkt p-hub-re"   r="3" />
+    <circle class="pkt p-hub-ns"   r="3" />
+    <circle class="pkt p-rn-dne"   r="3" />
+    <circle class="pkt p-re-de"    r="3" />
+    <circle class="pkt p-re-nse"   r="3" />
+    <circle class="pkt p-ns-dse"   r="3" />
+    <circle class="pkt p-dne-nne"  r="3" />
+    <circle class="pkt p-nne-dfn"  r="3" />
+  </svg>
+
+  <div class="hero-content">
+    <slot />
+  </div>
 </section>
+
+<style>
+  /*
+    Animated mesh hero. 8-second cycle, infinite, pure CSS.
+    Arrival schedule (% of cycle):
+      origin 0%  hub 12.5%  ns 21%  rn 22%  re 23%
+      nse 31%  dne 32%  dse 32.5%  de 34%
+      nne 42%  dfn 55%  (dfn arrives via the "backward" NE→far-N leg)
+    See docs/superpowers/specs/2026-05-20-home-mesh-animation-design.md
+  */
+
+  .hero {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 600 / 220;
+    min-height: 280px;
+    background: #1f2031;
+    overflow: hidden;
+  }
+  .hero svg { width: 100%; height: 100%; display: block; }
+
+  .edge   { stroke: #67EA94; stroke-opacity: 0.30; stroke-width: 1; fill: none; }
+  .edge-2 { stroke: #67EA94; stroke-opacity: 0.18; stroke-width: 1; fill: none; }
+  .node   { fill: #67EA94; }
+  .pkt    { fill: #fff; filter: drop-shadow(0 0 4px #67EA94); }
+  .pkt, .node { transform-box: fill-box; transform-origin: center; }
+
+  /* Packet keyframes (one per leg) */
+  @keyframes pk-0-12   { 0%{opacity:1;offset-distance:0%} 12.5%{opacity:1;offset-distance:100%} 13%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-12-22  { 0%,12.4%{opacity:0;offset-distance:0%} 12.5%{opacity:1;offset-distance:0%} 22%{opacity:1;offset-distance:100%} 22.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-12-23  { 0%,12.4%{opacity:0;offset-distance:0%} 12.5%{opacity:1;offset-distance:0%} 23%{opacity:1;offset-distance:100%} 23.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-12-21  { 0%,12.4%{opacity:0;offset-distance:0%} 12.5%{opacity:1;offset-distance:0%} 21%{opacity:1;offset-distance:100%} 21.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-22-32  { 0%,21.9%{opacity:0;offset-distance:0%} 22%{opacity:1;offset-distance:0%} 32%{opacity:1;offset-distance:100%} 32.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-23-34  { 0%,22.9%{opacity:0;offset-distance:0%} 23%{opacity:1;offset-distance:0%} 34%{opacity:1;offset-distance:100%} 34.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-23-31  { 0%,22.9%{opacity:0;offset-distance:0%} 23%{opacity:1;offset-distance:0%} 31%{opacity:1;offset-distance:100%} 31.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-21-325 { 0%,20.9%{opacity:0;offset-distance:0%} 21%{opacity:1;offset-distance:0%} 32.5%{opacity:1;offset-distance:100%} 33%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-32-42  { 0%,31.9%{opacity:0;offset-distance:0%} 32%{opacity:1;offset-distance:0%} 42%{opacity:1;offset-distance:100%} 42.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+  @keyframes pk-42-55  { 0%,41.9%{opacity:0;offset-distance:0%} 42%{opacity:1;offset-distance:0%} 55%{opacity:1;offset-distance:100%} 55.5%{opacity:0;offset-distance:100%} 100%{opacity:0;offset-distance:100%} }
+
+  /* Packet wirings */
+  .p-orig-hub  { offset-path: path('M 80 158 L 172 95');   animation: pk-0-12   8s linear infinite; }
+  .p-hub-rn    { offset-path: path('M 172 95 L 245 50');   animation: pk-12-22  8s linear infinite; }
+  .p-hub-re    { offset-path: path('M 172 95 L 300 135');  animation: pk-12-23  8s linear infinite; }
+  .p-hub-ns    { offset-path: path('M 172 95 L 195 178');  animation: pk-12-21  8s linear infinite; }
+  .p-rn-dne    { offset-path: path('M 245 50 L 430 88');   animation: pk-22-32  8s linear infinite; }
+  .p-re-de     { offset-path: path('M 300 135 L 488 165'); animation: pk-23-34  8s linear infinite; }
+  .p-re-nse    { offset-path: path('M 300 135 L 335 167'); animation: pk-23-31  8s linear infinite; }
+  .p-ns-dse    { offset-path: path('M 195 178 L 368 195'); animation: pk-21-325 8s linear infinite; }
+  .p-dne-nne   { offset-path: path('M 430 88 L 510 55');   animation: pk-32-42  8s linear infinite; }
+  .p-nne-dfn   { offset-path: path('M 510 55 L 380 30');   animation: pk-42-55  8s linear infinite; }
+
+  /* Node-receive keyframes (one per arrival time) */
+  @keyframes n-recv-0    { 0%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 4%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-125  { 0%,11.5%{transform:scale(1);filter:none} 12.5%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 14.5%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-21   { 0%,20%{transform:scale(1);filter:none} 21%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 23%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-22   { 0%,21%{transform:scale(1);filter:none} 22%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 24%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-23   { 0%,22%{transform:scale(1);filter:none} 23%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 25%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-31   { 0%,30%{transform:scale(1);filter:none} 31%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 33%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-32   { 0%,31%{transform:scale(1);filter:none} 32%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 34%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-325  { 0%,31.5%{transform:scale(1);filter:none} 32.5%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 34.5%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-34   { 0%,33%{transform:scale(1);filter:none} 34%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 36%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-42   { 0%,41%{transform:scale(1);filter:none} 42%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 44%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+  @keyframes n-recv-55   { 0%,54%{transform:scale(1);filter:none} 55%{transform:scale(2);filter:drop-shadow(0 0 10px #67EA94)} 57%,95%{transform:scale(1.4);filter:drop-shadow(0 0 5px #67EA94)} 100%{transform:scale(1);filter:none} }
+
+  /* Node wirings */
+  .n-origin { animation: n-recv-0   8s linear infinite; }
+  .n-hub    { animation: n-recv-125 8s linear infinite; }
+  .n-ns     { animation: n-recv-21  8s linear infinite; }
+  .n-rn     { animation: n-recv-22  8s linear infinite; }
+  .n-re     { animation: n-recv-23  8s linear infinite; }
+  .n-nse    { animation: n-recv-31  8s linear infinite; }
+  .n-dne    { animation: n-recv-32  8s linear infinite; }
+  .n-dse    { animation: n-recv-325 8s linear infinite; }
+  .n-de     { animation: n-recv-34  8s linear infinite; }
+  .n-nne    { animation: n-recv-42  8s linear infinite; }
+  .n-dfn    { animation: n-recv-55  8s linear infinite; }
+
+  /* Hero content (headings + CTAs) */
+  .hero-content {
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 16px;
+    max-width: 90%;
+    color: #fff;
+    z-index: 1;
+  }
+  /* Slotted content lives outside Astro's component scope, so :global() is required */
+  .hero-content :global(h1) {
+    margin: 0 0 0.5rem;
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+    text-shadow: 0 1px 10px rgba(0,0,0,.95), 0 0 28px rgba(0,0,0,.7);
+  }
+  .hero-content :global(h2) {
+    margin: 0 0 1.25rem;
+    font-size: clamp(1rem, 2.2vw, 1.25rem);
+    font-weight: 400;
+    text-shadow: 0 1px 10px rgba(0,0,0,.95), 0 0 28px rgba(0,0,0,.7);
+  }
+  .hero-content :global(a) {
+    display: inline-block;
+    border: 1px solid #67EA94;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: rgba(31, 32, 49, 0.85);
+    margin: 0 0.25rem;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* Reduced motion: freeze "all-lit" state, no packets */
+  @media (prefers-reduced-motion: reduce) {
+    .pkt { display: none; }
+    .node {
+      transform: scale(1.4);
+      filter: drop-shadow(0 0 5px #67EA94);
+      animation: none;
+    }
+  }
+</style>
