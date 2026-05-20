@@ -3,9 +3,13 @@ import { Image } from 'astro:assets';
 import discord from '../assets/social/discord.svg';
 import youtube from '../assets/social/youtube.svg';
 import instagram from '../assets/social/instagram.svg';
+import '../styles/nav.css';
 ---
 <nav data-pagefind-ignore="all">
-  <menu>
+  <details class="nav-toggle">
+    <summary>Menu</summary>
+  </details>
+  <menu class="menu--main">
     <li><a href="/">Home</a></li>
     <li>
       <a href="/learn/">Learn</a>

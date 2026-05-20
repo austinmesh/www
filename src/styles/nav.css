@@ -1,0 +1,136 @@
+/* nav.css -- Site navigation: the header menu, its collapsible hamburger,
+   and the desktop hover dropdowns. Loaded globally via an import in
+   src/components/Nav.astro. These rules override matcha's classless
+   <nav>/<menu> styling, so matcha.css must load first. */
+
+/* --- Site navigation ---------------------------------------------------
+   Mobile-first, the way matcha itself is written: every rule below is the
+   mobile state, and a single min-width query handles the rest -- no max-width
+   query. 544px is matcha's own breakpoint (where it flips <menu> from a
+   vertical column to a horizontal row); matcha exposes no class or attribute
+   hook to target instead, so the breakpoint is the join.
+   <544px: a no-JS collapsible menu. <details class="nav-toggle"> is a
+   *toggle only* -- the menu is its sibling, never a child, so it's never
+   subject to the browser's UA hiding of <details> content. Visibility is
+   driven purely by the [open] attribute through the ~ combinator. Submenus
+   render inline and indented so every link is reachable by touch.
+   >=544px: the toggle is hidden and matcha's horizontal bar takes over. */
+nav {
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 0.5rem;
+}
+
+/* Strip matcha's bordered <details> box back to a plain inline control. */
+.nav-toggle {
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+}
+.nav-toggle > summary,
+.nav-toggle[open] > summary {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0.8rem;
+    border: 1px solid var(--bd-muted);
+    border-radius: var(--bd-radius);
+    margin: 0;
+    background: var(--bg-muted);
+    color: var(--default);
+    font-weight: 600;
+    list-style: none;
+}
+.nav-toggle > summary::-webkit-details-marker {
+    display: none;
+}
+/* Hamburger glyph: a 2px bar with two box-shadow copies above and below. */
+.nav-toggle > summary::before {
+    content: "";
+    flex: none;
+    width: 1.1rem;
+    height: 2px;
+    background: currentColor;
+    box-shadow: 0 5px currentColor, 0 -5px currentColor;
+}
+
+.menu--social {
+    flex-direction: row;
+    justify-content: center;
+    margin-left: auto;
+}
+
+/* Collapsed by default; the open toggle reveals it on its own row.
+   order:1 keeps the toggle + social icons together on the first row -- the
+   menu always wraps below them rather than pushing the icons down. */
+.menu--main {
+    order: 1;
+    flex-basis: 100%;
+    flex-direction: column;
+    display: none;
+}
+.nav-toggle[open] ~ .menu--main {
+    display: flex;
+}
+
+/* Submenus default to plain inline, indented lists -- reachable without a
+   hover capability. matcha's own dropdown (absolute + :hover reveal) has no
+   breakpoint of its own, so this mobile-first default overrides it at every
+   width; the 544px query below reinstates the dropdown once there's room. */
+.menu--main menu {
+    position: static;
+    display: flex;
+    flex-direction: column;
+    width: auto;
+    padding: 0 0 0 1rem;
+    border: 0;
+    margin: 0.25rem 0 0;
+    background: transparent;
+    opacity: 1;
+}
+/* The "▾" hint is redundant when submenus are expanded inline, and matcha's
+   ::after would land after the now-in-flow submenu. Restored at 544px. */
+.menu--main li:has(> menu)::after {
+    content: none;
+}
+
+/* At matcha's 544px breakpoint the menu is already a horizontal row, so the
+   collapsible toggle is no longer needed -- hand the nav back to matcha. */
+@media only screen and (min-width: 544px) {
+    .nav-toggle {
+        display: none;
+    }
+    .menu--main {
+        order: 0;
+        display: flex;
+        flex-basis: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    /* Reinstate matcha's hover dropdown -- the inline default above overrode
+       it at every width, so it's restored here for the horizontal bar. */
+    .menu--main > li > menu {
+        position: absolute;
+        display: none;
+        width: max-content;
+        padding: 0.5rem;
+        border: 1px solid var(--bd-muted);
+        margin: 0;
+        background: var(--bg-muted);
+    }
+    .menu--main > li:hover > menu {
+        display: flex;
+    }
+    .menu--main li:has(> menu)::after {
+        content: "▾";
+    }
+}
+
+menu > li:has(> menu)::after {
+    content: "▾";
+    display: inline-block;
+}
+menu > li > a > img {
+    vertical-align: middle;
+}

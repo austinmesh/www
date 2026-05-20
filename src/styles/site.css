@@ -224,13 +224,8 @@ html { scroll-behavior: smooth; }
 .social a {
     padding: 0 10px;
 }
-nav {
-    flex-direction: column-reverse;
-}
-.menu--social {
-    flex-direction: row;
-    justify-content: center;
-}
+/* Navigation styling lives in its own file -- see src/styles/nav.css,
+   imported by src/components/Nav.astro. */
 @media only screen and (min-width: 720px) {
     .social {
         margin: 20px 0 20px;
@@ -238,16 +233,6 @@ nav {
     .social p {
         display: block;
     }
-    nav {
-        flex-direction: row;
-    }
-}
-menu > li:has(> menu)::after {
-    content: "▾";
-    display: inline-block;
-}
-menu > li > a > img {
-    vertical-align: middle;
 }
 
 /* Astro <Image> emits explicit width+height attributes; without height:auto, flex parents
