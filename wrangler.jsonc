@@ -10,5 +10,11 @@
   },
   "observability": {
     "enabled": true
+  },
+  "build": {
+    // `wrangler dev` runs this once on start, then re-runs it whenever a file
+    // in `watch_dir` changes. Pair with `--live-reload` for browser refresh.
+    "command": "npm run build",
+    "watch_dir": "src"
   }
 }

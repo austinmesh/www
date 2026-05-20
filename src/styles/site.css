@@ -254,3 +254,13 @@ dialog#event {
     .project-body img,
     .project-body video { max-width: 50%; }
 }
+
+img.heltec-hero {
+    width: 768px;
+    height: auto;
+    max-width: none;
+}
+
+figure.thumb-row img { width: 350px; height: auto; max-width: none; }
+figure.thumb-row a { line-height: 0; }
+figure.thumb-row a + a { margin-left: 0.5rem; }
