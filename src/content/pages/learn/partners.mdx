@@ -6,19 +6,65 @@ import { Image } from 'astro:assets';
 import aisdGusGarcia from '../../../assets/aisd/AISD-GusGarcia-Logo.svg';
 import aisdHart from '../../../assets/aisd/AISD-Hart-Logo.svg';
 import aisdLBJ from '../../../assets/aisd/AISD-LBJ-Logo.svg';
-import hartInstallLarge from '../../../assets/aisd/aisd-hart-elementary-meshtastic-install.webp';
-import utAustin from '../../../assets/ut-austin/University-of-Texas-at-Austin-Meshtastic-Repeater.webp';
+import hartInstallLarge from '../../../assets/aisd/aisd-mli-3.jpg';
+import utAustin from '../../../assets/ut-austin/ut-austin-rf-filtered-meshtastic-node.jpeg';
+import utAustinInstall1 from '../../../assets/ut-austin/ut-austin-mesh-install-1.jpg';
+import utAustinInstall2 from '../../../assets/ut-austin/ut-austin-mesh-install-2.jpg';
+import utAustinInstall3 from '../../../assets/ut-austin/ut-austin-mesh-install-3.jpg';
+import utAustinInstall4 from '../../../assets/ut-austin/ut-austin-mesh-install-4.jpg';
 import lasa from '../../../assets/lasa/austin-mesh-liberal-arts-and-sciences-academy-cropped.webp';
+import lasaInstall from '../../../assets/lasa/austin-mesh-liberal-arts-and-sciences-academy-1.webp';
+import aisdHartMLI from '../../../assets/aisd/aisd-hart-mli.jpg';
+import independentCondos from '../../../assets/independent/independent-rooftop-wide.jpg';
+import independentInstall1 from '../../../assets/independent/IMG_3747.jpg';
+import independentInstall2 from '../../../assets/independent/IMG_4996.jpg';
 
 <hgroup>
-  <h1>Our community partners</h1>
-  <p>To partner with Austin Mesh and support your community, <a href="mailto:info@austinmesh.org">reach out to us via email at info@austinmesh.org!</a></p>
-  <p>For property owners or facilities teams considering partnering with us, you can find <a href="/join/property-owner-faq-hosting-a-node/">Frequently Asked Questions about hosting Mesh network nodes here</a>.</p>
+  <h1>Austin Mesh Community Partners</h1>
+  <p>Support your Central Texas community by donating installation space to Austin Mesh. <a href="mailto:info@austinmesh.org">Reach out to us via email at info@austinmesh.org</a> and <a href="/join/property-owner-faq-hosting-a-node/">visit our FAQ</a> for more information.</p>
 </hgroup>
 
 <section>
+  <article class="partner-card">
+    <div>
+      <h3>Austin ISD</h3>
+      <p>The Mesh Learning Initiative is a STEM program focused around mesh networking, sponsored and created in partnership with Austin Mesh.</p>
+      <a href="#aisd-details" class="partner-card-link">Read more</a>
+    </div>
+    <Image src={aisdHartMLI} alt="Mesh radio install for the AISD Hart Mesh Learning Initiative" widths={[320, 640, 960]} sizes="(min-width: 720px) 320px, 100vw" />
+  </article>
+
+  <article class="partner-card">
+    <div>
+      <h3>University of Texas</h3>
+      <p>A node atop the Physics, Math, and Astronomy building extends network coverage around campus and out to the hills.</p>
+      <a href="#ut-austin-details" class="partner-card-link">Read more</a>
+    </div>
+    <Image src={utAustinInstall3} alt="View looking out from the UT PMA building showing the Austin skyline with a Meshtastic node in the foreground" widths={[320, 640, 960]} sizes="(min-width: 720px) 320px, 100vw" />
+  </article>
+
+  <article class="partner-card">
+    <div>
+      <h3>The Independent Condos</h3>
+      <p>Two radios installed on the rooftop of Austin's tallest residential tower provide exceptional coverage across a large portion of the city.</p>
+      <a href="#independent-details" class="partner-card-link">Read more</a>
+    </div>
+    <Image src={independentCondos} alt="Rooftop view of the city from the Independent Condos" widths={[320, 640, 960]} sizes="(min-width: 720px) 320px, 100vw" />
+  </article>
+
+  <article class="partner-card">
+    <div>
+      <h3>Liberal Arts and Sciences Academy</h3>
+      <p>Hosted on the school rooftop and supported by the LASA Amateur Radio Club, the node extends coverage in Southeast Austin.</p>
+      <a href="#lasa-details" class="partner-card-link">Read more</a>
+    </div>
+    <Image src={lasaInstall} alt="View from the rooftop of the Liberal Arts and Science Academy with the students who manage the node" widths={[320, 640, 960]} sizes="(min-width: 720px) 320px, 100vw" />
+  </article>
+</section>
+
+<section>
   <article>
-    <h2 class="partner-heading">Austin Independent School District (AISD)</h2>
+    <h2 class="partner-heading" id="aisd-details">Austin Independent School District (AISD)</h2>
     <div class="partner-logos">
       <div>
         <Image src={aisdGusGarcia} alt="Logo of the Gus Garcia Young Men's Leadership Academy AISD" title="Gus Garcia Young Men's Leadership Academy AISD" width={240} class="white-bg" />
@@ -72,27 +118,35 @@ import lasa from '../../../assets/lasa/austin-mesh-liberal-arts-and-sciences-aca
   </article>
 
   <article>
-    <h2 class="partner-heading">University of Texas at Austin</h2>
+    <h2 class="partner-heading" id="ut-austin-details">University of Texas at Austin</h2>
 
-    The node at UT Austin is located on top of the Physics, Math, and Astronomy building on the South face at ~80m above ground. It provides coverage for a significant portion of West, South, and East Austin through it's 10dBi antenna and RAK19007 circuit board. The node uses a Voltaic Systems V50 battery connected to a 20w solar panel making this node entirely self supporting.
+    The node at UT Austin is located on top of the Physics, Math, and Astronomy building on the South face at ~80m above ground providing coverage for most of the UT Austin campus.
 
-    <a href="https://github.com/willmartindotcom/austinmesh/tree/main/images/ut-austin" target="_blank">View all photos from the UT Austin node site</a>
+    This rooftop is saturated with antennas, including the local police and fire radios, requiring a special buildout that includes an RF filter to prevent those high power antennas from interfering with our low power network. You can [read more about the project here](https://www.austinmesh.org/projects/ikoka-nano-meshcore-solar-repeater/).
 
-    <Image
-      src={utAustin}
-      alt="View looking out from the UT PMA building showing the Austin City Skyline to the South behind chain link fencing with a Meshtastic node that has a Austin Mesh sticker on it in the foreground"
-      title="Austin Mesh Node at UT Austin"
-      widths={[350, 700]}
-      sizes="(min-width: 720px) 700px, 100vw"
-    />
+    <div class="photo-grid">
+      <Image src={utAustin} alt="Close-up of the RF-filtered Meshtastic node with Austin Mesh sticker, Austin skyline visible through chain-link fence" widths={[440, 880]} sizes="(min-width: 720px) 440px, 100vw" />
+      <Image src={utAustinInstall2} alt="UT Austin mesh node installation, photo 2" widths={[440, 880]} sizes="(min-width: 720px) 440px, 100vw" />
+      <Image src={utAustinInstall1} alt="UT Austin mesh node installation, photo 1" widths={[440, 880]} sizes="(min-width: 720px) 440px, 100vw" />
+      <Image src={utAustinInstall4} alt="UT Austin mesh node installation, photo 4" widths={[440, 880]} sizes="(min-width: 720px) 440px, 100vw" />
+    </div>
   </article>
 
   <article>
-    <h2 class="partner-heading">The Liberal Arts and Science Academy (LASA)</h2>
+    <h2 class="partner-heading" id="independent-details">The Independent Condos</h2>
 
-    The node at LASA is hosted on their rooftop and graciously supported by LASA Amateur Radio Club. While the antenna and position change slightly from time to time for experiments, this node uses a RAK19007 baseboard with an 8w solar panel connected to a Voltaic Systems V50 battery. It provides coverage for a significant portion of East, South East, and even some areas of South West Austin.
+    There are two nodes installed at The Independent, one on the northeast corner and one on the southwest. Because the building's exterior cage blocks RF signal and no roof or wall penetrations are allowed, custom mounting solutions with 3D-printed parts were designed to meet these constraints. Together, the nodes provide coverage across a massive portion of Austin, reaching as far as parts of Dripping Springs, Cedar Park, and Leander.
 
-    <a href="https://github.com/willmartindotcom/austinmesh/tree/main/images/lasa" target="_blank">View all photos from the LASA node site</a>
+    <div class="photo-grid">
+      <Image src={independentInstall1} alt="Rooftop of The Independent Condos showing part of the rooftop and part of the city skyline" widths={[440, 880]} sizes="(min-width: 720px) 440px, 100vw" />
+      <Image src={independentInstall2} alt="A mesh radio installed on The Independent rooftop downtown Austin" widths={[440, 880]} sizes="(min-width: 720px) 440px, 100vw" />
+    </div>
+  </article>
+
+  <article>
+    <h2 class="partner-heading" id="lasa-details">The Liberal Arts and Science Academy (LASA)</h2>
+
+    The radio at LASA is hosted on their rooftop and graciously supported by LASA Amateur Radio Club. While the antenna and position change slightly from time to time for experiments, it provides coverage for a significant portion of East, South East, and even some areas of South West Austin.
 
     <Image
       src={lasa}
