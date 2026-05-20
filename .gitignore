@@ -42,3 +42,6 @@ yarn-error.log*
 
 # Wrangler local state
 .wrangler/
+
+# Superpowers brainstorming session artifacts (visual companion files)
+.superpowers/
