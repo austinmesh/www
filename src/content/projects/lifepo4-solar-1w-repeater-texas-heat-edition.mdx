@@ -1,0 +1,75 @@
+---
+title: LiFePO4 + Solar 1W Repeater – Texas Heat Edition
+description: A 1W MeshCore solar repeater built around LiFePO4 power, telemetry, and enclosure details for unattended Austin heat and humidity.
+thumbnail: ../../assets/lifepo4-solar-1w-repeater/texas-heat-repeater-internals.jpeg
+thumbnailAlt: Inside view of the LiFePO4 solar 1W MeshCore repeater enclosure
+author: Vladimir (@metanerd)
+publishedAt: 2026-05-27
+---
+import { Image } from 'astro:assets';
+import internals from '../../assets/lifepo4-solar-1w-repeater/texas-heat-repeater-internals.jpeg';
+import nodeWithLogo from '../../assets/lifepo4-solar-1w-repeater/texas-heat-repeater-with-logo.jpeg';
+import sht45Sensor from '../../assets/lifepo4-solar-1w-repeater/sht45-sensor.jpeg';
+import antenna from '../../assets/lifepo4-solar-1w-repeater/fairview-8dbi-antenna.jpeg';
+import grafana from '../../assets/lifepo4-solar-1w-repeater/grafana-telemetry-dashboard.jpeg';
+
+# LiFePO4 + Solar 1W Repeater – Texas Heat Edition
+
+<Image src={internals} alt="Inside view of the outdoor LiFePO4 solar 1W MeshCore repeater enclosure with radio, charger, sensors, regulator, and supercapacitor rail" widths={[480, 768, 1024, 1600]} sizes="(min-width: 720px) 700px, 100vw" />
+
+This is an outdoor solar 1W MeshCore repeater built for hot, humid Texas weather. It uses a RAK 1W board, a LiFePO4 battery, an LFP-capable solar charger, a 5V regulator, a supercap-backed power rail, and sensors for power telemetry plus internal and external environmental conditions.
+
+The goal is long unattended runtime in Texas heat and humidity, using LiFePO4 chemistry, temperature-protected charging, pressure equalization, drainage, and moisture control to keep the node reliable outdoors.
+
+The external SHT45 temperature and humidity sensor sits in a sintered metal enclosure outside the box, while the BME680 monitors internal enclosure conditions.
+
+<Image src={sht45Sensor} alt="Sintered SHT45 temperature and humidity sensor mounted outside the repeater enclosure" widths={[480, 768, 1024, 1600]} sizes="(min-width: 720px) 700px, 100vw" />
+
+The BLE antenna also makes service easier: we tested re-flashing at ~2.5 kbps from inside the house, even from a different floor, without opening the enclosure.
+
+<Image src={nodeWithLogo} alt="Outdoor 1W MeshCore repeater enclosure with Austin Mesh logo sticker" widths={[480, 768, 1024, 1600]} sizes="(min-width: 720px) 700px, 100vw" />
+
+## Telemetry
+
+Telemetry is handled by a separate gate node running [MeshCoreGate](https://github.com/MuninnMesh/MeshCoreGate) on a Heltec v4. The same approach can also be used on a Heltec V3 or a similar ESP32 LoRa + WiFi board.
+
+The gate node polls repeaters over LoRa, then exposes the readings over local WiFi as a Prometheus-compatible HTTP endpoint. From there, the data can be pulled into Prometheus, Grafana, Home Assistant, or anything else that can scrape metrics.
+
+<Image src={grafana} alt="Grafana dashboard showing repeater telemetry collected from the MeshCoreGate endpoint" widths={[480, 768, 1024, 1600]} sizes="(min-width: 720px) 700px, 100vw" />
+
+For a cleaner telemetry setup, the repeater can also be flashed with [this open MeshCore PR](https://github.com/meshcore-dev/MeshCore/pull/2629). It lets telemetry replies use direct low-power responses back to the gate node instead of flooding the public mesh, which also reduces impact on the solar node battery. The poll interval is once every 5 minutes.
+
+## Parts List
+
+- LoRa board: [RAK 1W / RAK3401](https://store.rakwireless.com/products/meshtastic-1w-lora-booster-kit-rak3401), jumper set to external 5V
+- Antenna: [Fairview FM51OM1016 8dbi](https://www.digikey.com/en/products/detail/fairview-microwave/FM51OM1016/22222965)
+- Battery: [LiFePO4 26700 5000mAh](https://www.batteryspace.com/LiFePO4-26700-Rechargeable-Cell-3.2V-5000-mAh-16Wh-10A/2C-Rate.aspx)
+- Charger: [Adafruit bq25185 solar charger](https://www.adafruit.com/product/6091), configured for LFP
+- 5V regulator: [Pololu S9V11F5](https://www.pololu.com/product/2836)
+- Supercap: [15F KYOCERA AVX supercapacitor](https://www.mouser.com/ProductDetail/KYOCERA-AVX/SCMU33F156SRBA0)
+- Current / voltage monitor: [Adafruit INA3221](https://www.adafruit.com/product/6062)
+- Internal enclosure sensor: [BME680](https://www.amazon.com/dp/B0GXHGYRN2)
+- External temp / humidity sensor: [SHT45 in sintered enclosure](https://www.aliexpress.us/item/3256811531530720.html)
+- RTC timer: [Amazon module](https://www.amazon.com/dp/B08X4H3NBR)
+- Battery thermistor: [NTCLE428E3103F524A](https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/NTCLE428E3103F524A/16530198)
+- BLE antenna: [Amazon antenna](https://www.amazon.com/dp/B0991PKTDL)
+- USB-C bulkhead: [Amazon](https://www.amazon.com/dp/B0FK52G5S2)
+- Side switch: [APEM](https://www.newark.com/apem/ipr1sad2/pushbutton-switch/dp/73J0515)
+- Heatsink: [Adafruit](https://www.adafruit.com/product/3083)
+- Enclosure: [Amazon](https://www.amazon.com/dp/B0CHHJ49QN)
+- Battery mounting: [Amazon](https://www.amazon.com/dp/B09HTWFR3S) + [foam layer](https://www.amazon.com/dp/B06ZY83SZJ)
+- Pressure valve: [Amazon](https://www.amazon.com/dp/B0BKY2LLLV)
+- Drain hole protection: [rubber guard](https://www.amazon.com/dp/B0DXT9J49F) + [nylon filter](https://www.amazon.com/dp/B0F3CT1T8Y)
+- Solar panel: [Voltaic 6V / 10W](https://voltaicsystems.com/10-watt-panel-etfe/)
+
+The Adafruit INA3221 variant needs compatible I2C address handling; compile firmware with `0x40/0x41` support for INA3221.
+
+<Image src={antenna} alt="Fairview FM51OM1016 8dbi antenna used with the outdoor repeater" widths={[480, 768, 1024, 1600]} sizes="(min-width: 720px) 700px, 100vw" />
+
+## 5V Rail Filter
+
+- 1x 1000uF organic cap: [16SVPF1000M](https://www.mouser.com/ProductDetail/Panasonic/16SVPF1000M)
+- 1x 100uF tantalum cap: [199D107X9010E6V1](https://www.digikey.com/en/products/detail/vishay-sprague/199D107X9010E6V1/8608783)
+- 1x 10uF ceramic cap: [FG20X7R1H106KRT00](https://www.digikey.com/en/products/detail/tdk/FG20X7R1H106KRT00/7326755)
+- 1x 0.1uF ceramic cap: [K104K15X7RF53L2](https://www.digikey.com/en/products/detail/vishay-beyschlag-draloric-bc-components/K104K15X7RF53L2/2820506)
+- 1x ferrite bead: [28L0138-70R-10](https://www.digikey.com/en/products/detail/laird-signal-integrity-products/28L0138-70R-10/806675)
