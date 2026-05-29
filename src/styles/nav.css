@@ -141,6 +141,6 @@ menu > li:has(> menu)::after {
     content: "▾";
     display: inline-block;
 }
-menu > li > a > img,svg {
+menu > li > a > :is(img, svg) {
     vertical-align: middle;
 }
