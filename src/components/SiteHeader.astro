@@ -9,6 +9,6 @@ interface Props {
 const { eventDialog = true } = Astro.props;
 ---
 <header data-pagefind-ignore="all">
-  <a href="/"><Image src={logo} alt="Logo for Austin Mesh" title="Austin Mesh" class="logo" width={500} height={121} /></a>
+  <a href="/"><Image src={logo} alt="Logo for Austin Mesh" title="Austin Mesh" class="logo" width={500} height={121} loading="eager" /></a>
   {eventDialog && <EventDialog />}
 </header>

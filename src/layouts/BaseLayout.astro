@@ -79,7 +79,7 @@ const isPreview = branch !== undefined && branch !== 'main';
     <main {...(pagefind ? { 'data-pagefind-body': '' } : {})}>
       <Nav />
       <slot />
+      <SiteFooter />
     </main>
-    <SiteFooter />
   </body>
 </html>
