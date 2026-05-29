@@ -61,6 +61,17 @@ nav {
     margin-left: auto;
 }
 
+/* The GitHub mark is the only monochrome icon, rendered inline (not via
+   <Image>) so its fill is reachable from CSS. matcha's --default is the
+   theme-aware foreground (dark on the light-mode nav, light on the dark-mode
+   nav), so the icon stays readable in both schemes. The other icons keep their
+   brand colors. The other social icons are 21px tall <img>s; match that. */
+.menu--social .icon--default {
+    height: 21px;
+    width: auto;
+    fill: var(--default);
+}
+
 /* Collapsed by default; the open toggle reveals it on its own row.
    order:1 keeps the toggle + social icons together on the first row -- the
    menu always wraps below them rather than pushing the icons down. */
@@ -131,6 +142,6 @@ menu > li:has(> menu)::after {
     content: "▾";
     display: inline-block;
 }
-menu > li > a > img {
+menu > li > a > img,svg {
     vertical-align: middle;
 }

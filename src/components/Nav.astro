@@ -3,6 +3,7 @@ import { Image } from 'astro:assets';
 import discord from '../assets/social/discord.svg';
 import youtube from '../assets/social/youtube.svg';
 import instagram from '../assets/social/instagram.svg';
+import GitHubIcon from '../assets/social/github.svg';
 import '../styles/nav.css';
 ---
 <nav data-pagefind-ignore="all">
@@ -65,6 +66,11 @@ import '../styles/nav.css';
     <li>
       <a href="https://www.instagram.com/p/Cq0jOpYLpZy/" target="_blank" rel="noopener" title="Join the AustinMesh Instagram">
         <Image src={instagram} alt="Instagram Logo" height={21} loading="eager" />
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/austinmesh/www" target="_blank" title="AustinMesh website source on GitHub">
+        <GitHubIcon class="icon--default" height={21} />
       </a>
     </li>
   </menu>
