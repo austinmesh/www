@@ -1,5 +1,5 @@
 ---
-import { Image } from 'astro:assets';
+import { Picture } from 'astro:assets';
 import heroLarge from '../assets/hero/austin-mesh-wildflower-center-large.webp';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 const { alt } = Astro.props;
 ---
 <section class="hero" aria-label={alt}>
-  <Image
+  <Picture
     src={heroLarge}
     alt=""
     widths={[640, 960, 1280, 1920]}
