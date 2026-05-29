@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import discord from '../assets/social/discord.svg';
-import youtube from '../assets/social/youtube.svg';
-import instagram from '../assets/social/instagram.svg';
+import DiscordIcon from '../assets/social/discord.svg';
+import YouTubeIcon from '../assets/social/youtube.svg';
+import InstagramIcon from '../assets/social/instagram.svg';
+import GitHubIcon from '../assets/social/github.svg';
 import '../styles/nav.css';
 ---
 <nav data-pagefind-ignore="all">
@@ -54,17 +54,22 @@ import '../styles/nav.css';
   <menu class="menu--social">
     <li>
       <a href="https://discord.gg/6a5Sv2s9bG" target="_blank" rel="noopener" title="Join the AustinMesh Discord">
-        <Image src={discord} alt="Discord Logo" height={21} loading="eager" />
+        <DiscordIcon class="icon--discord" height={25} />
       </a>
     </li>
     <li>
       <a href="https://youtube.com/channel/UCtFl5gdwv0SdrP8sHlDMKNA" target="_blank" rel="noopener" title="Join the AustinMesh YouTube">
-        <Image src={youtube} alt="YouTube Logo" height={21} loading="eager" />
+        <YouTubeIcon class="icon--youtube" height={25} />
       </a>
     </li>
     <li>
       <a href="https://www.instagram.com/p/Cq0jOpYLpZy/" target="_blank" rel="noopener" title="Join the AustinMesh Instagram">
-        <Image src={instagram} alt="Instagram Logo" height={21} loading="eager" />
+        <InstagramIcon class="icon--instagram" height={21} />
+      </a>
+    </li>
+    <li>
+      <a href="https://github.com/austinmesh/www" target="_blank" rel="noopener" title="AustinMesh website source on GitHub">
+        <GitHubIcon class="icon--github" height={21} />
       </a>
     </li>
   </menu>
