@@ -1,0 +1,38 @@
+---
+title: List of all Mesh Technologies | Austin Mesh
+description: Austin Mesh is a technology agnostic group. Let's explore all of the various mesh technologies together!
+---
+
+<hgroup>
+  <h1>Mesh Technology</h1>
+  <p>Austin Mesh currently uses only a few(MeshCore and Meshtastic) mesh technologies out of <i>many</i>. This page is a place to compare and understand the various technologies. More technologies will be added here over time. For now, we start with APRS on ham radio.</p>
+</hgroup>
+
+<section>
+  ## Meshtastic vs MeshCore
+
+  In short, Meshtastic shines when people and connections are moving. Friends at an event, a hike, a bike ride. Every node rebroadcasts as the group changes positions. MeshCore is built for fixed infrastructure: companion radios don't rebroadcast, so coverage comes from dedicated repeaters.
+
+  For the full breakdown on routing, hop limits, telemetry, presets, etc, with footnoted sources check out [MeshCore vs Meshtastic](/about/meshcore-vs-meshtastic/)
+</section>
+
+<section>
+  ## Meshtastic and Meshcore vs APRS on Ham Radio
+  For people who are familiar with using the <a href="https://en.wikipedia.org/wiki/Automatic_Packet_Reporting_System" rel="nofollow noopener">Automatic Packet Reporting System (APRS)</a> on ham radio, Meshtastic is **similar** in a few ways:
+
+  ### Similarities
+
+  - **Digipeaters** - APRS radios can be set up as clients or digirepeaters. Clients receive all messages but only transmit the user's messages. Digipeaters repeat all the messages they hear. Meshtastic radios by default all act as repeaters – just like APRS digipeaters. MeshCore is functionally the same as APRS, with dedicated companions and repeaters.
+  - **iGates** - MQTT Gateways are like APRS iGates, they repeat all local traffic over the internet to other MQTT Gateways around the world. MeshCore does not natively support this, though addons do.
+  - **ANSRVR** - APRS users can subscribe to groups using the ANSRVR service. This allows for group chats like the popular #APRSThursday net. Meshtastic has "Secondary Channels", allowing users to send messages to everyone on the channel. MeshCore has a more robust multi-channel system allowing many new channels to be spun up instantly.
+  - **Burst** - APRS uses the AX.25 protocol which sends messages using data bursts between 0.3 and 0.5 seconds long. Meshcore and Meshtastic use the LoRa protocol which sends messages in data bursts between 0.1 and 10 seconds long.
+
+  ### Differences
+
+  - **Primary** - APRS doesn't have a way to broadcast a message to everyone on the network. Messages sent to the Primary Channel on MeshCore and Meshtastic go to everyone.
+  - **Encryption** - APRS is unencrypted because purposefully obscuring communication over ham radio is illegal. Both MeshCore and Meshtastic are encrypted for communications on private group channels and for direct messages between users. This is legal because they operate in part of the 900 MHz ISM band which does not have restrictions on encryption.
+  - **License** - APRS requires the user to have a ham radio license. Neither MeshCore or Meshtastic requires any license and are open for anyone to use.
+  - **Equipment Cost** - APRS capable handheld ham radios cost upwards of $400. Some mesh radios cost less than $15.
+  - **Email** - APRS has services which allow users to send emails and SMS text messages to people who aren't ham radio users. Meshtastic and Meshcore do not have this feature by default, but it can be added through connections.
+  - **Simplicity** - APRS is quite a bit more difficult to use. APRS does not have any standardized user interface – there are dozens of software packages available. Both MeshCore and Meshtastic have standardized iPhone and Android apps.
+</section>

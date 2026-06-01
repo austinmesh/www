@@ -15,7 +15,7 @@ description: Learn all about Austin Mesh, mesh networking, why we exist, and sim
   - What can it do?
   - Why build this network?
 - [Network coverage in Austin](#coverage)
-- [Comparisons to similar technology](#comparisons)
+- [How does Austin Mesh make money?](#money)
 
 <section>
   <h2>Why build a mesh in the first place?</h2>
@@ -56,47 +56,13 @@ description: Learn all about Austin Mesh, mesh networking, why we exist, and sim
 
 <section id="coverage">
   <h2>What kind of coverage does the Austin Mesh network have?</h2>
-  <p>As of January 2026 we have coverage throughout most of greater Austin, including pockets of Dripping Springs, Cedar Park, Leander, Bastrop, and San Marcos which is approximately 2600 square miles. We're actively working with individuals and <a href="/learn/partners/">community partners</a> to expand this coverage.</p>
-  <p>We now have a coverage map showing nodes seen over the last 15 days:</p>
-  <iframe src="https://graphs.austinmesh.org/d-solo/ddpwwgtdxf2m8f/austin-mesh?orgId=1&from=now-15d&to=now&panelId=10" height="400" frameborder="0"></iframe>
-  <p><a href="https://meshmap.net/">The MQTT map at meshmap.net</a> is <b>not</b> representative of the coverage as we <a href="/join/#best-practices">do not recommend using MQTT</a> however it may still be useful for you to see what is in your area. Another <a href="https://canvis.app/meshtastic-map">map of <b>self reported</b> nodes</a> is also available, but more likely to be out-of-date.</p>
+  <p>As of May 2026 Austin Mesh covers most of Austin. Additionally, much of greater Austin has limited coverage including Dripping Springs, Cedar Park, Leander, Wimberley, Driftwood, Bastrop, and San Marcos which is approximately 3000 square miles. We're actively working with individuals and <a href="/about/partners/">community partners</a> to expand this coverage. See our <a href="/about/infrastructure/">infrastructure repeaters</a> page for the current list of sited nodes and their status.</p>
 </section>
 
 <section id="money">
   <h2>How does Austin Mesh make money</h2>
-  <p>Austin Mesh isn't a business, and it isn't a nonprofit. There's no 501(c)(3), no LLC, no legal entity at all — just a few people who think mesh networking is cool.</p>
-  <p>We don't make money from this. It actually costs us money. Nodes, antennas, hosting, time — all of it comes out of our personal hobby budgets. The same money other people might put toward golf clubs or model trains, we put into this.</p>
-  <p>We mention it so you know what you're looking at: a hobby project run by hobbyists, not an organization with revenue or a mission statement.</p>
+  <p>Austin Mesh isn't a business, and it isn't a nonprofit. There's no 501(c)(3), no LLC, no legal entity at all. We're just a few people(~1300) who think <b>reliable mesh networking is important for the Central Texas community to have access to</b>.</p>
+  <p>We don't make money from this. Quite the opposite. It actually costs us money! Nodes, antennas, hosting, and time, **lots** of time, all of it comes out of our personal hobby budgets. The <i>same money other people might put toward golf clubs or model trains, we put into this</i>. There is however, one exception. A number of the links on this website are affiliate links. If a visitor makes a purchase after clicking a link, we will share in a small portion of that sale.</p>
+  <p>We mention it so you know what you're looking at: a hobby project run by hobbyists, not an organization with revenue targets.</p>
 </section>
 
-<section id="comparisons">
-  <h2>Comparing it to APRS on Ham Radio</h2>
-  <p>For people who are familiar with using the <a href="https://en.wikipedia.org/wiki/Automatic_Packet_Reporting_System">Automatic Packet Reporting System (APRS) </a> on ham radio, Meshtastic is <strong>similar</strong> in a few ways:</p>
-  <h3>Similarities</h3>
-  <dl>
-    <dt>Digipeaters</dt>
-    <dd>APRS radios can be set up as clients, which receive all messages and only transmit the users messages, or APRS radios can be set up as digipeaters, which repeat all the messages they hear. Meshtastic radios by default all act as repeaters – just like APRS digipeaters. MeshCore has Companions(which is the same as a APRS client) and repeaters(which only repeat).</dd>
-    <dt>iGates</dt>
-    <dd>MQTT Gateways are like APRS iGates – they repeat all local traffic over the internet to other MQTT Gateways around the world. MeshCore does not natively support this, though addons do.</dd>
-    <dt>ANSRVR</dt>
-    <dd>APRS users can subscribe to groups using the ANSRVR service. This allows for group chats like the popular #APRSThursday net. Meshtastic has "Secondary Channels" that can be subscribe to, allowing users to send messages to everyone on the channel. MeshCore has a more robust multi-channel system allowing many new channels to be spun up instantly.</dd>
-    <dt>Burst</dt>
-    <dd>APRS uses the AX.25 protocol which sends messages using data bursts between 0.3 and 0.5 seconds long. Meshcore and Meshtastic use the LoRa protocol which sends messages in data bursts between 0.5 and 10 seconds long.</dd>
-  </dl>
-  <h3>Differences</h3>
-  <p>But Meshtastic and MeshCore arae also <strong>different</strong> than APRS in a few ways:</p>
-  <dl>
-    <dt>Primary</dt>
-    <dd>APRS doesn't have a way to broadcast a message to everyone on the network. Messages sent to the mesh's Primary Channel go to everyone.</dd>
-    <dt>Encryption</dt>
-    <dd>APRS is unencrypted because it is illegal to use encryption over ham radio. Both MeshCore and Meshtastic is encrypted for communications on private group channels and for direct messages between users, because it runs on the 900 MHz ISM band, which does not have restrictions on encryption.</dd>
-    <dt>License</dt>
-    <dd>APRS requires the user to have a ham radio license. Neither MeshCore or Meshtastic requires any license and is open for anyone to use.</dd>
-    <dt>Equipment Cost</dt>
-    <dd>APRS capable handheld ham radios cost upwards of $400. Some mesh radios cost less than $15.</dd>
-    <dt>Email</dt>
-    <dd>APRS has services which allow users to send emails and SMS text messages to people who aren't ham radio users. Meshtastic and Meshcore do not have this feature by default, but simple addons enable it.</dd>
-    <dt>Simplicity</dt>
-    <dd>APRS is quite a bit more difficult to use. APRS does not have any standardized user interface – there are dozens of software packages available. Both MeshCore and Meshtastic have a standardized iPhone and Android apps which are easy to understand for new users.</dd>
-  </dl>
-</section>

@@ -1,0 +1,295 @@
+---
+title: Austin Mesh Infrastructure Repeaters | Austin Mesh
+description: Status and details of the infrastructure repeaters that anchor the Austin Mesh network.
+---
+import { Image } from 'astro:assets';
+import independentCondos from '../../../assets/independent/independent-ne-wide.jpg';
+import congress111 from '../../../assets/infrastructure/111-congress.jpg';
+import springCondos from '../../../assets/infrastructure/spring.jpg';
+import utPMA from '../../../assets/infrastructure/ut-pma.jpg';
+import aisdHart from '../../../assets/aisd/hmli.jpg';
+import aisdGusGarcia from '../../../assets/aisd/gmli.jpg';
+import aisdLASA from '../../../assets/lasa/austin-mesh-liberal-arts-and-sciences-academy-1.webp';
+import wvarc from '../../../assets/infrastructure/wvarc.jpg';
+import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
+
+<hgroup>
+  <h1>Repeater Infrastructure</h1>
+  <p>An <b>infrastructure repeater</b> is a community-run node intended to provide persistent coverage to the Austin Mesh network. Below is the current list of primary sites, their operational status, and details on each install. If you'd like to build one yourself, see our <a href="/devices/#parts-list">parts list</a>; for individual build writeups see the <a href="/projects/">projects page</a>.</p>
+</hgroup>
+
+<section>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Site</th>
+          <th>Area</th>
+          <th>Tech</th>
+          <th>Power</th>
+          <th>Height (AGL)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><a href="#independent">Independent Condos</a></td>
+          <td>Downtown Austin</td>
+          <td>MeshCore</td>
+          <td>Solar</td>
+          <td>640'</td>
+        </tr>
+        <tr>
+          <td><a href="#spring">Google(coming soon)</a></td>
+          <td>Downtown Austin</td>
+          <td>MeshCore</td>
+          <td>Solar</td>
+          <td>510'</td>
+        </tr>
+        <tr>
+          <td><a href="#spring">Spring Condos</a></td>
+          <td>Downtown Austin</td>
+          <td>MeshCore</td>
+          <td>Solar</td>
+          <td>430'</td>
+        </tr>
+        <tr>
+          <td><a href="#111">111 Congress</a></td>
+          <td>Downtown Austin</td>
+          <td>MeshCore</td>
+          <td>Solar</td>
+          <td>240'</td>
+        </tr>
+        <tr>
+          <td><a href="#ut">UT PMA</a></td>
+          <td>UT Austin Campus</td>
+          <td>MeshCore</td>
+          <td>Solar</td>
+          <td>220'</td>
+        </tr>
+        <tr>
+          <td><a href="#wvarc">WVARC</a></td>
+          <td>Wimberley</td>
+          <td>MeshCore</td>
+          <td>Solar</td>
+          <td>60'</td>
+        </tr>
+        <tr>
+          <td><a href="#hart">AISD - Hart</a></td>
+          <td>Northeast Austin</td>
+          <td>Meshtastic</td>
+          <td>Solar</td>
+          <td>30'</td>
+        </tr>
+        <tr>
+          <td><a href="#gus-garcia">AISD - Gus Garcia</a></td>
+          <td>Northeast Austin</td>
+          <td>Meshtastic</td>
+          <td>Solar</td>
+          <td>30'</td>
+        </tr>
+        <tr>
+          <td><a href="#lbj">AISD - LBJ</a></td>
+          <td>Northeast Austin</td>
+          <td>Meshtastic</td>
+          <td>Solar</td>
+          <td>30'</td>
+        </tr>
+        <tr>
+          <td><a href="#lasa">AISD - LASA</a></td>
+          <td>East Austin</td>
+          <td>Meshtastic</td>
+          <td>Solar</td>
+          <td>30'</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2 id="sites-wanted">Sites Wanted</h2>
+  <p>If you have rooftop, tower, or hill-top access in one of these areas(or anywhere else with line-of-sight), reach out to <a href="mailto:info@austinmesh.org">info@austinmesh.org</a> or <a href="https://discord.gg/6a5Sv2s9bG">join Discord and tag @Tommy Ekstrand</a></p>
+  <ul>
+    <li><b>All antenna & water towers:</b> especially in connecting cities, Bastrop, Georgetown, Burnet, Temple, Marble Falls, Kyle/Buda, San Marcos, Lockhart, San Antonio, Blanco, Johnson City, Fredericksburg, Kerrville, Llano.</li>
+    <li><b>Any buildings or hilltops with 5+mi views:</b> while we want to grow the network wide, having in depth neighborhood coverage is critical especially during natural disasters.</li>
+    <li><b>ACC Pinnacle Campus:</b> 7748 Highway 290 W, Austin, TX 78736 - provides bridge from Austin to the Hill Country and coverage of much of South and West Austin.</li>
+    <li><b>Tower of the Hills / Chase Bank:</b> 13809 Research Blvd, Austin, TX 78750 - strong bridge between Austin/Cedar Park/Leander, plus provides direct coverage for much of North Austin.</li>
+    <li><b>The Domain:</b> Any taller buildings, specifically Domain Tower 2(10025 Alterra Pkwy, Austin, TX 78758), Domain 12(11800 Alterra Pkwy, Austin, TX 78758), or Domain 9(11624 Burnet Rd, Austin, TX 78758).</li>
+    <li><b>Bee Cave / Lakeway:</b> specifically Hill Country Galleria, Flint Rock Hill/Lake Travis High School, Round Mountain/Bella Montagna.</li>
+    <li><b>Pflugerville / Round Rock:</b> these are the two areas of most opportunity to expand coverage. We're looking for any businesses or land owners with rooftop or antenna access.</li>
+    <li><b>Bastrop:</b> The ridges near McKinney Roughs Nature Park or hills(like Lotman Hill) Northeast of Bastrop provide natural elevation that would connect to Austin. Antenna masts, roofs, and water towers are also key spots.</li>
+    <li><b>i35 Corridor:</b> There are other pockets of mesh networks to our South and North. Repeaters anywhere along i35 would help bridge the major population areas in Texas.</li>
+  </ul>
+</section>
+
+<section class="repeater-detail">
+  <h2 id="independent">Independent Condos</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Downtown Austin</dd>
+    <dt>Tech</dt>
+    <dd>MeshCore</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>640'</dd>
+    <dt>Description</dt>
+    <dd>The Independent Condos host 3 solar powered nodes. One of the East Northeast corner, one on the West Southwest corner, and one inbetween them to "bridge" because they can't directly see each other.</dd>
+    <dt>Hardware</dt>
+    <dd>[RAK4631](https://www.rfindex.com/mesh/devices/rak-rak19007-4631), [RAK Unify Solar Enclosure](https://store.rokland.com/products/rak-wireless-solar-unify-enclosure-ip67-150x100x45mm-pre-mounted-m8-5-pin-rp-sma-connector-pid-910421?ref=rfindex), [j-pole](https://amzn.to/4dTRkpI), [5dbi antenna](https://www.mouser.com/ProductDetail/Taoglas/TI.16.5F11?qs=L8NdhHdZHXx5ruumIU6KLQ%3D%3D) with [ground plane](https://amzn.to/4vo5EOH)</dd>
+  </dl>
+  <Image src={independentCondos} width={320} alt="Independent Condos repeater install" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="spring">Spring Condos</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Downtown Austin</dd>
+    <dt>Tech</dt>
+    <dd>MeshCore</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>430'</dd>
+    <dt>Description</dt>
+    <dd>The Spring Condos host one solar powered node with a 6dbi fiberglass antenna that covers much of South Austin including South Lamar, Town Lake, and Zilker Park.</dd>
+    <dt>Hardware</dt>
+    <dd>[RAK4631](https://www.rfindex.com/mesh/devices/rak-rak19007-4631), [RAK Unify Solar Enclosure](https://store.rokland.com/products/rak-wireless-solar-unify-enclosure-ip67-150x100x45mm-pre-mounted-m8-5-pin-rp-sma-connector-pid-910421?ref=rfindex), [6dbi antenna](https://www.rfindex.com/mesh/antennas/rokland-6dbi-low-profile)</dd>
+  </dl>
+  <Image src={springCondos} width={320} alt="Spring Condos repeater install" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="111">111 Congress</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Downtown Austin</dd>
+    <dt>Tech</dt>
+    <dd>MeshCore</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>240'</dd>
+    <dt>Description</dt>
+    <dd>111 Congress hosts 2 solar powered nodes, one on the Southeast corner and one on the Northwest corner.</dd>
+    <dt>Hardware</dt>
+    <dd>[SeeedStudio SenseCAP Solar P1-Pro](https://www.rfindex.com/mesh/devices/sensecap-solar-node-p1-pro)</dd>
+  </dl>
+  <Image src={congress111} width={320} alt="111 Congress repeater install" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="ut">UT PMA</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>UT Austin Campus</dd>
+    <dt>Tech</dt>
+    <dd>MeshCore</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>220'</dd>
+    <dt>Description</dt>
+    <dd>The Univertsity of Texas at Austin Physics, Math, and Astronomy building hosts 2 nodes. This site is home to lots of RF energy, and so it's node hosts a more powerful radio along with inline RF filtering.</dd>
+    <dt>Hardware</dt>
+    <dd>[Full list of hardware available on the project page](https://www.austinmesh.org/projects/ikoka-nano-meshcore-solar-repeater/)</dd>
+  </dl>
+  <Image src={utPMA} width={320} alt="UT Austin PMA repeater install" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="wvarc">WVARC</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Wimberley</dd>
+    <dt>Tech</dt>
+    <dd>MeshCore</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>60'</dd>
+    <dt>Description</dt>
+    <dd>The Wimberley Valley Amateur Radio Club(WVARC) hosts one solar repeater on a hilltop tower in Wimberley. It provides connection all the way to Southwest Austin, and even connects directly with The Independent Southwest node.</dd>
+    <dt>Hardware</dt>
+    <dd>[SeeedStudio SenseCAP Solar P1-Pro](https://www.rfindex.com/mesh/devices/sensecap-solar-node-p1-pro), [3dbi fiberglass antenna](https://www.rfindex.com/mesh/antennas/rak-3dbi-fiberglass)</dd>
+  </dl>
+  <Image src={wvarc} width={320} alt="WVARC MeshCore repeater on a tower in Wimberley, Texas" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="hart">AISD &mdash; Hart</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Northeast Austin</dd>
+    <dt>Tech</dt>
+    <dd>Meshtastic</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>30'</dd>
+    <dt>Description</dt>
+    <dd>Part of the AISD [Mesh Learning Initiative](/about/partners/#aisd-details), a STEM program created by teacher Raul Vallejo that introduces students in grades 4&ndash;12 to wireless mesh networking using Meshtastic.</dd>
+    <dt>Hardware</dt>
+    <dd>[DIY solar build](/devices/#parts-list)</dd>
+  </dl>
+  <Image src={aisdHart} width={320} alt="AISD Hart repeater install" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="gus-garcia">AISD &mdash; Gus Garcia</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Northeast Austin</dd>
+    <dt>Tech</dt>
+    <dd>Meshtastic</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>30'</dd>
+    <dt>Description</dt>
+    <dd>Part of the AISD [Mesh Learning Initiative](/about/partners/#aisd-details), a STEM program created by teacher Raul Vallejo that introduces students in grades 4&ndash;12 to wireless mesh networking using Meshtastic.</dd>
+    <dt>Hardware</dt>
+    <dd>[DIY solar build](/devices/#parts-list)</dd>
+  </dl>
+  <Image src={aisdGusGarcia} width={320} alt="AISD Gus Garcia repeater install" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="lbj">AISD &mdash; LBJ</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Northeast Austin</dd>
+    <dt>Tech</dt>
+    <dd>Meshtastic</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>30'</dd>
+    <dt>Description</dt>
+    <dd>Part of the AISD [Mesh Learning Initiative](/about/partners/#aisd-details), a STEM program created by teacher Raul Vallejo that introduces students in grades 4&ndash;12 to wireless mesh networking using Meshtastic.</dd>
+    <dt>Hardware</dt>
+    <dd>[DIY solar build](/devices/#parts-list)</dd>
+  </dl>
+   <Image src={aisdLbj} width={320} alt="A bunch of nodes for the AISD Mesh Learning Initiative around a classroom door" loading="lazy" /> 
+</section>
+
+<section class="repeater-detail">
+  <h2 id="lasa">AISD &mdash; LASA</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>East Austin</dd>
+    <dt>Tech</dt>
+    <dd>Meshtastic</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>30'</dd>
+    <dt>Description</dt>
+    <dd>Hosted on the LASA rooftop and graciously supported by the LASA Amateur Radio Club. The antenna and position change from time to time for experiments, but it consistently provides coverage for a significant portion of East, Southeast, and even parts of Southwest Austin. [More on the LASA partnership](/about/partners/#lasa-details).</dd>
+    <dt>Hardware</dt>
+    <dd>[DIY solar build](/devices/#parts-list)</dd>
+  </dl>
+  <Image src={aisdLASA} width={320} alt="AISD LASA repeater install" loading="lazy" />
+</section>
+

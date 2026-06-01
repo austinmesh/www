@@ -320,3 +320,31 @@ img.heltec-hero {
 figure.thumb-row img { width: 350px; height: auto; max-width: none; }
 figure.thumb-row a { line-height: 0; }
 figure.thumb-row a + a { margin-left: 0.5rem; }
+
+/* Per-site detail sections on /about/infrastructure/.
+   Mobile: stacks h2 -> dl -> image vertically.
+   Desktop (>=720px): h2 spans full width, dl on the left (1fr), image on the right (320px).
+   When no image is present yet, the dl spans the full width via :last-child. */
+.repeater-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    align-items: start;
+}
+@media (min-width: 720px) {
+    .repeater-detail {
+        grid-template-columns: 1fr 320px;
+    }
+}
+.repeater-detail > h2 {
+    grid-column: 1 / -1;
+    margin-bottom: 0;
+}
+.repeater-detail > dl:last-child {
+    grid-column: 1 / -1;
+}
+.repeater-detail img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
