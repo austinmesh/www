@@ -42,3 +42,6 @@ yarn-error.log*
 
 # Wrangler local state
 .wrangler/
+
+# AI stuff
+docs/*
