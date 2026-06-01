@@ -5,6 +5,8 @@
 /learn/kite-nodes-for-mesh-networking/   /projects/kite-nodes-for-mesh-networking/   301
 /about/meshcore-2-byte/                  /join/getting-started-meshcore/#2-byte-paths   301
 /learn/meshcore-2-byte/                  /join/getting-started-meshcore/#2-byte-paths   301
+/about/tuning-cavity-filter/             /projects/tuning-cavity-filter/                301
+/learn/tuning-cavity-filter/             /projects/tuning-cavity-filter/                301
 /t114                                    /projects/heltec-t114/                      301
 /t114/                                   /projects/heltec-t114/                      301
 /learn/*                                 /about/:splat                               301
