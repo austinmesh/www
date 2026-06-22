@@ -1,12 +1,12 @@
 {
   "hasEvent": true,
-  "id": "1488179408215736380",
+  "id": "1488180672572031146",
   "guildId": "1204595620204249138",
-  "name": "Northwest Meetup",
-  "description": "For our Northwest friends, this is at Anderson Mill/620",
-  "location": "Shooters Billiards & Sports Bar, 11416 Ranch Rd 620 N, Austin, TX 78726",
-  "startsAtIso": "2026-06-10T22:00:00Z",
-  "startsAtDisplay": "Wednesday, June 10, 2026, 5:00 PM CDT",
-  "startsAtShort": "6/10",
-  "link": "https://discord.com/events/1204595620204249138/1488179408215736380"
+  "name": "East Austin Meetup",
+  "description": "",
+  "location": "Haymaker, 2310 Manor Rd, Austin, TX 78722",
+  "startsAtIso": "2026-07-08T22:00:00+00:00",
+  "startsAtDisplay": "Wednesday, July 8, 2026 at 5:00 PM CDT",
+  "startsAtShort": "7/8",
+  "link": "https://discord.com/events/1204595620204249138/1488180672572031146"
 }
