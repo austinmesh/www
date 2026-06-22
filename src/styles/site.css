@@ -235,6 +235,29 @@ html { scroll-behavior: smooth; }
     }
 }
 
+/* Matcha only styles <button>/<input> as buttons, not anchors. Mirror its button look for
+   link-buttons marked with type="button" (the /join/ platform links, the event dialog's
+   "Save the date"). */
+a[type="button"] {
+    display: inline-block;
+    padding: .25rem .75rem;
+    border: 1px solid transparent;
+    border-radius: var(--bd-radius);
+    background: var(--color-primaryDark);
+    color: var(--color-canvasTextDarker);
+    text-decoration: none;
+    line-height: 1.5;
+    transition: background var(--tr-duration), color var(--tr-duration);
+    margin-bottom: 2rem;
+}
+a[type="button"]:hover,
+a[type="button"]:focus-visible {
+    background: var(--accent);
+}
+a[type="button"]:active {
+    filter: brightness(80%);
+}
+
 /* Astro <Image> emits explicit width+height attributes; without height:auto, flex parents
    (matcha's `article { display: flex }`) can stretch images and break aspect ratio. */
 main img:not(.hero-bg) {

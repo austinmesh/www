@@ -1,0 +1,41 @@
+---
+title: Bot Guidelines | Austin Mesh
+description: Guidelines for bots on the Austin Mesh network. Keep channels clear, stay independent, reduce congestion, and share sources.
+---
+
+# Bot Guidelines
+
+Bots are welcome on Austin Mesh. Weather stations, games, and utilities all add value. To create a network that can be cohabitated by humans and bots, we have put together some community guidelines. We fully acknowledge that in a decentralized network these guidelines are not enforceable. However, we respectfully ask that you follow them or discuss alternatives with the community before building around them.
+
+## TL;DR
+
+- **Most channels are for humans** while the _#bots_ channel is best for automations.
+- **Long interactions belong in DMs** rather than channels.
+- **Avoid internet dependencies** or make sure it has local fallback.
+- **Battery backup with solar** for anything useful when the grid may be down.
+- **Open source/source available** with documentation preferred.
+
+## Most channels are for humans
+
+We believe that the best experience on the network is talking to other humans. That doesn't mean that bots aren't incredibly valuable, but it does mean we prefer to keep interactions in dedicated channels. This allows humans to choose whether they're interacting with your bot, rather than it being forced on them by the bot or by other users.
+
+
+## Long interactions belong in DMs
+
+If your bot uses interaction chains that require or allow multiple messages back and forth between a human and a bot, we suggest you enable that functionality over DM. This is primarily because DMs can follow learned routes which reduces network congestion by avoiding flood routing. It also helps keep channels quieter for information only relevant to a single user.
+
+## Avoid internet dependencies
+
+We're trying to build a network that is independent of any existing infrastructure - that's why we emphasize solar powered repeaters and no internet gateways. Building a bot that queries your favorite weather service or uses an AI model running in the Cloud is really cool, but whenever possible prefer local functionality. Consider installing your own environmental sensors, listening for weather data using an RTL-SDR, use a local LLM, and _always_ have a fallback if the internet is unavailable.
+
+## Battery backup with solar
+
+If your bot provides a service that could be useful if the power grid or internet is out, consider running the bot on a computer powered by a backup battery connected to solar.
+
+## Open source/source available
+
+We're an open source community. This website and any other apps Austin Mesh officially uses are all available on our [GitHub](https://github.com/austinmesh) for anyone to see and use. Given the privacy centric nature of the mesh, we **strongly** recommend you make the source for your bot available. This allows users to audit your code for security and privacy vulnerabilities.
+
+## Questions?
+
+Not sure whether your bot fits these guidelines? [Join the #software channel in our Discord server](https://discord.gg/6a5Sv2s9bG) to chat with the community or send us an email!
