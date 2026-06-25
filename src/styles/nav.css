@@ -142,5 +142,10 @@ menu > li:has(> menu)::after {
     display: inline-block;
 }
 menu > li > a > :is(img, svg) {
-    vertical-align: middle;
+    vertical-align: center;
+}
+
+.icon--external {
+    margin-left: 0.15em;
+    opacity: 0.7;
 }

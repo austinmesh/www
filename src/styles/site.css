@@ -1,5 +1,6 @@
 :root {
     --bg-default: #fcfcfc;
+    --light-bg-muted: #e2e9ef;
     --color-canvasBorder: #565764;
     --color-canvasDark: #e3e3e3;
     --color-canvasDarker: #cacaca;
@@ -15,6 +16,7 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --bg-default: #2C2D3C;
+    --dark-bg-muted: #1e252e;
     --color-canvasDark: #1f2031;
     --color-canvasDarker: #232430;
     --color-canvasText: #fff;

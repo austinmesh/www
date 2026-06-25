@@ -3,6 +3,8 @@ import DiscordIcon from '../assets/social/discord.svg';
 import YouTubeIcon from '../assets/social/youtube.svg';
 import InstagramIcon from '../assets/social/instagram.svg';
 import GitHubIcon from '../assets/social/github.svg';
+import ExternalLinkIcon from '../assets/social/external-link.svg';
+import SearchIcon from '../assets/social/search.svg';
 import '../styles/nav.css';
 ---
 <nav data-pagefind-ignore="all">
@@ -11,18 +13,6 @@ import '../styles/nav.css';
   </details>
   <menu class="menu--main">
     <li><a href="/">Home</a></li>
-    <li>
-      <a href="/about/">About</a>
-      <menu>
-        <li><a href="/about/#about">About Austin Mesh</a></li>
-        <li><a href="/about/partners/">Community Partners</a></li>
-        <li><a href="/about/property-owner-faq-hosting-a-node/">Property Owner FAQ</a></li>
-        <li><a href="/about/infrastructure/">Network Infrastructure</a></li>
-        <li><a href="/about/mesh-technology/">Mesh Technology</a></li>
-        <li><a href="/about/meshcore-vs-meshtastic/">MeshCore vs Meshtastic</a></li>
-        <li><a href="/about/similar-networks/">Similar Networks</a></li>
-      </menu>
-    </li>
     <li>
       <a href="/join/">Join</a>
       <menu>
@@ -38,11 +28,25 @@ import '../styles/nav.css';
       <menu>
         <li><a href="/devices/#options">Suggested Hardware</a></li>
         <li><a href="/devices/#solar">DIY Solar Repeaters</a></li>
+        <li><a href="https://www.rfindex.com/mesh/devices" target="_blank" rel="noopener">Compare Devices <ExternalLinkIcon class="icon--external" height={14} aria-hidden="true" /></a></li>
+        <li><a href="https://www.rfindex.com/mesh/antennas" target="_blank" rel="noopener">Compare Antennas <ExternalLinkIcon class="icon--external" height={14} aria-hidden="true" /></a></li>
         <li><a href="/devices/#aerial">Aerial Nodes</a></li>
       </menu>
     </li>
     <li><a href="/projects/">Projects</a></li>
-    <li><a href="/search/">Search</a></li>
+    <li>
+      <a href="/about/">About</a>
+      <menu>
+        <li><a href="/about/#about">About Austin Mesh</a></li>
+        <li><a href="/about/partners/">Community Partners</a></li>
+        <li><a href="/about/property-owner-faq-hosting-a-node/">Property Owner FAQ</a></li>
+        <li><a href="/about/infrastructure/">Network Infrastructure</a></li>
+        <li><a href="/about/mesh-technology/">Mesh Technology</a></li>
+        <li><a href="/about/meshcore-vs-meshtastic/">MeshCore vs Meshtastic</a></li>
+        <li><a href="/about/similar-networks/">Similar Networks</a></li>
+      </menu>
+    </li>
+    <li><a href="/search/" aria-label="Search"><SearchIcon class="icon--search" height={18} aria-hidden="true" /></a></li>
   </menu>
   <menu class="menu--social">
     <li>
