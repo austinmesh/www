@@ -1,17 +1,19 @@
 ---
 title: Austin Mesh Infrastructure Repeaters | Austin Mesh
 description: Status and details of the infrastructure repeaters that anchor the Austin Mesh network.
+lastVerified: 2026-07-09
 ---
 import { Image } from 'astro:assets';
-import independentCondos from '../../../assets/independent/independent-ne-wide.jpg';
+import a300 from '../../../assets/infrastructure/automotive-specialists-a300-repeater.jpg';
+import aisdGusGarcia from '../../../assets/aisd/gmli.jpg';
+import aisdHart from '../../../assets/aisd/hmli.jpg';
+import aisdLASA from '../../../assets/lasa/austin-mesh-liberal-arts-and-sciences-academy-1.webp';
+import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
 import congress111 from '../../../assets/infrastructure/111-congress.jpg';
+import independentCondos from '../../../assets/independent/independent-ne-wide.jpg';
 import springCondos from '../../../assets/infrastructure/spring.jpg';
 import utPMA from '../../../assets/infrastructure/ut-pma.jpg';
-import aisdHart from '../../../assets/aisd/hmli.jpg';
-import aisdGusGarcia from '../../../assets/aisd/gmli.jpg';
-import aisdLASA from '../../../assets/lasa/austin-mesh-liberal-arts-and-sciences-academy-1.webp';
 import wvarc from '../../../assets/infrastructure/wvarc.jpg';
-import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
 
 <hgroup>
   <h1>Repeater Infrastructure</h1>
@@ -28,6 +30,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <th>Tech</th>
           <th>Power</th>
           <th>Height (AGL)</th>
+          <th>Hash</th>
         </tr>
       </thead>
       <tbody>
@@ -37,6 +40,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>MeshCore</td>
           <td>Solar</td>
           <td>640'</td>
+          <td>2A39, DA1C, A102</td>
         </tr>
         <tr>
           <td>Google(coming soon)</td>
@@ -44,6 +48,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>MeshCore</td>
           <td>Solar</td>
           <td>510'</td>
+          <td></td>
         </tr>
         <tr>
           <td><a href="#spring">Spring Condos</a></td>
@@ -51,6 +56,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>MeshCore</td>
           <td>Solar</td>
           <td>430'</td>
+          <td>A200</td>
         </tr>
         <tr>
           <td><a href="#111">111 Congress</a></td>
@@ -58,6 +64,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>MeshCore</td>
           <td>Solar</td>
           <td>240'</td>
+          <td>07D3, 6D0D</td>
         </tr>
         <tr>
           <td><a href="#ut">UT PMA</a></td>
@@ -65,6 +72,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>MeshCore</td>
           <td>Solar</td>
           <td>220'</td>
+          <td>78CF, C026</td>
         </tr>
         <tr>
           <td><a href="#wvarc">WVARC</a></td>
@@ -72,6 +80,15 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>MeshCore</td>
           <td>Solar</td>
           <td>60'</td>
+          <td>9877</td>
+        </tr>
+        <tr>
+          <td><a href="#auto-specialists">Automotive Specialists</a></td>
+          <td>Wimberley</td>
+          <td>MeshCore</td>
+          <td>Solar</td>
+          <td>60'</td>
+          <td>A300</td>
         </tr>
         <tr>
           <td><a href="#hart">AISD - Hart</a></td>
@@ -79,6 +96,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>Meshtastic</td>
           <td>Solar</td>
           <td>30'</td>
+          <td></td>
         </tr>
         <tr>
           <td><a href="#gus-garcia">AISD - Gus Garcia</a></td>
@@ -86,6 +104,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>Meshtastic</td>
           <td>Solar</td>
           <td>30'</td>
+          <td></td>
         </tr>
         <tr>
           <td><a href="#lbj">AISD - LBJ</a></td>
@@ -93,6 +112,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>Meshtastic</td>
           <td>Solar</td>
           <td>30'</td>
+          <td></td>
         </tr>
         <tr>
           <td><a href="#lasa">AISD - LASA</a></td>
@@ -100,6 +120,7 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
           <td>Meshtastic</td>
           <td>Solar</td>
           <td>30'</td>
+          <td></td>
         </tr>
       </tbody>
     </table>
@@ -215,6 +236,25 @@ import aisdLbj from '../../../assets/aisd/aisd-mli-1.jpg';
     <dd>[SeeedStudio SenseCAP Solar P1-Pro](https://www.rfindex.com/mesh/devices/sensecap-solar-node-p1-pro), [3dbi fiberglass antenna](https://www.rfindex.com/mesh/antennas/rak-3dbi-fiberglass)</dd>
   </dl>
   <Image src={wvarc} width={320} alt="WVARC MeshCore repeater on a tower in Wimberley, Texas" loading="lazy" />
+</section>
+
+<section class="repeater-detail">
+  <h2 id="auto-specialists">Automotive Specialists</h2>
+  <dl>
+    <dt>Area</dt>
+    <dd>Oak Hill</dd>
+    <dt>Tech</dt>
+    <dd>MeshCore</dd>
+    <dt>Power</dt>
+    <dd>Solar</dd>
+    <dt>Height (AGL)</dt>
+    <dd>42'</dd>
+    <dt>Description</dt>
+    <dd>The Automotive Specialists repeater(most often referred to as A300) is mounted on top of a 10m garage in Oak Hill. The owner of the business, Leslie, is an extremely friendly man who is supportive of his community and their communication. It was installed in June of 2026.</dd>
+    <dt>Hardware</dt>
+    <dd>[Ikoka Nano](https://www.rfindex.com/mesh/devices/ikoka-nano), WeHooper filter, [Rokland Low-Profile 6dBi](https://www.rfindex.com/mesh/antennas/rokland-6dbi-low-profile), [Voltaic Systems V25 Battery](https://amzn.to/4lpljJp), and an unknown 10w solar panel.</dd>
+  </dl>
+  <Image src={a300} width={320} alt="Rooftop of Automotive Specialists in Oak Hill with a MeshCore LoRa solar repeater on a 10' pole" loading="lazy" />
 </section>
 
 <section class="repeater-detail">
