@@ -1,12 +1,12 @@
 {
   "hasEvent": true,
-  "id": "1488180672572031146",
+  "id": "1488181383296975030",
   "guildId": "1204595620204249138",
-  "name": "East Austin Meetup",
-  "description": "",
-  "location": "Haymaker, 2310 Manor Rd, Austin, TX 78722",
-  "startsAtIso": "2026-07-08T22:00:00+00:00",
-  "startsAtDisplay": "Wednesday, July 8, 2026 at 5:00 PM CDT",
-  "startsAtShort": "7/8",
-  "link": "https://discord.com/events/1204595620204249138/1488180672572031146"
+  "name": "O.G. Meetup",
+  "description": "Come hang out on South Lamar at the spot where it all started.",
+  "location": "Blacksheep Lodge, 2108 S Lamar Blvd, Austin, TX 78704",
+  "startsAtIso": "2026-08-05T22:00:00+00:00",
+  "startsAtDisplay": "Wednesday, August 5, 2026 at 5:00 PM CDT",
+  "startsAtShort": "8/5",
+  "link": "https://discord.com/events/1204595620204249138/1488181383296975030"
 }
