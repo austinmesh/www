@@ -12,6 +12,7 @@ const pages = defineCollection({
       eventDialog: z.boolean().default(true),
       pagefind: z.boolean().default(true),
       publishedAt: z.coerce.date().optional(),
+      lastVerified: z.coerce.date().optional(),
     }),
 });
 
@@ -30,6 +31,7 @@ const projects = defineCollection({
       eventDialog: z.boolean().default(true),
       pagefind: z.boolean().default(true),
       publishedAt: z.coerce.date().optional(),
+      lastVerified: z.coerce.date().optional(),
     }),
 });
 

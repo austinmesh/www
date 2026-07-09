@@ -279,6 +279,13 @@ dialog#event {
     text-align: left;
 }
 
+.last-verified {
+    color: light-dark(#777, #999);
+    font-size: 0.85rem;
+    text-align: center;
+    margin-top: 2.5rem;
+}
+
 .project-grid {
     list-style: none;
     padding: 0;

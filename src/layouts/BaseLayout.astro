@@ -15,6 +15,7 @@ interface Frontmatter {
   canonical?: string;
   eventDialog?: boolean;
   pagefind?: boolean;
+  lastVerified?: Date;
 }
 interface Props {
   frontmatter: Frontmatter;
@@ -29,7 +30,14 @@ const {
   canonical,
   eventDialog = true,
   pagefind = true,
+  lastVerified,
 } = frontmatter;
+
+// Frontmatter dates parse as UTC midnight; format in UTC so the displayed
+// day doesn't shift back by one in western timezones.
+const lastVerifiedDisplay = lastVerified
+  ? new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(lastVerified)
+  : undefined;
 
 const ogSource = ogImage ?? defaultOg;
 const ogProcessed = await getImage({
@@ -79,6 +87,11 @@ const isPreview = branch !== undefined && branch !== 'main';
     <main {...(pagefind ? { 'data-pagefind-body': '' } : {})}>
       <Nav />
       <slot />
+      {lastVerifiedDisplay && (
+        <p class="last-verified" data-pagefind-ignore="all">
+          The content of this page was last verified on <time datetime={lastVerified!.toISOString().slice(0, 10)}>{lastVerifiedDisplay}</time>
+        </p>
+      )}
       <SiteFooter />
     </main>
   </body>
