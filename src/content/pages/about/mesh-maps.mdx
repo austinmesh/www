@@ -1,0 +1,160 @@
+---
+title: Mesh Maps & Mapping Tools | Austin Mesh
+description: A comparison of the mapping tools individuals and mesh communities can run for their own mesh, covering MeshCore and Meshtastic, self-hosted and hosted.
+lastVerified: 2026-07-11
+---
+
+<section id="mesh-maps">
+  <hgroup>
+    <h1>Mesh maps &amp; mapping tools</h1>
+    <p>Mesh mapping tools are the new hottness. I am reminded of the [XKCD Standards Comic](https://xkcd.com/927/) whenever people bring these up. This page is an attempt to cover the topic as of July, 2026, which will predictably be out of date almost immediately, if not sooner.</p>
+  </hgroup>
+
+  This page is going to focus on tools an individual or a community can adopt to map **their own mesh** — either by self-hosting software or by plugging local observers into a hosted platform.
+
+  A caveat for all mapping: **no complete map exists**. Nodes only appear when operators opt in or when reporters are added to a local area.
+</section>
+
+<section id="comparison">
+  <h2>Quick comparison</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tool</th>
+        <th>Tech</th>
+        <th>Hosting</th>
+        <th>Data source</th>
+        <th>Open source</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><a href="#corescope">CoreScope</a></td>
+        <td>MeshCore</td>
+        <td>Self-hosted (Docker)</td>
+        <td>MQTT</td>
+        <td>Yes (GPL-3.0)</td>
+      </tr>
+      <tr>
+        <td><a href="#mesh-live-map">Mesh Live Map</a></td>
+        <td>MeshCore</td>
+        <td>Self-hosted (Docker)</td>
+        <td>MQTT</td>
+        <td>Yes (GPL-3.0)</td>
+      </tr>
+      <tr>
+        <td><a href="#meshcore-hub">MeshCore Hub</a></td>
+        <td>MeshCore</td>
+        <td>Self-hosted (Docker)</td>
+        <td>MQTT</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#meshexplorer">MeshExplorer</a></td>
+        <td>MeshCore</td>
+        <td>Self-hosted, or add your region to the hosted instance</td>
+        <td>MQTT</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#letsmesh">LetsMesh</a></td>
+        <td>MeshCore</td>
+        <td>Hosted: you onboard observers</td>
+        <td>MQTT</td>
+        <td>Partial</td>
+      </tr>
+      <tr>
+        <td><a href="#waev">Waev</a></td>
+        <td>MeshCore</td>
+        <td>Hosted: you enroll observers</td>
+        <td>MQTT</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td><a href="#meshmapper">MeshMapper</a></td>
+        <td>MeshCore</td>
+        <td>Hosted: regional map instances</td>
+        <td>MQTT</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td><a href="#meshomatic">MeshOMatic</a></td>
+        <td>MeshCore</td>
+        <td>Hosted: free for communities</td>
+        <td>MQTT</td>
+        <td>No</td>
+      </tr>
+      <tr>
+        <td><a href="#potatomesh">PotatoMesh</a></td>
+        <td>Both</td>
+        <td>Self-hosted, federated</td>
+        <td>Local Radio</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#meshmonitor">MeshMonitor</a></td>
+        <td>Both</td>
+        <td>Self-hosted (Docker)</td>
+        <td>Local Radio + MQTT</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#meshview">Meshview</a></td>
+        <td>Meshtastic</td>
+        <td>Self-hosted</td>
+        <td>MQTT</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#meshinfo">MeshInfo</a></td>
+        <td>Meshtastic</td>
+        <td>Self-hosted (Docker)</td>
+        <td>MQTT</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#malla">Malla</a></td>
+        <td>Meshtastic</td>
+        <td>Self-hosted</td>
+        <td>MQTT</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#meshtastic-map">Meshtastic Map</a></td>
+        <td>Meshtastic</td>
+        <td>Self-hosted</td>
+        <td>MQTT</td>
+        <td>Yes</td>
+      </tr>
+      <tr>
+        <td><a href="#meshsense">MeshSense</a></td>
+        <td>Meshtastic</td>
+        <td>Desktop app or headless server</td>
+        <td>Local Radio</td>
+        <td>Yes</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="tools">
+  <h2>The tools</h2>
+
+  - <span id="corescope">**CoreScope**</span>: A MeshCore network analyzer that runs as a single Docker container. The main feature is a live map that traces packet routes across the mesh and can replay the last 24 hours, but it also does packet feeds, node health monitoring, and analytics. [GitHub](https://github.com/Kpa-clawbot/CoreScope)
+  - <span id="mesh-live-map">**Mesh Live Map**</span>: Real-time node markers, animated route traces with hop-by-hop detail, 24-hour history, a line-of-sight tool with elevation profiles, and weather overlays. Point it at any MeshCore MQTT feed. [GitHub](https://github.com/yellowcooln/meshcore-mqtt-live-map)
+  - <span id="meshcore-hub">**MeshCore Hub**</span>: An MQTT collector, REST API, and web dashboard showing network status, node locations, and message history. [GitHub](https://github.com/ipnet-mesh/meshcore-hub)
+  - <span id="meshexplorer">**MeshExplorer**</span>: An open-source live map, chat viewer, and packet analyzer fed by MQTT-uplinked nodes. It can show the path each message took through the mesh. The hosted instance covers the Puget Sound mesh in Seattle, but you can self-host it against any region's MQTT feed. [Website](https://map.w0z.is/) · [GitHub](https://github.com/ajvpot/meshexplorer)
+  - <span id="letsmesh">**LetsMesh**</span>: A hosted real-time packet analyzer with a live global node map plus packets, channels, nodes, and traces views. Data comes from volunteer "observers" (MQTT-connected nodes) that report the packets they hear; a mesh puts itself on the map by onboarding observers. The web app is closed source, but its decoder and broker components are open. [Website](https://analyzer.letsmesh.net/) · [Observer Onboarding](https://analyzer.letsmesh.net/observer/onboard)
+  - <span id="waev">**Waev**</span>: A hosted real-time telemetry and analytics platform with a live map, packet stream, and network stats, also fed by volunteer observers you enroll. Nodes and links are only drawn when confirmed by actual RF observations, and it can subscribe read-only to a broker your community hosts. Personal devices are anonymized and any node named with a ⛔ 🛑 🚫 emoji is excluded entirely. Closed source. [Website](https://waev.app/)
+  - <span id="meshmapper">**MeshMapper**</span>: Focuses on where you can actually get a message through, not just where the nodes are. Phone apps send GPS-tagged pings while you drive, observers confirm what the mesh heard, and regional map instances plot the results from green(two-way) to red(nothing heard). Closed source. [Website](https://meshmapper.net/)
+  - <span id="meshomatic">**MeshOMatic**</span>: A MeshCore planning tool that predicts coverage from terrain data, then calibrates those predictions with real observations from the mesh. Helpful for picking repeater sites and finding gaps in coverage. Freemium model, closed source. [Website](https://map.meshomatic.net/)
+  - <span id="potatomesh">**PotatoMesh**</span>: A federated Meshtastic and MeshCore dashboard for local communities. Deliberately no MQTT: ingestors attached to your own radios feed a combined map and chat view with positions, neighbors, traceroutes, and telemetry. Instances automatically federate with other communities running PotatoMesh. [GitHub](https://github.com/l5yth/potato-mesh) · [Demo](https://potatomesh.net/)
+  - <span id="meshmonitor">**MeshMonitor**</span>: Monitors Meshtastic(TCP/serial/BLE), MeshCore(USB/TCP), and MQTT sources from one dashboard with unified maps. [Website](https://meshmonitor.org/) · [GitHub](https://github.com/Yeraze/meshmonitor)
+  - <span id="meshview">**Meshview**</span>: Watches an MQTT topic and serves a node map, chat, traceroutes, telemetry, and reliability reports, plus a predicted coverage overlay. [GitHub](https://github.com/pablorevilla-meshtastic/meshview)
+  - <span id="meshinfo">**MeshInfo**</span>: Realtime map, chat, network graph, and RF coverage prediction based on real terrain data. A lighter version, MeshInfo-Lite, is also maintained. [GitHub](https://github.com/MeshAddicts/meshinfo) · [MeshInfo-Lite GitHub](https://github.com/dadecoza/meshinfo-lite)
+  - <span id="malla">**Malla**</span>: A map plus detailed packet analysis: a packet browser with filtering and export, a network graph, traceroute history, and hop analysis. [GitHub](https://github.com/zenitraM/malla)
+  - <span id="meshtastic-map">**Meshtastic Map**</span>: The open-source software behind meshtastic.liamcottle.net. [Website](https://meshtastic.liamcottle.net/) · [GitHub](https://github.com/liamcottle/meshtastic-map)
+  - <span id="meshsense">**MeshSense**</span>: An open-source app that maps and monitors your area's Meshtastic network by talking directly to one of your nodes over Bluetooth or WiFi, no MQTT involved. It runs as a desktop app or headless on a server, which is how communities run always-on public instances. [Website](https://affirmatech.com/meshsense) · [GitHub](https://github.com/Affirmatech/MeshSense)
+</section>
+
+Know of a mapping tool we missed? Open a PR on [austinmesh.org's repo](https://github.com/austinmesh/www) or ping us on Discord.
