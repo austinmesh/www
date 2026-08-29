@@ -1,12 +1,12 @@
 {
   "hasEvent": true,
-  "id": "1488181383296975030",
+  "id": "1543399105030656135",
   "guildId": "1204595620204249138",
-  "name": "O.G. Meetup",
-  "description": "Come hang out on South Lamar at the spot where it all started.",
-  "location": "Blacksheep Lodge, 2108 S Lamar Blvd, Austin, TX 78704",
-  "startsAtIso": "2026-08-05T22:00:00+00:00",
-  "startsAtDisplay": "Wednesday, August 5, 2026 at 5:00 PM CDT",
-  "startsAtShort": "8/5",
-  "link": "https://discord.com/events/1204595620204249138/1488181383296975030"
+  "name": "Monthly mesh hang",
+  "description": "Everyone is welcome, we'll hang out and talk radios, mesh, and have some food and drink.",
+  "location": "Black Sheep Lodge, 2108 S Lamar Blvd, Austin, TX 78704",
+  "startsAtIso": "2026-09-21T23:00:00+00:00",
+  "startsAtDisplay": "Monday, September 21, 2026 at 6:00 PM CDT",
+  "startsAtShort": "9/21",
+  "link": "https://discord.com/events/1204595620204249138/1543399105030656135"
 }
