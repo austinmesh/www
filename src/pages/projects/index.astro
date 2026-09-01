@@ -30,7 +30,7 @@ const frontmatter = {
     <ul class="project-grid">
       {sorted.map((project) => (
         <li>
-          <a href={`/projects/${project.slug}/`}>
+          <a href={`/projects/${project.id}/`}>
             <Image
               src={project.data.thumbnail}
               alt={project.data.thumbnailAlt}

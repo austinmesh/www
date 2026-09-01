@@ -14,9 +14,9 @@
     "deploy:preview": "npm run build && wrangler versions upload"
   },
   "dependencies": {
-    "@astrojs/mdx": "^4.0.0",
-    "@astrojs/sitemap": "^3.2.0",
-    "astro": "^5.0.0",
+    "@astrojs/mdx": "^8.0.0",
+    "@astrojs/sitemap": "^3.7.4",
+    "astro": "^7.2.10",
     "sharp": "^0.34.0"
   },
   "devDependencies": {
