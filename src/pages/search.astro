@@ -9,7 +9,7 @@ const frontmatter = {
 ---
 <BaseLayout frontmatter={frontmatter}>
   <h1>Search</h1>
-  <form role="search" onsubmit="return false;">
+  <form role="search">
     <input
       id="q"
       type="search"
@@ -26,6 +26,10 @@ const frontmatter = {
     const input = document.getElementById('q');
     const status = document.getElementById('status');
     const list = document.getElementById('results');
+
+    // Results render live as you type, so submitting would only reload the page.
+    // Bound here rather than as an inline onsubmit= so it stays type-checkable.
+    input.form.addEventListener('submit', (e) => e.preventDefault());
     let pagefind = null;
     let pending = 0;
     let debounceTimer = null;

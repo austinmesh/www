@@ -105,11 +105,9 @@ where something could still look off:
 
 ## Deferred / not done
 
-- **`astro check` was not run.** It is not a project dependency and invoking it
-  prompts to install `@astrojs/check` + `typescript`. I did not add dependencies
-  without asking. The runtime build and a direct `z.url()` unit check both pass;
-  if you want static type coverage, `npm i -D @astrojs/check typescript` and add a
-  `check` script.
+- ~~`astro check` was not run.~~ **Done** — `@astrojs/check` + `typescript` were
+  added and the project now reports **0 errors, 0 warnings, 0 hints** across 13
+  files. Two fixes were needed; see "Type-check fixes" below.
 - **Local Node is v22.23.2**, which satisfies Astro's `>=22.12.0` but *violates
   this repo's own* `engines.node: ">=24.0.0"` and `.nvmrc` (`24`). CI is fine
   (`NODE_VERSION=24` in Workers Builds). Worth an `nvm use` locally, or relaxing
@@ -123,6 +121,52 @@ where something could still look off:
   `<Hero fetchpriority="high" …>` but `Hero.astro` only declares `alt` in its
   `Props`, so the attribute is silently dropped and the hero `<Picture>` never
   gets it. Also pre-existing, and an easy LCP win if you want it.
+
+## Type-check fixes
+
+`astro check` surfaced two problems, both introduced or exposed by this upgrade.
+
+**1. `commonFields()` had a hand-written image type (2 errors).** I had annotated
+the helper's parameter as `() => ReturnType<typeof z.custom<ImageMetadata>>`,
+which is not what Astro's schema context actually passes. Under Zod 4 the real
+`ImageFunction` returns a `ZodObject`, not a `ZodCustom`, so the two types were
+structurally incompatible.
+
+`SchemaContext` / `ImageFunction` are **not** re-exported through the
+`astro:content` virtual module — they only exist in
+`astro/dist/content/config.d.ts`, which is an internal path I did not want to
+import. Instead the helper is now generic over the image schema:
+
+```ts
+const commonFields = <T extends z.ZodType>(image: () => T) => ({ ... })
+```
+
+It no longer asserts any shape, so the collection's inferred `ImageMetadata` type
+flows through untouched.
+
+**2. `onsubmit="return false;"` on the search form (2 hints).** TypeScript
+analyses an inline handler's body in a synthetic scope, sees a top-level
+`return`, and marks the entire rest of the file unreachable — which is why both
+`ts(7027)` hints pointed at unrelated code in the Pagefind script. Confirmed by
+removing the attribute and re-running check (2 hints → 0).
+
+Switching to `onsubmit="event.preventDefault()"` traded it for `ts(6385)`
+("'event' is deprecated"), because TS resolves the implicit handler parameter to
+the deprecated `window.event` global.
+
+The fix was to drop the attribute and bind the listener inside the inline script
+the page **already ships**:
+
+```js
+input.form.addEventListener('submit', (e) => e.preventDefault());
+```
+
+No new script tag, no new JS file, and the event-dialog's intentional inline
+`onclick` is untouched — so the CLAUDE.md client-JS constraint still holds. One
+behavioral nuance worth knowing: the attribute suppressed submission from parse
+time, whereas the listener binds when the inline script runs. The script sits
+immediately after the form and executes during parse, so the gap is not
+reachable by a user, but it is no longer *structurally* impossible.
 
 ## Build timings
 

@@ -3,8 +3,10 @@ import { glob } from 'astro/loaders';
 import { z } from 'astro/zod';
 
 // Shared across both collections. `image` comes from the schema context, so the
-// common fields are a factory rather than a plain object.
-const commonFields = (image: () => ReturnType<typeof z.custom<ImageMetadata>>) => ({
+// common fields are a factory rather than a plain object. It stays generic over
+// the image schema so the collection's inferred `ImageMetadata` type flows
+// through untouched, rather than being pinned to a hand-written stand-in.
+const commonFields = <T extends z.ZodType>(image: () => T) => ({
   title: z.string(),
   description: z.string(),
   ogImage: image().optional(),

@@ -14,10 +14,12 @@
     "deploy:preview": "npm run build && wrangler versions upload"
   },
   "dependencies": {
+    "@astrojs/check": "^0.9.10",
     "@astrojs/mdx": "^8.0.0",
     "@astrojs/sitemap": "^3.7.4",
     "astro": "^7.2.10",
-    "sharp": "^0.34.0"
+    "sharp": "^0.34.0",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "pagefind": "^1.1.0",
