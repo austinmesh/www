@@ -99,6 +99,11 @@ nav {
     background: transparent;
     opacity: 1;
 }
+menu > li:has(> menu)::after {
+    content: "▾";
+    display: inline-block;
+}
+
 /* The "▾" hint is redundant when submenus are expanded inline, and matcha's
    ::after would land after the now-in-flow submenu. Restored at 544px. */
 .menu--main li:has(> menu)::after {
@@ -137,10 +142,6 @@ nav {
     }
 }
 
-menu > li:has(> menu)::after {
-    content: "▾";
-    display: inline-block;
-}
 menu > li > a > :is(img, svg) {
     vertical-align: center;
 }

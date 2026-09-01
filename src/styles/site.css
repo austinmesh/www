@@ -38,12 +38,18 @@ body > header {
 }
 .meet-button {
     background: var(--default);
-    border-color: transparent !important;
     color: var(--contrast);
     margin-bottom: 20px;
     opacity: 0;
     transform: translateX(100px);
     animation: meet-button-in 1s ease 100ms forwards;
+}
+/* matcha's `button:is(.default,...)` sets border-color:currentColor at (0,1,1), which
+   outranks a bare `.meet-button`. Match that specificity (site.css loads after matcha)
+   instead of reaching for !important. Kept separate so the plain `.meet-button` rules in
+   the media queries below still win on source order. */
+button.meet-button {
+    border-color: transparent;
 }
 @keyframes meet-button-in {
     to { opacity: 1; transform: translateX(0); }
@@ -68,10 +74,16 @@ main {
     max-width: 900px;
 }
 footer {
-    margin: 0 auto !important;
+    margin: 0 auto;
     max-width: 900px;
     text-align: center;
     color: light-dark(#777, #999);
+}
+/* matcha's `dialog>footer:last-child` sets margin:0 -1rem at (0,1,2), which outranks the
+   bare `footer` above. Match it so the event dialog's footer keeps the centered layout it
+   has today (the old !important on `footer` was what forced this). */
+dialog > footer:last-child {
+    margin: 0 auto;
 }
 .hero {
     position: relative;

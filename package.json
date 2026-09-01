@@ -10,6 +10,7 @@
     "postbuild": "pagefind --site dist",
     "preview": "astro preview",
     "astro": "astro",
+    "lint": "biome lint",
     "deploy": "npm run build && wrangler deploy",
     "deploy:preview": "npm run build && wrangler versions upload"
   },
@@ -22,6 +23,7 @@
     "typescript": "^6.0.3"
   },
   "devDependencies": {
+    "@biomejs/biome": "2.5.11",
     "pagefind": "^1.1.0",
     "wrangler": "^4.0.0"
   },

@@ -6,7 +6,12 @@
 		"useIgnoreFile": true
 	},
 	"files": {
-		"includes": ["**", "!!**/dist"]
+		"includes": [
+			"**",
+			"!!**/dist",
+			"!!**/matcha.min.css",
+			"!src/assets/**/*.svg"
+		]
 	},
 	"formatter": {
 		"enabled": true,
@@ -15,7 +20,10 @@
 	"linter": {
 		"enabled": true,
 		"rules": {
-			"preset": "recommended"
+			"preset": "recommended",
+			"style": {
+				"noDescendingSpecificity": "off"
+			}
 		}
 	},
 	"javascript": {
@@ -30,5 +38,18 @@
 				"organizeImports": "on"
 			}
 		}
-	}
+	},
+	"overrides": [
+		{
+			"includes": ["**/*.astro"],
+			"linter": {
+				"rules": {
+					"correctness": {
+						"noUnusedVariables": "off",
+						"noUnusedImports": "off"
+					}
+				}
+			}
+		}
+	]
 }
