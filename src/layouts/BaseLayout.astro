@@ -3,9 +3,9 @@ import '../styles/matcha.min.css';
 import '../styles/site.css';
 import { getImage } from 'astro:assets';
 import defaultOg from '../assets/hero/austin-mesh-wildflower-center-large.webp';
-import SiteHeader from '../components/SiteHeader.astro';
-import SiteFooter from '../components/SiteFooter.astro';
 import Nav from '../components/Nav.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
 
 interface Frontmatter {
   title: string;
@@ -36,7 +36,10 @@ const {
 // Frontmatter dates parse as UTC midnight; format in UTC so the displayed
 // day doesn't shift back by one in western timezones.
 const lastVerifiedDisplay = lastVerified
-  ? new Intl.DateTimeFormat('en-US', { dateStyle: 'long', timeZone: 'UTC' }).format(lastVerified)
+  ? new Intl.DateTimeFormat('en-US', {
+      dateStyle: 'long',
+      timeZone: 'UTC',
+    }).format(lastVerified)
   : undefined;
 
 const ogSource = ogImage ?? defaultOg;

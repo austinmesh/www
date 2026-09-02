@@ -24,7 +24,10 @@ const pages = defineCollection({
 });
 
 const projects = defineCollection({
-  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/projects' }),
+  loader: glob({
+    pattern: '**/[^_]*.{md,mdx}',
+    base: './src/content/projects',
+  }),
   schema: ({ image }) =>
     z.object({
       ...commonFields(image),

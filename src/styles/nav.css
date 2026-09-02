@@ -52,7 +52,9 @@ nav {
     width: 1.1rem;
     height: 2px;
     background: currentColor;
-    box-shadow: 0 5px currentColor, 0 -5px currentColor;
+    box-shadow:
+        0 5px currentColor,
+        0 -5px currentColor;
 }
 
 .menu--social {
@@ -66,10 +68,18 @@ nav {
    GitHub uses matcha's --default -- the theme-aware foreground (dark on the
    light-mode nav, light on the dark-mode nav) -- since it has no brand color
    that reads in both schemes. */
-.menu--social .icon--discord { fill: #5865F2; }
-.menu--social .icon--instagram { fill: #FF0069; }
-.menu--social .icon--youtube { fill: #FF0000; }
-.menu--social .icon--github { fill: var(--default); }
+.menu--social .icon--discord {
+    fill: #5865f2;
+}
+.menu--social .icon--instagram {
+    fill: #ff0069;
+}
+.menu--social .icon--youtube {
+    fill: #ff0000;
+}
+.menu--social .icon--github {
+    fill: var(--default);
+}
 
 /* Collapsed by default; the open toggle reveals it on its own row.
    order:1 keeps the toggle + social icons together on the first row -- the

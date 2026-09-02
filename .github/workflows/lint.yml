@@ -25,4 +25,4 @@ jobs:
       # backlog of pre-existing files, so gating on `biome ci` would fail every
       # PR until that's cleaned up in a separate pass.
       - name: Run Biome lint
-        run: biome lint --reporter=github
+        run: biome ci --reporter=github

@@ -4,23 +4,23 @@
     --color-canvasBorder: #565764;
     --color-canvasDark: #e3e3e3;
     --color-canvasDarker: #cacaca;
-    --color-canvasText: #2C2D3C;
+    --color-canvasText: #2c2d3c;
     --color-canvasTextDark: #107633;
     --color-canvasTextDarker: #062c13;
-    --ly-brand: #67EA94;
+    --ly-brand: #67ea94;
     --accent: #2ce26a;
-    --dark-accent: #67EA94;
-    --ly-bg-brand: #67EA94;
+    --dark-accent: #67ea94;
+    --ly-bg-brand: #67ea94;
     --color-primaryDark: #2ce26a;
 }
 @media (prefers-color-scheme: dark) {
-  :root {
-    --bg-default: #2C2D3C;
-    --dark-bg-muted: #1e252e;
-    --color-canvasDark: #1f2031;
-    --color-canvasDarker: #232430;
-    --color-canvasText: #fff;
-  }
+    :root {
+        --bg-default: #2c2d3c;
+        --dark-bg-muted: #1e252e;
+        --color-canvasDark: #1f2031;
+        --color-canvasDarker: #232430;
+        --color-canvasText: #fff;
+    }
 }
 strong {
     font-style: normal;
@@ -52,10 +52,17 @@ button.meet-button {
     border-color: transparent;
 }
 @keyframes meet-button-in {
-    to { opacity: 1; transform: translateX(0); }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
-    .meet-button { animation: none; opacity: 1; transform: none; }
+    .meet-button {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
 }
 @media (min-width: 768px) {
     body > header {
@@ -102,7 +109,7 @@ dialog > footer:last-child {
 }
 .hero-content {
     padding: 15px 10px;
-    background: rgba(31,32,49,.8);
+    background: rgba(31, 32, 49, 0.8);
     max-width: 500px;
     margin: 20px auto;
     text-align: center;
@@ -114,8 +121,8 @@ dialog > footer:last-child {
     border: 1px solid;
     padding: 10px 15px;
     border-radius: 5px;
-    background: rgba(31,32,49,.9);
-    letter-spacing: .5px;
+    background: rgba(31, 32, 49, 0.9);
+    letter-spacing: 0.5px;
     text-wrap: nowrap;
     display: inline-block;
     margin-top: 5px;
@@ -152,8 +159,12 @@ dialog > footer:last-child {
     height: auto;
     border-radius: 5px;
 }
-.partner-card h3 { margin: 0 0 0.5rem; }
-.partner-card p { margin: 0; }
+.partner-card h3 {
+    margin: 0 0 0.5rem;
+}
+.partner-card p {
+    margin: 0;
+}
 .partner-card-link {
     display: inline-block;
     margin-top: 0.75rem;
@@ -169,9 +180,13 @@ dialog > footer:last-child {
     background: var(--color-canvasText);
     color: var(--bg-default);
 }
-html { scroll-behavior: smooth; }
+html {
+    scroll-behavior: smooth;
+}
 @media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
+    html {
+        scroll-behavior: auto;
+    }
 }
 
 .photo-grid {
@@ -181,7 +196,9 @@ html { scroll-behavior: smooth; }
     margin: 1rem 0;
 }
 @media (min-width: 720px) {
-    .photo-grid { grid-template-columns: repeat(2, 1fr); }
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 .photo-grid img {
     width: 100%;
@@ -254,14 +271,16 @@ html { scroll-behavior: smooth; }
    "Save the date"). */
 a[type="button"] {
     display: inline-block;
-    padding: .25rem .75rem;
+    padding: 0.25rem 0.75rem;
     border: 1px solid transparent;
     border-radius: var(--bd-radius);
     background: var(--color-primaryDark);
     color: var(--color-canvasTextDarker);
     text-decoration: none;
     line-height: 1.5;
-    transition: background var(--tr-duration), color var(--tr-duration);
+    transition:
+        background var(--tr-duration),
+        color var(--tr-duration);
     margin-bottom: 2rem;
 }
 a[type="button"]:hover,
@@ -352,7 +371,9 @@ dialog#event {
 }
 @media only screen and (min-width: 720px) {
     .project-body img,
-    .project-body video { max-width: 50%; }
+    .project-body video {
+        max-width: 50%;
+    }
 }
 
 img.heltec-hero {
@@ -361,9 +382,17 @@ img.heltec-hero {
     max-width: none;
 }
 
-figure.thumb-row img { width: 350px; height: auto; max-width: none; }
-figure.thumb-row a { line-height: 0; }
-figure.thumb-row a + a { margin-left: 0.5rem; }
+figure.thumb-row img {
+    width: 350px;
+    height: auto;
+    max-width: none;
+}
+figure.thumb-row a {
+    line-height: 0;
+}
+figure.thumb-row a + a {
+    margin-left: 0.5rem;
+}
 
 /* Per-site detail sections on /about/infrastructure/.
    Mobile: stacks h2 -> dl -> image vertically.
