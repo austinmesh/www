@@ -1,0 +1,45 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  biome:
+    name: Biome
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      # Pinned to the version the biome.json $schema points at, so CI and local
+      # `npx @biomejs/biome` can't drift onto different rule sets.
+      - uses: biomejs/setup-biome@v2
+        with:
+          version: 2.5.11
+
+      # Lint only. The formatter and the import-organizer assist still flag a
+      # backlog of pre-existing files, so gating on `biome ci` would fail every
+      # PR until that's cleaned up in a separate pass.
+      - name: Run Biome lint
+        run: biome lint --reporter=github
+
+  astro-check:
+    name: Astro check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run astro check
+        run: npx astro check

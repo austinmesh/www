@@ -1,6 +1,6 @@
 ---
-import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 const projects = await getCollection('projects');
@@ -30,7 +30,7 @@ const frontmatter = {
     <ul class="project-grid">
       {sorted.map((project) => (
         <li>
-          <a href={`/projects/${project.slug}/`}>
+          <a href={`/projects/${project.id}/`}>
             <Image
               src={project.data.thumbnail}
               alt={project.data.thumbnailAlt}
