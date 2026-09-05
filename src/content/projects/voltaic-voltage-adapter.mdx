@@ -23,9 +23,13 @@ import voltaic_13 from '../../assets/voltaic-voltage-adapter/voltaic_13.jpeg';
 import voltaic_14 from '../../assets/voltaic-voltage-adapter/voltaic_14.jpeg';
 import rakpins from '../../assets/voltaic-voltage-adapter/rakpins.jpg';
 
+# Voltaic Battery Voltage Adapter
+
+A rundown of how to build an adapter to read the voltage from a [Voltaic battery pack](https://voltaicsystems.com/iot-battery-packs/) on a RAK19007 with RAK4631 and MeshCore.
+
 ## About
 
-This is an adapter to get the voltage (divided in half) from a [Voltaic battery pack](https://voltaicsystems.com/iot-battery-packs/). They have a blog post about getting the voltage at https://blog.voltaicsystems.com/reading-charge-level-of-voltaic-usb-battery-packs/ which was later updated on https://blog.voltaicsystems.com/updated-usb-c-pd-and-always-on-for-v25-v50-v75-batteries/ to include the V2 (aluminum body) packs on different pins.
+Voltaic have two posts on getting the voltage at https://blog.voltaicsystems.com/reading-charge-level-of-voltaic-usb-battery-packs/ which was later updated on https://blog.voltaicsystems.com/updated-usb-c-pd-and-always-on-for-v25-v50-v75-batteries/ to include the V2 (aluminum body) packs on different pins. We'll combine information from both of these to build an adapter to get some voltage.
 
 I've split this into two parts: Hardware and Software. We need to make some minor firmware changes to read the voltage from another analog pin. For this some knowledge of PlatformIO and compiling the MeshCore firmware is necessary.
 
