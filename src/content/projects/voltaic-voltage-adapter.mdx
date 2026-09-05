@@ -25,7 +25,7 @@ import rakpins from '../../assets/voltaic-voltage-adapter/rakpins.jpg';
 
 ## About
 
-This is an adapter to get the voltage (divided in half) form a [Voltaic battery pack](https://voltaicsystems.com/iot-battery-packs/). They have a blog post about getting the voltage at https://blog.voltaicsystems.com/reading-charge-level-of-voltaic-usb-battery-packs/ which was later updated on https://blog.voltaicsystems.com/updated-usb-c-pd-and-always-on-for-v25-v50-v75-batteries/ to invlude the V2 (aluminum body) packs on different pins.
+This is an adapter to get the voltage (divided in half) from a [Voltaic battery pack](https://voltaicsystems.com/iot-battery-packs/). They have a blog post about getting the voltage at https://blog.voltaicsystems.com/reading-charge-level-of-voltaic-usb-battery-packs/ which was later updated on https://blog.voltaicsystems.com/updated-usb-c-pd-and-always-on-for-v25-v50-v75-batteries/ to include the V2 (aluminum body) packs on different pins.
 
 I've split this into two parts: Hardware and Software. We need to make some minor firmware changes to read the voltage from another analog pin. For this some knowledge of PlatformIO and compiling the MeshCore firmware is necessary.
 
@@ -124,9 +124,9 @@ I'm using a RAK19007 as a testbed. You'll need to solder the headers onto J10 an
 ## Software
 
 
-Both MeshCore and Meshtastic read battery voltage from an analog pin. That pin is usually baked into the specific boards configuration. I'll use MeshCore as an example on how we can change the pin to the external AIN1 that we used on the RAK19007.
+Both MeshCore and Meshtastic read battery voltage from an analog pin. That pin is usually baked into the specific board's configuration. I'll use MeshCore as an example on how we can change the pin to the external AIN1 that we used on the RAK19007.
 
-In MeshCore the RAK4631 pins are set in `variants/rak4631/RAK4631Board.h`. `PIN_VBAT_READ` is the analog pin and `ADC_MULTIPLIER` is the multiplier. We need to wrap `PIN_VBAT_READ` and `ADC_MULTIPLIER` in `#ifndef` guards so they can be redefiend in our new custom environment. [MeshCore PR #3328](https://github.com/meshcore-dev/MeshCore/pull/3328) wraps them in `#ifndef` guards but until that gets merged we need to manually make these changes locally:
+In MeshCore the RAK4631 pins are set in `variants/rak4631/RAK4631Board.h`. `PIN_VBAT_READ` is the analog pin and `ADC_MULTIPLIER` is the multiplier. We need to wrap `PIN_VBAT_READ` and `ADC_MULTIPLIER` in `#ifndef` guards so they can be redefined in our new custom environment. [MeshCore PR #3328](https://github.com/meshcore-dev/MeshCore/pull/3328) wraps them in `#ifndef` guards but until that gets merged we need to manually make these changes locally:
 
 ```diff
 --- a/variants/rak4631/RAK4631Board.h
@@ -209,7 +209,7 @@ The repeater now reports the pack voltage instead of the onboard battery pin!
   </a>
 
   <a href={voltaic_12.src} target="_blank" rel="noopener">
-    <Image src={voltaic_12} alt="MeshCore telemtry channels showing voltage" widths={[350, 700, 1050]} sizes="350px" />
+    <Image src={voltaic_12} alt="MeshCore telemetry channels showing voltage" widths={[350, 700, 1050]} sizes="350px" />
   </a>
 </figure>
 
