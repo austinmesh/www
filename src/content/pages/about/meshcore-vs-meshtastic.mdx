@@ -60,7 +60,7 @@ lastVerified: 2026-07-09
   <h2 id="hop-limits">Hop Limits</h2>
   <ul>
     <li>Meshtastic: Default Max Hops = 3 (configurable to max 7). In November of 2025 Meshtastic introduced "Zero-Cost Hops" through specific configurations.<sup><a href="#fn-hops" id="fnref-hops">[8]</a><a href="#fn-mt_zerohop">[20]</a></sup></li>
-    <li>MeshCore: Max hop limit = 64. MeshCore has 3 different hash sizes(1b, 2b, 3b) which impact the number of hops available. 1-byte(e.g. a1) allows 64, 2-byte(e.g. a1b2) allows 32, and 3-byte(e.g. a1b2c3) allows 16. Longer hashes allow more specific paths once there are enough nodes that there are duplicate hashes on the network.<sup><a href="#fn-mc_hops" id="fnref-mc_hops">[9]</a></sup></li>
+    <li>MeshCore: Max hop limit = 64. MeshCore has 3 different hash sizes(1b, 2b, 3b) which impact the number of hops available. 1-byte(e.g. a1) allows 64, 2-byte(e.g. a1b2) allows 32, and 3-byte(e.g. a1b2c3) allows 21. Longer hashes allow more specific paths once there are enough nodes that there are duplicate hashes on the network.<sup><a href="#fn-mc_hops" id="fnref-mc_hops">[9]</a></sup></li>
   </ul>
   <p><strong>Here in Austin</strong> we have low hill/valley terrain often requiring many repeats(we regularly see 10+). Seven hops can be a hard ceiling for Meshtastic across the whole metro, while MeshCore's higher limit gives more headroom.</p>
 
