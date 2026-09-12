@@ -57,7 +57,7 @@ import routingDiagram from '../../../assets/meshcore-2-byte-routing-diagram.webp
   2. Set **Region/Preset = US Recommended**.
   3. **Do not adjust** frequency, bandwidth, spreading factor, or coding rate.
   4. Set your name. This will be visible to others on the network. Set position if desired.
-     - **optional but recommended:** turn on 2-byte path size under **Experimental Settings**. ([Learn more about Meshcore 2-byte routing](#meshcore-2-byte-vs-1-byte-paths))
+     - **optional but recommended:** set _Default Path Hash Size_ to 2-byte under **Settings**. ([Learn more about Meshcore 2-byte routing](#meshcore-2-byte-vs-1-byte-paths))
   5. Send a **Flood Routed Advert** (signal/wave icon at top of app).
   6. Remember, you may not see other contacts right away. Allow 24-48 hours for Contacts to populate in your list.
 
@@ -66,7 +66,7 @@ import routingDiagram from '../../../assets/meshcore-2-byte-routing-diagram.webp
   1. After flashing is successful, click **Repeater Setup** on the same page.
      - Set Selected Present to **USA/Canada Recommended**.
      - Set the name and position as desired. Positions are exact.
-     - Leave the guest password blank so others change view telemetry and owner info.
+     - Leave the guest password blank so others can view telemetry and owner info.
      - Set the owner info to include alternate contact information like email, phone, or Discord handle.
      - Set the admin password. Save this somewhere! You'll use it soon.
      - Turn on 2-byte path mode via console with command `set path.hash.mode 1` ([learn more about Meshcore 2-byte routing](#meshcore-2-byte-vs-1-byte-paths)).
@@ -127,7 +127,7 @@ import routingDiagram from '../../../assets/meshcore-2-byte-routing-diagram.webp
   ### Requirements
 
   - **Repeaters:** firmware **1.14 or later**. Older repeaters can't forward 2-byte paths.
-  - **Companions:** firmware **1.14 or later**, plus the latest phone app (the toggle lives under Experimental Settings).
+  - **Companions:** firmware **1.14 or later**, plus the latest phone app.
 
   *If any repeater in the path is on older firmware, 2-byte traffic won't make it through*. Plan upgrades accordingly.
 
@@ -137,6 +137,7 @@ import routingDiagram from '../../../assets/meshcore-2-byte-routing-diagram.webp
 
   1. Upgrade to at least 1.14
   2. Connect to the repeater's console and run: `set path.hash.mode 1`
+> This can also be changed from the MeshCore app. When managing a repeater go to **Settings** > **Network Settings** there you can set the _Path Hash Size_ without using the console.
 
   #### Companions
 
@@ -144,7 +145,8 @@ import routingDiagram from '../../../assets/meshcore-2-byte-routing-diagram.webp
 
   1. Confirm the companion is on firmware 1.14 or later.
   2. Open the phone app.
-  3. Go to **Experimental Settings**.
+  3. Go to **Settings**.
   4. Set **Default Path-Hash Size** to 2-byte (max 32 hops).
+  > Starting with MeshCore app v1.49.0 the _Default Path Hash Size_ settings was moved from the Experimental Settings up to the main Settings.
 
   Once that's on, messages from the companion will use 2-byte paths when available.
