@@ -1,12 +1,12 @@
 {
   "hasEvent": true,
-  "id": "1543399105030656135",
+  "id": "1543399965714415716",
   "guildId": "1204595620204249138",
-  "name": "Monthly mesh hang",
-  "description": "Everyone is welcome, we'll hang out and talk radios, mesh, and have some food and drink.",
-  "location": "Black Sheep Lodge, 2108 S Lamar Blvd, Austin, TX 78704",
-  "startsAtIso": "2026-09-21T23:00:00+00:00",
-  "startsAtDisplay": "Monday, September 21, 2026 at 6:00 PM CDT",
-  "startsAtShort": "9/21",
-  "link": "https://discord.com/events/1204595620204249138/1543399105030656135"
+  "name": "October monthly mesh hang",
+  "description": "Come have a drink and some food while we hang out and talk about mesh networking",
+  "location": "Docs' Backyard Grill, 5207 Brodie Ln #100, Sunset Valley, TX 78745",
+  "startsAtIso": "2026-10-14T23:30:00+00:00",
+  "startsAtDisplay": "Wednesday, October 14, 2026 at 6:30 PM CDT",
+  "startsAtShort": "10/14",
+  "link": "https://discord.com/events/1204595620204249138/1543399965714415716"
 }
