@@ -3,19 +3,29 @@ title: Learn about Meshtastic and Austin Mesh
 description: Learn all about Austin Mesh, mesh networking, why we exist, and similar technologies.
 ---
 
+import { Image } from 'astro:assets';
+import coverageMap from '../../../assets/coverage-map.webp';
+
 <hgroup>
   <h1>Learn about Austin Mesh</h1>
-  <p>Austin Mesh is a community group working to build a <a href="#money">free</a> mesh network of solar-powered <a href="https://meshcore.io/" rel="nofollow noopener">MeshCore</a> and <a href="https://meshtastic.org/" rel="nofollow noopener">Meshtastic</a> radios in Austin. This network acts like a city-wide text messaging system, allowing people to communicate publicly or privately with anyone on the network. All of this happens without any external infrastructure - no power, no cell phone towers, no internet.</p>
+  <p>Austin Mesh is a community group of ~2,000 members building a <a href="#money">free to use</a> mesh network of solar-powered radios in Central Texas. This network acts like a region-wide text messaging system, allowing people to communicate publicly or privately with anyone on the network. All of this happens without any external infrastructure - no power, no cell phone towers, no internet.</p>
 </hgroup>
 
 - [About Austin Mesh](#about)
+  - [Network coverage in Austin](#coverage)
   - Why build a mesh in the first place?
   - How does it work?
   - [Explain it like I'm 5](#eli5)
   - What can it do?
   - Why build this network?
-- [Network coverage in Austin](#coverage)
 - [How does Austin Mesh make money?](#money)
+
+<section id="coverage">
+  <h2>What kind of coverage does the Austin Mesh network have?</h2>
+  <p>As of October 2026 Austin Mesh covers more than 5,000 square miles.</p>
+  <Image src={coverageMap} alt="Map of Central Texas showing the Austin Mesh coverage area, bounded roughly by Killeen and Belton to the north, Bastrop to the east, New Braunfels to the south, and Fredericksburg to the west" />
+  <p>This includes most of the City of Austin. Beyond Austin, our network includes Dripping Springs, Wimberley, Blanco, Canyon Lake, Fredericksburg, Marble Falls, Cedar Park, Leander, Liberty Hill, Copperas Cove, Killeen, Georgetown, Elgin, Manor, Cedar Creek, Bastrop, San Marcos, New Braunfels, and is intermittently reaching San Antonio. We're actively working with individuals and <a href="/about/partners/">community partners</a> to expand this coverage. See our <a href="/about/infrastructure/">infrastructure repeaters</a> page for the current list of sited nodes and their status.</p>
+</section>
 
 <section>
   <h2>Why build a mesh in the first place?</h2>
@@ -54,14 +64,9 @@ description: Learn all about Austin Mesh, mesh networking, why we exist, and sim
   <p>Austin Mesh is decentralized - there is no central server or corporation - all the communication bounces through the entire mesh. Austin Mesh is open to everyone - you don't have to ask permission to join and all of the software is open-source. Austin Mesh is resilient - our solar-powered radios don't need cell phone towers, internet access, or electricity. We hope this project will inspire others to build things that are decentralized, open, and resilient.</p>
 </section>
 
-<section id="coverage">
-  <h2>What kind of coverage does the Austin Mesh network have?</h2>
-  <p>As of May 2026 Austin Mesh covers most of Austin. Additionally, much of greater Austin has limited coverage including Dripping Springs, Cedar Park, Leander, Wimberley, Driftwood, Bastrop, and San Marcos which is approximately 3000 square miles. We're actively working with individuals and <a href="/about/partners/">community partners</a> to expand this coverage. See our <a href="/about/infrastructure/">infrastructure repeaters</a> page for the current list of sited nodes and their status.</p>
-</section>
-
 <section id="money">
   <h2>How does Austin Mesh make money</h2>
-  <p>Austin Mesh isn't a business, and it isn't a nonprofit. There's no 501(c)(3), no LLC, no legal entity at all. We're just a few people(~1300) who think <b>reliable mesh networking is important for the Central Texas community to have access to</b>.</p>
+  <p>Austin Mesh isn't a business, and it isn't a nonprofit. There's no 501(c)(3), no LLC, no legal entity at all. We're just a few people who think <b>reliable mesh networking is important for the Central Texas community to have access to</b>.</p>
   <p>We don't make money from this. Quite the opposite. It actually costs us money! Nodes, antennas, hosting, and time, **lots** of time, all of it comes out of our personal hobby budgets. The <i>same money other people might put toward golf clubs or model trains, we put into this</i>. There is however, one exception. A number of the links on this website are affiliate links. If a visitor makes a purchase after clicking a link, we will share in a small portion of that sale.</p>
   <p>We mention it so you know what you're looking at: a hobby project run by hobbyists, not an organization with revenue targets.</p>
 </section>
