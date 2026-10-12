@@ -10,8 +10,8 @@ import { Image } from 'astro:assets';
 1. Buy a radio ([our recommendations](/devices/#options))
 2. Flash device using your browser: <a href="https://flasher.meshcore.io/" rel="nofollow noopener">https://flasher.meshcore.io/</a>
 3. Pick a role:
-  - **Companion**: Bluetooth; pairs with your phone to send messages.
-  - **Repeater**: No Bluetooth; repeats only. Follow [instructions below](#repeater-config)
+   - **Companion**: Bluetooth; pairs with your phone to send messages.
+   - **Repeater**: No Bluetooth; repeats only. Follow [instructions below](#repeater-config)
 4. Use the **USA/Canada Recommended** preset.
 5. For repeaters, include alternate contact info in the Owner Info setting such as email, phone, or Discord handle
 
@@ -43,7 +43,7 @@ Find our [suggested hardware on the devices page](/devices/#options).
 2. Connect your device via USB and select the correct port/board.
 3. Select the role(typically Companion Bluetooth or Repeater)
 4. Enter DFU
-  - Recommended: If you plan to install a repeater in a location that is harder to get to(requires a ladder for instance) we strongly recommend flashing the latest [OTAFix](https://github.com/oltaco/Adafruit_nRF52_Bootloader_OTAFIX/releases) before flashing the MeshCore firmware.
+   - Recommended: If you plan to install a repeater in a location that is harder to get to(requires a ladder for instance) we strongly recommend flashing the latest [OTAFix](https://github.com/oltaco/Adafruit_nRF52_Bootloader_OTAFIX/releases) before flashing the MeshCore firmware.
 5. Erase the device
 6. **Flash** the role firmware.
 7. For repeaters, click "Repeater Setup" (see below).
@@ -56,25 +56,25 @@ Find our [suggested hardware on the devices page](/devices/#options).
 2. Set **Region/Preset = US Recommended**.
 3. **Do not adjust** frequency, bandwidth, spreading factor, or coding rate.
 4. Set your name. This will be visible to others on the network. Set position if desired.
-  - **optional:** For advanced debugging and Trace Path analysis, consider setting Hash Size to 2-byte. ([Learn about Hash Sizes](#meshcore-2-byte-vs-1-byte-paths))
+   - **optional:** For advanced debugging and Trace Path analysis, consider setting Hash Size to 2-byte. ([Learn about Hash Sizes](#meshcore-2-byte-vs-1-byte-paths))
 5. Send a **Flood Routed Advert** (signal/wave icon at top of app).
 6. Remember, you may not see other contacts right away. Allow 24-48 hours for Contacts to populate in your list.
 
 <h4 id="repeater-config">Repeater</h4>
 
 1. After flashing is successful, click **Repeater Setup** on the same page.
-  - Set Selected Present to **USA/Canada Recommended**.
-  - Set the name and position as desired. Positions are exact.
-  - Leave the guest password blank so others change view telemetry and owner info.
-  - Set the owner info to include alternate contact information like email, phone, or Discord handle.
-  - Set the admin password. Save this somewhere! You'll use it soon.
-  - Based on the number of neighbors, tune settings based on the table below.
+   - Set Selected Present to **USA/Canada Recommended**.
+   - Set the name and position as desired. Positions are exact.
+   - Leave the guest password blank so others change view telemetry and owner info.
+   - Set the owner info to include alternate contact information like email, phone, or Discord handle.
+   - Set the admin password. Save this somewhere! You'll use it soon.
+   - Based on the number of neighbors, tune settings based on the table below.
 7. Reboot
 8. Send an advert and make sure your new repeater shows up as a contact in your companion device
 9. Disconnect your computer, connect solar and battery
 9. From your companion node
-  1. Log in (tap on the new contact, enter admin password set in the step above
-  2. Go to Settings > Sync Clock
+   1. Log in (tap on the new contact, enter admin password set in the step above
+   2. Go to Settings > Sync Clock
 10. Deploy/mount the repeater.
 
 ##### Neighbor count configuration tuning
@@ -92,10 +92,10 @@ Apply the settings that match the number of neighbors your repeater currently se
 ### 5) Channels and Use
 
 1. Austin Mesh uses the default **Public** channel that is automatically configured.
-  - Other channels include #meetup, #jokes, #music, #bot, and #testing
+   - Other channels include #meetup, #jokes, #music, #bot, and #testing
 3. Send your first message in **Public**. 
-  - Does it say "Heard \{x\} repeat(s)"? If so, that means you're connected!
-  - If not, try moving your radio. Follow the rule of Height > Antenna > Power.
+   - Does it say "Heard \{x\} repeat(s)"? If so, that means you're connected!
+   - If not, try moving your radio. Follow the rule of Height > Antenna > Power.
 4. **Send away**! It is perfectly acceptable to send a lot of messages, especially in the #testing channel!
 5. Having trouble? [Join our Discord server](https://discord.gg/6a5Sv2s9bG) for more advice.
 
