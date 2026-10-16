@@ -1,12 +1,12 @@
 {
   "hasEvent": true,
-  "id": "1543399965714415716",
+  "id": "1543400419735249026",
   "guildId": "1204595620204249138",
-  "name": "October monthly mesh hang",
-  "description": "Come have a drink and some food while we hang out and talk about mesh networking",
-  "location": "Docs' Backyard Grill, 5207 Brodie Ln #100, Sunset Valley, TX 78745",
-  "startsAtIso": "2026-10-14T23:30:00+00:00",
-  "startsAtDisplay": "Wednesday, October 14, 2026 at 6:30 PM CDT",
-  "startsAtShort": "10/14",
-  "link": "https://discord.com/events/1204595620204249138/1543399965714415716"
+  "name": "November monthly mesh hang",
+  "description": "Join us for some mesh with food and drink!",
+  "location": "Little Woodrow's Bee Cave, 12801 Shops Pkwy #100, Bee Cave, TX 78738",
+  "startsAtIso": "2026-11-21T00:30:00+00:00",
+  "startsAtDisplay": "Friday, November 20, 2026 at 6:30 PM CST",
+  "startsAtShort": "11/20",
+  "link": "https://discord.com/events/1204595620204249138/1543400419735249026"
 }
