@@ -57,9 +57,12 @@ const frontmatter = {
       list.innerHTML = results
         .map((r) => {
           const title = esc(r.meta?.title || r.url);
-          // sub_results[0] is the page itself; further entries are matched headings within it
+          // sub_results lists only the sections that matched. The page's own URL shows up
+          // when text above its first heading matched; skip that one, since the title
+          // already links there, and keep up to 3 heading matches (e.g. FAQ questions).
           const subs = (r.sub_results || [])
-            .slice(1, 4)
+            .filter((s) => s.url !== r.url)
+            .slice(0, 3)
             .map(
               (s) => `<li><a href="${esc(s.url)}">${esc(s.title)}</a></li>`
             )
