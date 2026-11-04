@@ -6,9 +6,21 @@
       "description": "Join us for some mesh with food and drink!",
       "location": "Little Woodrow's Bee Cave, 12801 Shops Pkwy #100, Bee Cave, TX 78738",
       "startsAtIso": "2026-11-21T00:30:00+00:00",
+      "endsAtIso": "2026-11-21T02:30:00+00:00",
       "startsAtDisplay": "Friday, November 20, 2026 at 6:30 PM CST",
       "startsAtShort": "11/20",
       "link": "https://discord.com/events/1204595620204249138/1543400419735249026"
+    },
+    {
+      "id": "1543402662375067838",
+      "name": "December monthly hang with food trucks",
+      "description": "Come hang out to meet your fellow meshers. Multiple food trucks at this location",
+      "location": "Night Owl Bar Leander, 203 N Brushy St, Leander, TX 78641",
+      "startsAtIso": "2026-12-12T00:30:00+00:00",
+      "endsAtIso": "2026-12-12T02:00:00+00:00",
+      "startsAtDisplay": "Friday, December 11, 2026 at 6:30 PM CST",
+      "startsAtShort": "12/11",
+      "link": "https://discord.com/events/1204595620204249138/1543402662375067838"
     }
   ]
 }
