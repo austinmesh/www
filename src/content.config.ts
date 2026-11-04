@@ -37,4 +37,17 @@ const projects = defineCollection({
     }),
 });
 
-export const collections = { pages, projects };
+// One file per question at src/content/faq/<category>/<anchor>.md. The folder picks
+// the category and the filename is the deep-link anchor (/faq/#<anchor>), so links
+// survive rewording a question or moving it between categories. Categories and the
+// validation (unknown folder, duplicate anchor) live in src/lib/faq.ts.
+const faq = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/faq' }),
+  schema: z.object({
+    question: z.string(),
+    // Optional. Lower numbers sort first; questions without one follow, alphabetically.
+    order: z.number().optional(),
+  }),
+});
+
+export const collections = { pages, projects, faq };
