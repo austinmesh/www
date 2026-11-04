@@ -44,7 +44,8 @@ const projects = defineCollection({
 const faq = defineCollection({
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: './src/content/faq' }),
   schema: z.object({
-    question: z.string(),
+    // Trimmed so a stray trailing space can't strand the link icon on its own line.
+    question: z.string().trim().min(1),
     // Optional. Lower numbers sort first; questions without one follow, alphabetically.
     order: z.number().optional(),
   }),

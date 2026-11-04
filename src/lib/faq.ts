@@ -21,6 +21,12 @@ const RESERVED_IDS = new Set(['event']);
 
 const SORT_LAST = Number.MAX_SAFE_INTEGER;
 
+const FAQ_DIR = 'src/content/faq/';
+// A filename is used as-is for the question's link, so keep it to URL-safe characters.
+const ANCHOR_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
+// Any heading in an answer's HTML, whether written in markdown (## ...) or raw HTML.
+const HEADING_HTML = /<h[1-6][\s>][\s\S]*?<\/h[1-6]>/i;
+
 export interface FaqQuestion {
   anchor: string;
   entry: CollectionEntry<'faq'>;
@@ -36,7 +42,8 @@ export interface FaqSection {
 /**
  * Every FAQ question, grouped by category and sorted for display. Fails the build
  * (rather than shipping a broken deep link) on a question outside a known category
- * folder, on an anchor used twice, or on markdown headings inside an answer.
+ * folder, a non-.md file, a filename that isn't a clean anchor, an anchor used twice,
+ * or a heading inside an answer.
  */
 export async function getFaqSections(): Promise<FaqSection[]> {
   const sections = new Map<string, FaqSection>(
@@ -49,14 +56,30 @@ export async function getFaqSections(): Promise<FaqSection[]> {
   for (const id of RESERVED_IDS) claimed.set(id, 'an id the site layout uses on every page');
 
   for (const entry of await getCollection('faq')) {
-    const file = entry.filePath ?? entry.id;
-    const parts = entry.id.split('/');
+    // Category and anchor come from the file path itself, not entry.id: the glob loader
+    // slugifies ids and honors a frontmatter `slug:`, either of which would quietly make
+    // the link differ from the filename.
+    const file = entry.filePath ?? `${FAQ_DIR}${entry.id}.md`;
+    const parts = (file.startsWith(FAQ_DIR) ? file.slice(FAQ_DIR.length) : file).split('/');
     if (parts.length !== 2) {
       throw new Error(
-        `FAQ question ${file} must sit directly inside a category folder, e.g. src/content/faq/${faqCategories[0]?.id ?? 'general'}/my-question.md`,
+        `FAQ question ${file} must sit directly inside a category folder, e.g. ${FAQ_DIR}${faqCategories[0]?.id ?? 'general'}/my-question.md`,
       );
     }
-    const [categoryId, anchor] = parts;
+    const [categoryId, fileName] = parts;
+    if (!fileName.endsWith('.md')) {
+      throw new Error(`FAQ question ${file} must be a .md file. MDX isn't supported for FAQ answers.`);
+    }
+    const anchor = fileName.slice(0, -'.md'.length);
+    if (!ANCHOR_PATTERN.test(anchor)) {
+      const suggestion = anchor
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, '');
+      throw new Error(
+        `FAQ question ${file}: the filename becomes the question's link (/faq/#${anchor}), so it may only use lowercase letters, digits, and hyphens. Rename it to ${suggestion}.md.`,
+      );
+    }
     const section = sections.get(categoryId);
     if (!section) {
       throw new Error(
@@ -70,9 +93,11 @@ export async function getFaqSections(): Promise<FaqSection[]> {
     claimed.set(anchor, `used by ${file}`);
 
     const { Content, headings } = await render(entry);
-    if (headings.length > 0) {
+    const htmlHeading = entry.rendered?.html.match(HEADING_HTML)?.[0];
+    if (headings.length > 0 || htmlHeading) {
+      const text = headings[0]?.text ?? htmlHeading?.replace(/<[^>]+>/g, '').trim();
       throw new Error(
-        `FAQ answer ${file} contains a markdown heading ("${headings[0].text}"). Answers sit under the question's own heading, so extra headings break the page outline and search results. Use bold text, or move long content to its own page and link to it.`,
+        `FAQ answer ${file} contains a heading ("${text}"). Answers sit under the question's own heading, so extra headings break the page outline and search results. Use bold text, or move long content to its own page and link to it.`,
       );
     }
     section.questions.push({ anchor, entry, Content });

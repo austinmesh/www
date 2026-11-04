@@ -69,7 +69,10 @@ const frontmatter = {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
     gap: 1.25rem 2rem;
-    /* matcha hyphenates body text; questions scan better unbroken. */
+  }
+  /* matcha sets hyphens:auto on li itself (so it can't be inherited away from the ul);
+     questions scan better unbroken. */
+  .faq-index li {
     hyphens: manual;
   }
   .faq-index > li > a {
@@ -113,11 +116,6 @@ const frontmatter = {
   .faq-link:hover,
   .faq-link:focus-visible {
     color: var(--accent);
-  }
-  /* matcha adds a hover "#" to any link directly inside a heading with an id; the icon
-     already shows that. */
-  .faq-link:hover::before {
-    content: none;
   }
   .faq-link :global(svg) {
     display: block;
