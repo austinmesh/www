@@ -268,7 +268,7 @@ html {
 
 /* Matcha only styles <button>/<input> as buttons, not anchors. Mirror its button look for
    link-buttons marked with type="button" (the /join/ platform links, the event dialog's
-   "Save the date"). */
+   "RSVP on Discord"). */
 a[type="button"] {
     display: inline-block;
     padding: 0.25rem 0.75rem;
@@ -308,6 +308,52 @@ main img + img {
    Reset alignment for the modal contents. */
 dialog#event {
     text-align: left;
+}
+/* Upcoming events list inside the dialog. The `dialog#event` prefix is there to outrank
+   matcha's heading rules (border-bottom, 1.5rem size, first-child margin-top), which sit
+   at (0,1,3) because of their :not(:is(...)) wrapper. */
+dialog#event .event-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0 0;
+}
+dialog#event .event-list > li + li {
+    border-top: 1px solid var(--bd-muted);
+    padding-top: 1rem;
+}
+dialog#event .event-list h2 {
+    font-size: 1.1rem;
+    border-color: transparent;
+    margin: 0 0 0.5rem;
+}
+dialog#event .event-list p {
+    margin-bottom: 0.5rem;
+}
+/* RSVP button + "Add to calendar" links share a row and wrap under each other on narrow
+   screens. */
+dialog#event .event-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1rem;
+    margin: 0.5rem 0 1rem;
+}
+dialog#event .event-actions a[type="button"] {
+    margin: 0;
+}
+dialog#event .event-actions span,
+dialog#event .event-subscribe {
+    font-size: 0.9rem;
+}
+dialog#event .event-subscribe {
+    color: var(--muted);
+    border-top: 1px solid var(--bd-muted);
+    padding-top: 1rem;
+}
+/* One click/tap selects the whole feed URL for copying (CSS only, no clipboard JS). */
+dialog#event .event-subscribe code {
+    user-select: all;
+    overflow-wrap: anywhere;
 }
 
 .last-verified {

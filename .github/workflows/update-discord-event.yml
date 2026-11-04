@@ -2,6 +2,11 @@ name: Update Discord Event
 
 on:
   workflow_dispatch:
+  schedule:
+    # Daily at 10:17 UTC (4:17 AM CST / 5:17 AM CDT), after evening events have ended.
+    # Odd minute avoids GitHub's top-of-the-hour scheduling backlog. Quiet days (no event
+    # changes) produce no diff, so no PR.
+    - cron: "17 10 * * *"
 
 permissions:
   contents: write
@@ -16,7 +21,7 @@ jobs:
       - name: Install jq
         run: sudo apt-get update && sudo apt-get install -y jq
 
-      - name: Update src/data/event.json from Discord
+      - name: Update src/data/events.json from Discord
         env:
           DISCORD_GUILD_ID: ${{ secrets.DISCORD_GUILD_ID }}
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
@@ -39,9 +44,9 @@ jobs:
         if: steps.files_changed.outputs.changed == 'true'
         uses: peter-evans/create-pull-request@v7
         with:
-          commit-message: "Update event from Discord"
-          title: "Update event from Discord"
-          body: "Automated update of event info from Discord."
+          commit-message: "Update events from Discord"
+          title: "Update events from Discord"
+          body: "Automated update of upcoming events from Discord. Runs daily; this PR updates in place until merged."
           branch: update-discord-event-bot
           delete-branch: true
         env:

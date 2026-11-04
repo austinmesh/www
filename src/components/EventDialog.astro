@@ -1,37 +1,43 @@
 ---
-import event from '../data/event.json';
+import { eventIcsPath, events, feedUrl, googleCalendarUrl, googleSubscribeUrl, webcalFeedUrl } from '../lib/events';
+
+let buttonLabel = 'No upcoming events';
+if (events.length === 1) buttonLabel = `Upcoming Meeting ${events[0].startsAtShort}`;
+else if (events.length > 1) buttonLabel = `${events.length} Upcoming Events`;
 ---
-{event.hasEvent ? (
-  <>
-    <button onclick="document.getElementById('event').showModal()" class="default meet-button">
-      📅 Upcoming Meeting {event.startsAtShort}
-    </button>
-    <dialog id="event">
-      <header><h1>{event.name}</h1></header>
-      {event.description && <p>{event.description}</p>}
-      <p><b>{event.startsAtDisplay}</b> (<a href={event.link} target="_blank" rel="noopener">Save the date</a>)</p>
-      {event.location && <p>{event.location}</p>}
-      <footer>
-        <form method="dialog">
-          <a class="default" href={event.link} type="button">Save the date</a>
-          <button type="submit">Close</button>
-        </form>
-      </footer>
-    </dialog>
-  </>
-) : (
-  <>
-    <button onclick="document.getElementById('event').showModal()" class="default meet-button">
-      📅 No upcoming events
-    </button>
-    <dialog id="event">
+<button onclick="document.getElementById('event').showModal()" class="default meet-button">
+  📅 {buttonLabel}
+</button>
+<dialog id="event">
+  {events.length > 0 ? (
+    <>
+      <header><h1>{events.length === 1 ? 'Upcoming Event' : 'Upcoming Events'}</h1></header>
+      <ul class="event-list">
+        {events.map((event) => (
+          <li>
+            <h2>{event.name}</h2>
+            <p><b><time datetime={event.startsAtIso}>{event.startsAtDisplay}</time></b></p>
+            {event.location && <p>{event.location}</p>}
+            {event.description && <p>{event.description}</p>}
+            <div class="event-actions">
+              <a class="default" href={event.link} type="button" target="_blank" rel="noopener">RSVP on Discord</a>
+              {/* Keep each run on one line: Astro's HTML compression drops whitespace that contains a newline. */}
+              <span>Add to calendar: <a href={googleCalendarUrl(event)} target="_blank" rel="noopener">Google</a> · <a href={eventIcsPath(event)}>Apple / Outlook</a></span>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </>
+  ) : (
+    <>
       <header><h1>No Upcoming Events</h1></header>
       <p>There are currently no scheduled events. Please check back later or join our <a href="https://discord.gg/6a5Sv2s9bG" target="_blank" rel="noopener">Discord</a> for updates.</p>
-      <footer>
-        <form method="dialog">
-          <button type="submit">Close</button>
-        </form>
-      </footer>
-    </dialog>
-  </>
-)}
+    </>
+  )}
+  <p class="event-subscribe">Subscribe to all Austin Mesh events: <a href={webcalFeedUrl}>Apple / Outlook</a> · <a href={googleSubscribeUrl} target="_blank" rel="noopener">Google</a><br />Other apps: subscribe by URL with <code>{feedUrl}</code></p>
+  <footer>
+    <form method="dialog">
+      <button type="submit">Close</button>
+    </form>
+  </footer>
+</dialog>
