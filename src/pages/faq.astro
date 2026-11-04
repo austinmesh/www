@@ -1,0 +1,130 @@
+---
+import LinkIcon from '../assets/social/link.svg';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getFaqSections } from '../lib/faq';
+
+const sections = await getFaqSections();
+
+// Splits off a question's last word so it can share a no-wrap span with the link icon;
+// otherwise the icon can wrap onto a line by itself.
+const splitLastWord = (text: string) => {
+  const i = text.lastIndexOf(' ') + 1;
+  return [text.slice(0, i), text.slice(i)];
+};
+
+const frontmatter = {
+  title: 'FAQ | Austin Mesh',
+  description:
+    'Answers to common questions about Austin Mesh, the free community mesh radio network in Central Texas.',
+};
+---
+<BaseLayout frontmatter={frontmatter}>
+  <h1>Frequently Asked Questions</h1>
+  <p>
+    Can't find your answer here? <a href="/search/">Search the site</a> or ask on <a href="https://discord.gg/6a5Sv2s9bG" target="_blank" rel="noopener">Discord</a>.
+    Thinking about hosting a node? See the <a href="/about/property-owner-faq-hosting-a-node/">Property Owner FAQ</a>.
+  </p>
+
+  {/* Ignored by Pagefind: each question is already indexed under its own heading below. */}
+  <ul class="faq-index" data-pagefind-ignore="all">
+    {sections.map((section) => (
+      <li>
+        <a href={`#${section.id}`}>{section.title}</a>
+        <ul>
+          {section.questions.map(({ anchor, entry }) => (
+            <li><a href={`#${anchor}`}>{entry.data.question}</a></li>
+          ))}
+        </ul>
+      </li>
+    ))}
+  </ul>
+
+  {/* Every question ends with an always-visible link icon (no hover needed, so it works
+      on phones): tap it to put the question's URL in the address bar, or long-press to
+      copy it. The icon shares a no-wrap span with the question's last word. The ids also
+      let Pagefind link search results straight to a question. Category headings link to
+      themselves with matcha's hover "#". */}
+  {sections.map((section) => (
+    <section aria-labelledby={section.id}>
+      <h2 id={section.id}><a href={`#${section.id}`}>{section.title}</a></h2>
+      {section.questions.map(({ anchor, entry, Content }) => {
+        const [lead, lastWord] = splitLastWord(entry.data.question);
+        return (
+          <div class="faq-item">
+            <h3 id={anchor}>{lead}<span class="faq-nowrap">{lastWord}&nbsp;<a class="faq-link" href={`#${anchor}`} aria-label="Link to this question" title="Link to this question"><LinkIcon aria-hidden="true" /></a></span></h3>
+            <Content />
+          </div>
+        );
+      })}
+    </section>
+  ))}
+</BaseLayout>
+
+<style>
+  /* Categories side by side on wide screens, stacked on phones. */
+  .faq-index {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 2.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+    gap: 1.25rem 2rem;
+  }
+  /* matcha sets hyphens:auto on li itself (so it can't be inherited away from the ul);
+     questions scan better unbroken. */
+  .faq-index li {
+    hyphens: manual;
+  }
+  .faq-index > li > a {
+    font-weight: 600;
+  }
+  .faq-index ul {
+    margin: 0.25rem 0 0;
+    padding-left: 1.25rem;
+  }
+  .faq-index ul > li {
+    margin: 0.25rem 0;
+  }
+
+  h2[id],
+  h3[id] {
+    scroll-margin-top: 1rem;
+  }
+  .faq-item {
+    padding: 0.25rem 0 0.25rem 1rem;
+    border-left: 3px solid transparent;
+    margin-bottom: 1.5rem;
+  }
+  .faq-item > h3 {
+    margin-top: 0;
+    font-size: 1.2rem;
+  }
+  .faq-nowrap {
+    white-space: nowrap;
+  }
+  /* Padding makes a ~26px tap target around the icon; the negative margin keeps it from
+     making the heading's line taller. */
+  .faq-link {
+    display: inline-block;
+    padding: 0.25em;
+    margin: -0.25em 0;
+    line-height: 0;
+    vertical-align: middle;
+    border-radius: var(--bd-radius);
+    color: var(--muted);
+  }
+  .faq-link:hover,
+  .faq-link:focus-visible {
+    color: var(--accent);
+  }
+  .faq-link :global(svg) {
+    display: block;
+    width: 0.85em;
+    height: 0.85em;
+  }
+  /* The question a deep link pointed at gets an accent rule, so it's obvious which
+     answer you landed on. */
+  .faq-item:has(> h3:target) {
+    border-left-color: var(--accent);
+  }
+</style>
