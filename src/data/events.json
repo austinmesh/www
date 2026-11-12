@@ -1,17 +1,6 @@
 {
   "events": [
     {
-      "id": "1567559708489809981",
-      "name": "Leander Meetup",
-      "description": "Come hang out and talk mesh!",
-      "location": "Leander Beer Market, 106 W Willis St, Leander, TX 78641",
-      "startsAtIso": "2026-11-12T00:00:00+00:00",
-      "endsAtIso": "2026-11-12T02:00:00+00:00",
-      "startsAtDisplay": "Wednesday, November 11, 2026 at 6:00 PM CST",
-      "startsAtShort": "11/11",
-      "link": "https://discord.com/events/1204595620204249138/1567559708489809981"
-    },
-    {
       "id": "1543400419735249026",
       "name": "November monthly mesh hang",
       "description": "Join us for some mesh with food and drink!",
